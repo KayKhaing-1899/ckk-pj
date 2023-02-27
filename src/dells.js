@@ -1,0 +1,95 @@
+const dells = [
+    {
+        id:"D1",
+        url:"dell1.webp",
+        // url:"https://cdn.shopify.com/s/files/1/0513/8205/9159/products/dell-vostro-3400-black-i3-11th-gen-205184.webp?v=1657358460&width=900",
+        name:"Dell Vostro",
+        model:"3400",
+        ram:"4GB DDR4 2666MHz",
+        cpu:"Intel Core i3-11th gen",
+        gpu:"Intel UHD Graphics",
+        display:"14\" HD Display",
+        storage:"1TB",
+        price:"1500000"
+    },
+    {
+        id:"D2",
+        url:"dell2.jpg",
+        // url:"https://www.svp.co.uk/media/catalog/product/cache/1/thumbnail/600x/17f82f742ffe127f42dca9de82fb58b1/G/9/G9YV9_0510_121051.jpg",
+        name:"Dell Inspiron 15",
+        model:"7000 Gaming",
+        ram:"16GB DDR3",
+        cpu:"Intel Core i7-7th gen",
+        gpu:"Nvidia Geforce GTx1050 2GB",
+        display:"15.6\" FHD Display",
+        storage:"1TB",
+        price:"1800000"
+    },
+    {
+        id:"D3",
+        url:"dell3.jpg",
+        // url:"https://m.media-amazon.com/images/I/618GPy6BxfL.jpg",
+        name:"Dell Inspiron",
+        model:"G3 15 3590",
+        ram:"8GB DDR4 2667MHz",
+        cpu:"Intel Core i5-9th gen",
+        gpu:"Nvidia Geforce GTx1650 4GB",
+        display:"15.6\" FHD Display",
+        storage:"512GB",
+        price:"1950000"
+    },
+    {
+        id:"D4",
+        url:"dell4.jpg",
+        // url:"https://m.media-amazon.com/images/I/71RlNrot7oL.jpg",
+        name:"Dell Vostro",
+        model:"V3510",
+        ram:"8GB DDR4 3200MHz",
+        cpu:"Intel Core i5-11th gen",
+        gpu:"Nvidia Geforce Mx350 2GB",
+        display:"15.6\" FHD Display",
+        storage:"512GB",
+        price:"2100000"
+    },
+    {
+        id:"D5",
+        url:"dell5.jpg",
+        // url:"https://images.pcel.com/1600/Computadoras-Laptops-DELL-1029578488387-433774-reTtsc7mi6tRpYiW.jpg",
+        name:"Dell Latitude",
+        model:"V3420",
+        ram:"4GB DDR4 3200MHz",
+        cpu:"Intel Core i3-11th gen",
+        gpu:"Intel UHD Graphic",
+        display:"14\" FHD Display",
+        storage:"1TB",
+        price:"1350000"
+    },
+    {
+        id:"D6",
+        url:"dell6.png",
+        // url:"https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/Alienware_x15_R2_front_angle.png",
+        name:"Dell Alienware",
+        model:"X15 R2 Gaming",
+        ram:"16GB DDR5 5200MHz",
+        cpu:"Intel Core i7-12th gen",
+        gpu:"Nvidia Geforce RTx3060 6GB",
+        display:"15.6\" FHD Display 165Hz",
+        storage:"512GB",
+        price:"8500000"
+    },
+    // {
+    //     id:"D7",
+    //     url:"dell7.jpg",
+    //     // url:"https://m.media-amazon.com/images/I/41+2dYZo5fL.jpg",
+    //     name:"Dell XPS15",
+    //     model:"9510",
+    //     ram:"32GB",
+    //     cpu:"Intel Core i9-11th gen",
+    //     gpu:"Nvidia GeForce RTX3050Ti GDDR6 4GB",
+    //     display:"15.6\" OLED Display",
+    //     storage:"2TB",
+    //     price:"7500000"
+    // },
+]
+
+export default dells
