@@ -4,13 +4,13 @@ import Signup from "./Signup"
 import { useState,useEffect } from "react"
 import axios from "axios"
 
-const Hp = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signupDisplay,setSignupDisplay}) => {
+const Hp = ({setUname,setSignupEmail,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signupDisplay,setSignupDisplay}) => {
 
   const [hps,setHps] = useState([])
   useEffect(() => {
     const fetchhps = async () => {
       try{
-        const res = await axios.get("http://localhost:8800/hp")
+        const res = await axios.get("http://localhost:8800/computers/hp")
         setHps(res.data)
       } catch(err) {
         console.log(err)
@@ -28,8 +28,8 @@ const Hp = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signup
         <div className='products-container'>
           {hps.map((hp) => (
             <div className='products-show'>
-              <Link to={`/computers/hp/${hp.id}`}><img src={`/images/${hp.url}`} alt="" className="comimg"/></Link>
-              <p className='products-text'>{hp.name} {hp.model}</p>
+              <Link to={`/computers/hp/${hp.ComId}`}><img src={`/images/${hp.Url}`} alt="" className="comimg"/></Link>
+              <p className='products-text'>{hp.Name} {hp.Model}</p>
             </div>
           ))}
         </div>
@@ -38,7 +38,7 @@ const Hp = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signup
         <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
       </div>
       <div className={!signupDisplay && 'login_hide'}>
-        <Signup signupEmail={signupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
+        <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
       </div>
     </div>
   )

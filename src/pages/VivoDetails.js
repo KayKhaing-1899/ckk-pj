@@ -5,7 +5,7 @@ import Login from './Login'
 import Signup from './Signup'
 import axios from 'axios'
 
-const VivoDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,setCount,cartItem,setCartItem,buyItem,setBuyItem,setIsLogin,loginDisplay,setLoginDisplay}) => {
+const VivoDetails = ({setUname,setSignupEmail,signupEmail,signupDisplay,setSignupDisplay,count,setCount,cartItem,setCartItem,buyItem,setBuyItem,setIsLogin,loginDisplay,setLoginDisplay}) => {
 
   const [cart,setCart] = useState([])
   useEffect(() => {
@@ -24,7 +24,7 @@ const VivoDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,
   useEffect(() => {
     const fetchvivos = async () => {
       try{
-        const res = await axios.get("http://localhost:8800/vivo/" + vivId)
+        const res = await axios.get("http://localhost:8800/phones/vivo/" + vivId)
         setVivos(res.data)
       } catch(err) {
         console.log(err)
@@ -52,9 +52,9 @@ const VivoDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,
 
   const addCart = async () => {
     cartItem.id=cartItem.id+1
-    cartItem.url=viv.url
-    cartItem.model=viv.name
-    cartItem.price=viv.price
+    cartItem.url=viv.Url
+    cartItem.model=viv.Name
+    cartItem.price=viv.Price
     let insert=true
     setCartItem((item) => (
       {
@@ -81,11 +81,11 @@ const VivoDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,
 
   const buyNow = () => {
     if(count !== 0) {
-      buyItem.id=viv.id
-      buyItem.url=viv.url
-      buyItem.model=viv.name
+      buyItem.id=viv.PhId
+      buyItem.url=viv.Url
+      buyItem.model=viv.Name
       buyItem.quantity=count
-      buyItem.price=viv.price
+      buyItem.price=viv.Price
       setBuyItem((item) => (
         {
           ...item
@@ -100,18 +100,18 @@ const VivoDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,
     <div className='details'>
       <div className={(loginDisplay || signupDisplay) && 'detail_container_hide'}>
         <div className='detail-container'>
-          <img src={`/images/${viv.url}`} alt="detail" className='detail-image' />
+          <img src={`/images/${viv.Url}`} alt="detail" className='detail-image' />
           <div className='detail-text'>
-              <h2 className='model_name'>{viv.name}</h2>
+              <h2 className='model_name'>{viv.Name}</h2>
               <hr/>
-              <p className='detail-title'>Color : <span className='gray'>{viv.color}</span></p>
-              <p className='detail-title'>Front Camera : <span className='gray'>{viv.front}</span></p>
-              <p className='detail-title'>Rear Camera : <span className='gray'>{viv.rear}</span></p>
-              <p className='detail-title'>Battery : <span className='gray'>{viv.battery}</span></p>
-              <p className='detail-title'>Storage : <span className='gray'>{viv.storage}</span></p>
-              <p className='detail-title'>RAM : <span className='gray'>{viv.ram}</span></p>
-              <p className='detail-title'>Cellular : <span className='gray'>{viv.cellular}</span></p>
-              <p className='detail-title'>Price : <span className='gray'>{viv.price} Ks</span></p>
+              <p className='detail-title'>Color : <span className='gray'>{viv.Color}</span></p>
+              <p className='detail-title'>Front Camera : <span className='gray'>{viv.Front}</span></p>
+              <p className='detail-title'>Rear Camera : <span className='gray'>{viv.Rear}</span></p>
+              <p className='detail-title'>Battery : <span className='gray'>{viv.Battery}</span></p>
+              <p className='detail-title'>Storage : <span className='gray'>{viv.Storage}</span></p>
+              <p className='detail-title'>RAM : <span className='gray'>{viv.Ram}</span></p>
+              <p className='detail-title'>Cellular : <span className='gray'>{viv.Cellular}</span></p>
+              <p className='detail-title'>Price : <span className='gray'>{viv.Price} Ks</span></p>
               <hr />
               <div className='quantity'>
                 <span className='qty'>Quantity</span>
@@ -129,7 +129,7 @@ const VivoDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,
         <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
       </div>
       <div className={!signupDisplay && 'login_hide'}>
-        <Signup signupEmail={signupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
+        <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
       </div>
       {/* <Link to="/phones/samsungs" className='btn btn-primary back-sam'>Back</Link> */}
     </div>

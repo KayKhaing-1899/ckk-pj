@@ -4,13 +4,13 @@ import Signup from "./Signup"
 import { useState,useEffect } from "react"
 import axios from "axios"
 
-const Samsung = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signupDisplay,setSignupDisplay}) => {
+const Samsung = ({setUname,setSignupEmail,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signupDisplay,setSignupDisplay}) => {
 
   const [samsungs,setSamsungs] = useState([])
   useEffect(() => {
     const fetchsamsungs = async () => {
       try{
-        const res = await axios.get("http://localhost:8800/samsung")
+        const res = await axios.get("http://localhost:8800/phones/samsung")
         setSamsungs(res.data)
       } catch(err) {
         console.log(err)
@@ -28,8 +28,8 @@ const Samsung = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,s
         <div className='products-container'>
             {samsungs.map((sam) => (
                 <div className='products-show'>
-                    <Link to={`/phones/samsungs/${sam.id}`}><img src={`/images/${sam.url}`} alt="" className="phimg"/></Link>
-                    <p className='products-text'>{sam.name}</p>
+                    <Link to={`/phones/samsungs/${sam.PhId}`}><img src={`/images/${sam.Url}`} alt="" className="phimg"/></Link>
+                    <p className='products-text'>{sam.Name}</p>
                 </div>
             ))}
         </div>
@@ -38,7 +38,7 @@ const Samsung = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,s
         <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
       </div>
       <div className={!signupDisplay && 'login_hide'}>
-        <Signup signupEmail={signupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
+        <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
       </div>
     </div>
   )

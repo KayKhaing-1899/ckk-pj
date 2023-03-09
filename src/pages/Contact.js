@@ -4,7 +4,7 @@ import Login from '../pages/Login'
 import Signup from './Signup'
 import axios from 'axios'
 
-const Contact = ({isLogin,setIsLogin,setUname,signupEmail,signupDisplay,setSignupDisplay,loginDisplay,setLoginDisplay}) => {
+const Contact = ({isLogin,setSignupEmail,setIsLogin,uname,setUname,signupEmail,signupDisplay,setSignupDisplay,loginDisplay,setLoginDisplay}) => {
 
   const [feed,setFeed] = useState({
     Uname:"",
@@ -18,7 +18,8 @@ const Contact = ({isLogin,setIsLogin,setUname,signupEmail,signupDisplay,setSignu
   }
 
   const handleSubmit = async (e) => {
-    console.log(feed)
+    feed.Uname=uname
+    if(!feed.Email||!feed.Subject||!feed.Fback) return
     if(isLogin) {
       try{
         await axios.post("http://localhost:8800/feedbacks", feed)
@@ -47,21 +48,23 @@ return (
         <input 
           type='text'
           name='Uname'
-          onChange={handleChange} 
+          value={uname}
+          inputMode={false}
+          // onChange={handleChange} 
         /><br /><br />
-        <label htmlFor='email'>Email</label><br />
+        <label htmlFor='Email'>Email</label><br />
         <input 
           type='text'
           name='Email'
           onChange={handleChange}
         /><br /><br />
-        <label htmlFor='subject'>Subject</label><br />
+        <label htmlFor='Subject'>Subject</label><br />
         <input 
           type='text'
           name='Subject'
           onChange={handleChange} 
         /><br /><br />
-        <label htmlFor='message'>Message</label><br />
+        <label htmlFor='Fback'>Message</label><br />
         <textarea 
           type='text'
           name='Fback'
@@ -74,7 +77,7 @@ return (
       <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
     </div>
     <div className={!signupDisplay && 'login_hide'}>
-      <Signup signupEmail={signupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
+      <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
     </div>
   </div>
 )

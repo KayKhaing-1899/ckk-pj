@@ -5,7 +5,7 @@ import Login from './Login'
 import Signup from './Signup'
 import axios from 'axios'
 
-const SonyDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,setCount,cartItem,setCartItem,buyItem,setBuyItem,setIsLogin,loginDisplay,setLoginDisplay}) => {
+const SonyDetails = ({setUname,setSignupEmail,signupEmail,signupDisplay,setSignupDisplay,count,setCount,cartItem,setCartItem,buyItem,setBuyItem,setIsLogin,loginDisplay,setLoginDisplay}) => {
 
   const [cart,setCart] = useState([])
   useEffect(() => {
@@ -24,7 +24,7 @@ const SonyDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,
   useEffect(() => {
     const fetchsonys = async () => {
       try{
-        const res = await axios.get("http://localhost:8800/sony/" + sonyId)
+        const res = await axios.get("http://localhost:8800/cameras/sony/" + sonyId)
         setSonys(res.data)
       } catch(err) {
         console.log(err)
@@ -53,9 +53,9 @@ const SonyDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,
 
   const addCart = async () => {
     cartItem.id=cartItem.id+1
-    cartItem.url=sony.url
-    cartItem.model=sony.name
-    cartItem.price=sony.price
+    cartItem.url=sony.Url
+    cartItem.model=sony.Name
+    cartItem.price=sony.Price
     let insert=true
     setCartItem((item) => (
       {
@@ -82,11 +82,11 @@ const SonyDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,
 
   const buyNow = () => {
     if(count !== 0) {
-      buyItem.id=sony.id
-      buyItem.url=sony.url
-      buyItem.model=sony.name
+      buyItem.id=sony.CamId
+      buyItem.url=sony.Url
+      buyItem.model=sony.Name
       buyItem.quantity=count
-      buyItem.price=sony.price
+      buyItem.price=sony.Price
       setBuyItem((item) => (
         {
           ...item
@@ -101,17 +101,17 @@ const SonyDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,
     <div className='details'>
       <div className={(loginDisplay || signupDisplay) && 'detail_container_hide'}>
         <div className='detail-container'>
-          <img src={`/images/${sony.url}`} alt="detail" className='detail-image' />
+          <img src={`/images/${sony.Url}`} alt="detail" className='detail-image' />
           <div className='detail-text'>
-              <h2 className='model_name'>{sony.name}</h2>
+              <h2 className='model_name'>{sony.Name}</h2>
               <hr/>
-              <p className='detail-title'>AF Mode : <span className='gray'>{sony.af_mode}</span></p>
-              <p className='detail-title'>Built_in_Flash : <span className='gray'>{sony.built_in_flash}</span></p>
-              <p className='detail-title'>ISO : <span className='gray'>{sony.iso}</span></p>
-              <p className='detail-title'>View_Finder : <span className='gray'>{sony.view_finder}</span></p>
-              <p className='detail-title'>Pixels : <span className='gray'>{sony.pixels}</span></p>
-              <p className='detail-title'>Weight : <span className='gray'>{sony.weight}</span></p>
-              <p className='detail-title'>Price : <span className='gray'>{sony.price} Ks</span></p>
+              <p className='detail-title'>AF Mode : <span className='gray'>{sony.Af_mode}</span></p>
+              <p className='detail-title'>Built_in_Flash : <span className='gray'>{sony.Built_in_flash}</span></p>
+              <p className='detail-title'>ISO : <span className='gray'>{sony.Iso}</span></p>
+              <p className='detail-title'>View_Finder : <span className='gray'>{sony.View_finder}</span></p>
+              <p className='detail-title'>Pixels : <span className='gray'>{sony.Pixels}</span></p>
+              <p className='detail-title'>Weight : <span className='gray'>{sony.Weight}</span></p>
+              <p className='detail-title'>Price : <span className='gray'>{sony.Price} Ks</span></p>
               <hr />
               <div className='quantity'>
                 <span className='qty'>Quantity</span>
@@ -129,7 +129,7 @@ const SonyDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,
         <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
       </div>
       <div className={!signupDisplay && 'login_hide'}>
-        <Signup signupEmail={signupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
+        <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
       </div>
       {/* <Link to="/phones/samsungs" className='btn btn-primary back-sam'>Back</Link> */}
     </div>

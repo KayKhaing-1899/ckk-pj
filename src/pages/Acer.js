@@ -4,13 +4,13 @@ import Signup from "./Signup"
 import { useState,useEffect } from "react"
 import axios from "axios"
 
-const Acer = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signupDisplay,setSignupDisplay}) => {
+const Acer = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,setSignupEmail,signupDisplay,setSignupDisplay}) => {
 
   const [acers,setAcers] = useState([])
   useEffect(() => {
     const fetchAcers = async () => {
       try{
-        const res = await axios.get("http://localhost:8800/acer")
+        const res = await axios.get("http://localhost:8800/computers/acer")
         setAcers(res.data)
       } catch(err) {
         console.log(err)
@@ -27,9 +27,9 @@ const Acer = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,sign
         </div>
         <div className='products-container'>
           {acers.map((ac) => (
-            <div className='products-show' key={ac.id}>
-              <Link to={`/computers/acer/${ac.id}`}><img src={`/images/${ac.url}`} alt="" className="comimg" /></Link>
-              <p className='products-text'>{ac.name} {ac.model}</p>
+            <div className='products-show' key={ac.ComId}>
+              <Link to={`/computers/acer/${ac.ComId}`}><img src={`/images/${ac.Url}`} alt="" className="comimg" /></Link>
+              <p className='products-text'>{ac.Name} {ac.Model}</p>
             </div>
           ))}
         </div>
@@ -38,7 +38,7 @@ const Acer = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,sign
         <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
       </div>
       <div className={!signupDisplay && 'login_hide'}>
-        <Signup signupEmail={signupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
+        <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
       </div>
     </div>
   )

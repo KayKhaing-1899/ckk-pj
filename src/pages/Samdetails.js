@@ -5,7 +5,7 @@ import Login from './Login'
 import Signup from './Signup'
 import axios from 'axios'
 
-const Samdetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,setCount,cartItem,setCartItem,buyItem,setBuyItem,setIsLogin,loginDisplay,setLoginDisplay}) => {
+const Samdetails = ({setUname,setSignupEmail,signupEmail,signupDisplay,setSignupDisplay,count,setCount,cartItem,setCartItem,buyItem,setBuyItem,setIsLogin,loginDisplay,setLoginDisplay}) => {
 
   const [cart,setCart] = useState([])
   useEffect(() => {
@@ -24,7 +24,7 @@ const Samdetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,s
   useEffect(() => {
     const fetchsamsungs = async () => {
       try{
-        const res = await axios.get("http://localhost:8800/samsung/" + samId)
+        const res = await axios.get("http://localhost:8800/phones/samsung/" + samId)
         setSamsungs(res.data)
       } catch(err) {
         console.log(err)
@@ -54,9 +54,9 @@ const Samdetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,s
 
   const addCart = async () => {
     cartItem.id=cartItem.id+1
-    cartItem.url=sam.url
-    cartItem.model=sam.name
-    cartItem.price=sam.price
+    cartItem.url=sam.Url
+    cartItem.model=sam.Name
+    cartItem.price=sam.Price
     let insert=true
     setCartItem((item) => (
       {
@@ -83,11 +83,11 @@ const Samdetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,s
 
   const buyNow = () => {
     if(count !== 0) {
-      buyItem.id=sam.id
-      buyItem.url=sam.url
-      buyItem.model=sam.name
+      buyItem.id=sam.PhId
+      buyItem.url=sam.Url
+      buyItem.model=sam.Name
       buyItem.quantity=count
-      buyItem.price=sam.price
+      buyItem.price=sam.Price
       setBuyItem((item) => (
         {
           ...item
@@ -102,18 +102,18 @@ const Samdetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,s
     <div className='details'>
       <div className={(loginDisplay || signupDisplay) && 'detail_container_hide'}>
         <div className='detail-container'>
-          <img src={`/images/${sam.url}`} alt="detail" className='detail-image' />
+          <img src={`/images/${sam.Url}`} alt="detail" className='detail-image' />
           <div className='detail-text'>
-              <h2 className='model_name'>Samsung {sam.name}</h2>
+              <h2 className='model_name'>Samsung {sam.Name}</h2>
               <hr/>
-              <p className='detail-title'>Color : <span className='gray'>{sam.color}</span></p>
-              <p className='detail-title'>Front Camera : <span className='gray'>{sam.front}</span></p>
-              <p className='detail-title'>Rear Camera : <span className='gray'>{sam.rear}</span></p>
-              <p className='detail-title'>Battery : <span className='gray'>{sam.battery}</span></p>
-              <p className='detail-title'>Storage : <span className='gray'>{sam.storage}</span></p>
-              <p className='detail-title'>RAM : <span className='gray'>{sam.ram}</span></p>
-              <p className='detail-title'>Cellular : <span className='gray'>{sam.cellular}</span></p>
-              <p className='detail-title'>Price : <span className='gray'>{sam.price} Ks</span></p>
+              <p className='detail-title'>Color : <span className='gray'>{sam.Color}</span></p>
+              <p className='detail-title'>Front Camera : <span className='gray'>{sam.Front}</span></p>
+              <p className='detail-title'>Rear Camera : <span className='gray'>{sam.Rear}</span></p>
+              <p className='detail-title'>Battery : <span className='gray'>{sam.Battery}</span></p>
+              <p className='detail-title'>Storage : <span className='gray'>{sam.Storage}</span></p>
+              <p className='detail-title'>RAM : <span className='gray'>{sam.Ram}</span></p>
+              <p className='detail-title'>Cellular : <span className='gray'>{sam.Cellular}</span></p>
+              <p className='detail-title'>Price : <span className='gray'>{sam.Price} Ks</span></p>
               <hr />
               <div className='quantity'>
                 <span className='qty'>Quantity</span>
@@ -131,7 +131,7 @@ const Samdetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,s
         <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
       </div>
       <div className={!signupDisplay && 'login_hide'}>
-        <Signup signupEmail={signupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
+        <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
       </div>
       {/* <Link to="/phones/samsungs" className='btn btn-primary back-sam'>Back</Link> */}
     </div>

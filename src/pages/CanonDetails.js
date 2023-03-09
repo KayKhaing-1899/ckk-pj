@@ -5,7 +5,7 @@ import Signup from './Signup'
 import { useState,useEffect } from 'react'
 import axios from 'axios'
 
-const CanonDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,setCount,cartItem,setCartItem,buyItem,setBuyItem,setIsLogin,loginDisplay,setLoginDisplay}) => {
+const CanonDetails = ({setUname,setSignupEmail,signupEmail,signupDisplay,setSignupDisplay,count,setCount,cartItem,setCartItem,buyItem,setBuyItem,setIsLogin,loginDisplay,setLoginDisplay}) => {
 
   const [cart,setCart] = useState([])
   useEffect(() => {
@@ -24,7 +24,7 @@ const CanonDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count
   useEffect(() => {
     const fetchcanons = async () => {
       try{
-        const res = await axios.get("http://localhost:8800/canon/" + canonId)
+        const res = await axios.get("http://localhost:8800/cameras/canon/" + canonId)
         setCanons(res.data)
       } catch(err) {
         console.log(err)
@@ -53,9 +53,9 @@ const CanonDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count
 
   const addCart = async() => {
     cartItem.id=cartItem.id+1
-    cartItem.url=canon.url
-    cartItem.model=canon.name
-    cartItem.price=canon.price
+    cartItem.url=canon.Url
+    cartItem.model=canon.Name
+    cartItem.price=canon.Price
     let insert=true
     setCartItem((item) => (
       {
@@ -82,11 +82,11 @@ const CanonDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count
 
   const buyNow = () => {
     if(count !== 0) {
-      buyItem.id = canon.id
-      buyItem.url=canon.url
-      buyItem.model=canon.name
+      buyItem.id = canon.CamId
+      buyItem.url=canon.Url
+      buyItem.model=canon.Name
       buyItem.quantity=count
-      buyItem.price=canon.price
+      buyItem.price=canon.Price
       setBuyItem((item) => (
         {
           ...item
@@ -101,17 +101,17 @@ const CanonDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count
     <div className='details'>
       <div className={(loginDisplay || signupDisplay) && 'detail_container_hide'}>
         <div className='detail-container'>
-          <img src={`/images/${canon.url}`} alt="detail" className='detail-image' />
+          <img src={`/images/${canon.Url}`} alt="detail" className='detail-image' />
           <div className='detail-text'>
-              <h2 className='model_name'>{canon.name}</h2>
+              <h2 className='model_name'>{canon.Name}</h2>
               <hr/>
-              <p className='detail-title'>AF Mode : <span className='gray'>{canon.af_mode}</span></p>
-              <p className='detail-title'>Built_in_Flash : <span className='gray'>{canon.built_in_flash}</span></p>
-              <p className='detail-title'>ISO : <span className='gray'>{canon.iso}</span></p>
-              <p className='detail-title'>View_Finder : <span className='gray'>{canon.view_finder}</span></p>
-              <p className='detail-title'>Pixels : <span className='gray'>{canon.pixels}</span></p>
-              <p className='detail-title'>Weight : <span className='gray'>{canon.weight}</span></p>
-              <p className='detail-title'>Price : <span className='gray'>{canon.price} Ks</span></p>
+              <p className='detail-title'>AF Mode : <span className='gray'>{canon.Af_mode}</span></p>
+              <p className='detail-title'>Built_in_Flash : <span className='gray'>{canon.Built_in_flash}</span></p>
+              <p className='detail-title'>ISO : <span className='gray'>{canon.Iso}</span></p>
+              <p className='detail-title'>View_Finder : <span className='gray'>{canon.View_finder}</span></p>
+              <p className='detail-title'>Pixels : <span className='gray'>{canon.Pixels}</span></p>
+              <p className='detail-title'>Weight : <span className='gray'>{canon.Weight}</span></p>
+              <p className='detail-title'>Price : <span className='gray'>{canon.Price} Ks</span></p>
               <hr />
               <div className='quantity'>
                 <span className='qty'>Quantity</span>
@@ -129,7 +129,7 @@ const CanonDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count
         <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
       </div>
       <div className={!signupDisplay && 'login_hide'}>
-        <Signup signupEmail={signupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
+        <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
       </div>
       {/* <Link to="/phones/samsungs" className='btn btn-primary back-sam'>Back</Link> */}
     </div>

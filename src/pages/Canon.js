@@ -4,13 +4,13 @@ import Signup from "./Signup"
 import { useState,useEffect } from "react"
 import axios from "axios"
 
-const Canon = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signupDisplay,setSignupDisplay}) => {
+const Canon = ({setUname,setSignupEmail,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signupDisplay,setSignupDisplay}) => {
 
   const [canons,setCanons] = useState([])
   useEffect(() => {
     const fetchcanons = async () => {
       try{
-        const res = await axios.get("http://localhost:8800/canon")
+        const res = await axios.get("http://localhost:8800/cameras/canon")
         setCanons(res.data)
       } catch(err) {
         console.log(err)
@@ -28,8 +28,8 @@ const Canon = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,sig
         <div className='products-container'>
           {canons.map((can) => (
             <div className='products-show'>
-              <Link to={`/cameras/canon/${can.id}`}><img src={`/images/${can.url}`} alt="" className="camimg"/></Link>
-              <p className='products-text'>{can.name}</p>
+              <Link to={`/cameras/canon/${can.CamId}`}><img src={`/images/${can.Url}`} alt="" className="camimg"/></Link>
+              <p className='products-text'>{can.Name}</p>
             </div>
           ))}
         </div>
@@ -38,7 +38,7 @@ const Canon = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,sig
         <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
       </div>
       <div className={!signupDisplay && 'login_hide'}>
-        <Signup signupEmail={signupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
+        <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
       </div>
     </div>
   )

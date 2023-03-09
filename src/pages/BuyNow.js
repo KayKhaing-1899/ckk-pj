@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Login from './Login'
 import Signup from './Signup'
 
-const BuyNow = ({buyItem,setUname,setIsLogin,setSignupDisplay,setLoginDisplay,signupEmail,signupDisplay,loginDisplay}) => {
+const BuyNow = ({buyItem,setUname,setIsLogin,setSignupDisplay,setSignupEmail,setLoginDisplay,signupEmail,signupDisplay,loginDisplay}) => {
 
     const [cus,setCus] = useState({
         name : "",
@@ -14,6 +14,7 @@ const BuyNow = ({buyItem,setUname,setIsLogin,setSignupDisplay,setLoginDisplay,si
         address : ""
     })
     const [order,setOrder] = useState({
+        date: "",
         cusname : "",
         email : "",
         phone : "",
@@ -25,6 +26,7 @@ const BuyNow = ({buyItem,setUname,setIsLogin,setSignupDisplay,setLoginDisplay,si
     }) 
     const navigate = useNavigate()
     const [deli,setDeli] = useState(0)
+    const [date,setDate] = useState("")
 
     const price = Number(buyItem.price)
 
@@ -45,6 +47,7 @@ const BuyNow = ({buyItem,setUname,setIsLogin,setSignupDisplay,setLoginDisplay,si
 
     const handleSubmit = async () => {
         if(!cus.name || !cus.phone || !cus.address || !cus.email) return
+        order.date = cus.date
         order.cusname = cus.name
         order.email = cus.email
         order.phone = cus.phone
@@ -81,61 +84,80 @@ const BuyNow = ({buyItem,setUname,setIsLogin,setSignupDisplay,setLoginDisplay,si
         }
     }
 
+    useEffect(() => {
+        let current = new Date()
+        let day = current.getDate()
+        let month = current.getMonth()
+        let year = current.getFullYear()
+        let date = `${day}.${month}.${year}`
+        document.getElementById('date').value = date
+        setDate(date)
+    })
+
   return (
     <div>
         <div className={(loginDisplay || signupDisplay) && 'brand_container_hide'}>
             <div className='buynow_page'>
-                <form className='customer_info_form'>
-                    <label htmlFor='name'>Name :</label>
-                    <input 
-                        type='text'
-                        name='name'
-                        onChange={handleChange} 
-                    />
-                    <br /><br />
-                    <label htmlFor='phone'>Phone :</label>
-                    <input 
-                        type='text'
-                        name='phone'
-                        onChange={handleChange} 
-                    />
-                    <br /><br />
-                    <label htmlFor='email'>Email :</label>
-                    <input 
-                        type='text'
-                        name='email'
-                        onChange={handleChange} 
-                    />
-                    <br /><br />
-                    <label htmlFor='address'>Address :</label>
-                    <input 
-                        type='text'
-                        name='address'
-                        onChange={handleChange} 
-                    />
-                    <hr />
-                    <div className='buynow_container'>
-                        <img src={`/images/${buyItem.url}`} alt='' className='buynow_img' />
-                        <div className='buynow_details'>
-                            <p>Name : {buyItem.model}</p>
-                            <p>Quantity : {buyItem.quantity}</p>
-                            <p>Price : {buyItem.price} Ks</p>
-                        </div>
+                <div className='cus_info_form_container'>
+                    <form className='customer_info_form'>
+                        <label htmlFor='date'>Date :</label>
+                        <input 
+                            type='text'
+                            id='date'
+                            value='' 
+                        />
+                        <br /><br />
+                        <label htmlFor='name'>Name :</label>
+                        <input 
+                            type='text'
+                            name='name'
+                            onChange={handleChange} 
+                        />
+                        <br /><br />
+                        <label htmlFor='phone'>Phone :</label>
+                        <input 
+                            type='text'
+                            name='phone'
+                            onChange={handleChange} 
+                        />
+                        <br /><br />
+                        <label htmlFor='email'>Email :</label>
+                        <input 
+                            type='text'
+                            name='email'
+                            onChange={handleChange} 
+                        />
+                        <br /><br />
+                        <label htmlFor='address'>Address :</label>
+                        <input 
+                            type='text'
+                            name='address'
+                            onChange={handleChange} 
+                        />
+                    </form>
+                </div>
+                <hr />
+                <div className='buynow_container'>
+                    <img src={`/images/${buyItem.url}`} alt='' className='buynow_img' />
+                    <div className='buynow_details'>
+                        <p>Name : {buyItem.model}</p>
+                        <p>Quantity : {buyItem.quantity}</p>
+                        <p>Price : {buyItem.price} Ks</p>
                     </div>
-                    <div className='buynow_total'>
-                        <p className='total'>Delivery : <span style={{color:'#dc4535',fontWeight:700}}>{deli} days</span> <br />
-                            Total : <span style={{color:'#dc4535',fontWeight:700}}>{totalprice}</span> Ks
-                        </p>
-                        <button className='btn btn-danger' type='button' onClick={handleSubmit}>Order Now</button>
-                    </div>
-                </form>
+                </div>
+                <div className='buynow_total'>
+                    <p className='total'>Delivery : <span style={{color:'#dc4535',fontWeight:700}}>{deli} days</span> <br />
+                        Total : <span style={{color:'#dc4535',fontWeight:700}}>{totalprice}</span> Ks
+                    </p>
+                    <button className='btn btn-danger' type='button' onClick={handleSubmit}>Order Now</button>
+                </div>
             </div>
         </div>
         <div className={!loginDisplay && 'login_hide'}>
             <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
         </div>
         <div className={!signupDisplay && 'login_hide'}>
-            <Signup signupEmail={signupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
+            <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
         </div>
     </div>
   )

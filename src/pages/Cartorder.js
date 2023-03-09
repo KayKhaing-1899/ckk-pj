@@ -1,11 +1,11 @@
 import axios from 'axios'
 import React from 'react'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Login from './Login'
 import Signup from './Signup'
 
-const Cartorder = ({temp,setTemp,cartTotal,setUname,setSignupDisplay,setLoginDisplay,loginDisplay,signupDisplay,signupEmail,setIsLogin}) => {
+const Cartorder = ({temp,setSignupEmail,setTemp,cartTotal,setUname,setSignupDisplay,setLoginDisplay,loginDisplay,signupDisplay,signupEmail,setIsLogin}) => {
 
     const [cus,setCus] = useState({
         name:"",
@@ -14,6 +14,7 @@ const Cartorder = ({temp,setTemp,cartTotal,setUname,setSignupDisplay,setLoginDis
         address:""
     })
     const [order,setOrder] = useState({
+        date : "",
         cusname : "",
         email : "",
         phone : "",
@@ -25,6 +26,7 @@ const Cartorder = ({temp,setTemp,cartTotal,setUname,setSignupDisplay,setLoginDis
     })
     const navigate = useNavigate()
     const [deli,setDeli] = useState(0)
+    const [date,setDate] = useState("")
 
     const change = (e) => {
         setCus(prev => ({...prev,[e.target.name]:e.target.value}))
@@ -47,6 +49,7 @@ const Cartorder = ({temp,setTemp,cartTotal,setUname,setSignupDisplay,setLoginDis
     const confirmcart = () => {
         if(!cus.name || !cus.phone || !cus.address || !cus.email) return
         temp.forEach(async(ele) => {
+            order.date = date
             order.cusname = cus.name
             order.email = cus.email
             order.phone = cus.phone
@@ -58,7 +61,6 @@ const Cartorder = ({temp,setTemp,cartTotal,setUname,setSignupDisplay,setLoginDis
             setOrder(prev => ({
                 ...prev
             }))
-            console.log(order)
             try{
                 await axios.post("http://localhost:8800/orderlists",order)
             } catch(err){
@@ -70,11 +72,28 @@ const Cartorder = ({temp,setTemp,cartTotal,setUname,setSignupDisplay,setLoginDis
         setTemp([])
     }
 
+    useEffect(() => {
+        let current = new Date()
+        let day = current.getDate()
+        let month = current.getMonth()
+        let year = current.getFullYear()
+        let date = `${day}.${month}.${year}`
+        document.getElementById('date').value = date
+        setDate(date)
+    })
+
   return (
     <div>
         <div className={(loginDisplay || signupDisplay) && 'brand_container_hide'}>
             <div className='cartorder'>
                 <form className='cartorder_form'>
+                    <label htmlFor='date'>Date :</label>
+                    <input 
+                        type='text'
+                        id='date'
+                        value=''
+                    />
+                    <br /><br />
                     <label htmlFor='name'>Name :</label>
                     <input 
                         type='text'
@@ -138,7 +157,7 @@ const Cartorder = ({temp,setTemp,cartTotal,setUname,setSignupDisplay,setLoginDis
             <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
         </div>
         <div className={!signupDisplay && 'login_hide'}>
-            <Signup signupEmail={signupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
+            <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
         </div>
     </div>
   )

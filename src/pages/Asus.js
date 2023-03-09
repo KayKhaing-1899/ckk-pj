@@ -4,13 +4,13 @@ import Signup from "./Signup"
 import { useState,useEffect } from "react"
 import axios from "axios"
 
-const Asus = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signupDisplay,setSignupDisplay}) => {
+const Asus = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,setSignupEmail,signupDisplay,setSignupDisplay}) => {
 
   const [asuss,setAsuss] = useState([])
   useEffect(() => {
     const fetchAsuss = async () => {
       try{
-        const res = await axios.get("http://localhost:8800/asus")
+        const res = await axios.get("http://localhost:8800/computers/asus")
         setAsuss(res.data)
       } catch(err) {
         console.log(err)
@@ -28,8 +28,8 @@ const Asus = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,sign
         <div className='products-container'>
           {asuss.map((as) => (
             <div className='products-show'>
-              <Link to={`/computers/asus/${as.id}`}><img src={`/images/${as.url}`} alt="" className="comimg"/></Link>
-              <p className='products-text'>{as.name} {as.model}</p>
+              <Link to={`/computers/asus/${as.ComId}`}><img src={`/images/${as.Url}`} alt="" className="comimg"/></Link>
+              <p className='products-text'>{as.Name} {as.Model}</p>
             </div>
           ))}
         </div>
@@ -38,7 +38,7 @@ const Asus = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,sign
         <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
       </div>
       <div className={!signupDisplay && 'login_hide'}>
-        <Signup signupEmail={signupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
+        <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
       </div>
     </div>
   )

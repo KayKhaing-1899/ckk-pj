@@ -15,38 +15,49 @@ const Login = ({setIsLogin,setLoginDisplay,setSignupDisplay,setUname}) => {
             }
         }
         fetchUser()
-    },[])
+    })
 
     const [user,setUser] = useState([])
     const [name,setName] = useState("")
     const [password,setPassword] = useState("")
     const [isShow,setIsShow] = useState(false)
+    const [notFound,setNotFound] = useState(false)
+    const [wrong,setWrong] = useState(false)
 
     const handleSubmit = (e) => {
         e.preventDefault()
         setUname(name)
         if(!name || !password) {
             return
-        } else {
+        }else{
             user.forEach(u => {
                 if(u.Name===name) {
-                    if(u.Password===password) {
+                    setNotFound(false)
+                    if(u.Password===password){
                         setIsLogin(true)
                         setLoginDisplay(false)
                         setName("")
                         setPassword("")
-                    } else {
-                        console.log("Your password is wrong!")
+                        setWrong(false)
+                    }else{
+                        setWrong(true)
                     }
-                } else {
-                    console.log("User doesn't exist")
+                }else{
+                    setNotFound(true)
                 }
             })
         }
     }
 
+    const okclick = () => {
+        setNotFound(false)
+        setWrong(false)
+    }
+
     const closePage = () => {
         setLoginDisplay(false)
+        setName("")
+        setPassword("")
     }
 
     const showPassword = () => {
@@ -60,12 +71,12 @@ const Login = ({setIsLogin,setLoginDisplay,setSignupDisplay,setUname}) => {
 
   return (
     <div className='login_page'>
-        <div className='login_container'>
+        <div className={(notFound||wrong) ? 'brand_container_hide' : 'login_container'}>
             <div className='close'>
                 <h3 className='login_title'>Login</h3>
                 <button className='btn btn-close close_btn' onClick={closePage}></button>
             </div>
-            <form onSubmit={handleSubmit}>
+            <form>
                 <label htmlFor='name'>Name</label>
                 <br />
                 <input 
@@ -85,20 +96,36 @@ const Login = ({setIsLogin,setLoginDisplay,setSignupDisplay,setUname}) => {
                     onChange={(e) => setPassword(e.target.value)}
                 />
                 <br /><br />
-                <button type='submit' className='btn btn-danger login_btn'>Login</button>
+                <button type='button' className='btn btn-danger login_btn' onClick={handleSubmit}>Login</button>
             </form>
             <button className='show_eye' onClick={showPassword}>
                 {isShow ? <img src="/images/open_eye.png" alt='' className='show_eye_img' /> : <img src="/images/close_eye.png" alt='' className='show_eye_img' />}
             </button>
-            <div className='form-footer'>
+            {/* <div className='form-footer'>
                 <input type='checkbox'></input>
                 <p className='check-name'>Remember me</p>
                 <p className='help'>Need help?</p>
-            </div>
+            </div> */}
             <p className='sign_up'>
                 Are you new customer? <span className='signup_now' onClick={click}>Sign_up</span> now.
             </p>
         </div>
+        {notFound && 
+            <div className='alert'>
+                <h2>User Not Found</h2>
+                <div className='alert_container'>
+                    <button className='btn btn-primary alert_ok' onClick={okclick}>OK</button>
+                </div>
+            </div>
+        }
+        {wrong && 
+            <div className='alert'>
+                <h2>Your password is wrong</h2>
+                <div className='alert_container'>
+                    <button className='btn btn-primary alert_ok' onClick={okclick}>OK</button>
+                </div>
+            </div>
+        }
     </div>
   )
 }

@@ -5,7 +5,7 @@ import Signup from './Signup'
 import { useState,useEffect } from 'react'
 import axios from 'axios'
 
-const TvDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,setCount,cartItem,setCartItem,buyItem,setBuyItem,setIsLogin,loginDisplay,setLoginDisplay}) => {
+const TvDetails = ({setUname,setSignupEmail,signupEmail,signupDisplay,setSignupDisplay,count,setCount,cartItem,setCartItem,buyItem,setBuyItem,setIsLogin,loginDisplay,setLoginDisplay}) => {
 
   const [cart,setCart] = useState([])
   useEffect(() => {
@@ -24,7 +24,7 @@ const TvDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,se
   useEffect(() => {
     const fetchtvs = async () => {
       try{
-        const res = await axios.get("http://localhost:8800/tv/" + tvId)
+        const res = await axios.get("http://localhost:8800/tvs/" + tvId)
         setTvs(res.data)
       } catch(err) {
         console.log(err)
@@ -53,9 +53,9 @@ const TvDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,se
 
   const addCart = async () => {
     cartItem.id=cartItem.id+1
-    cartItem.url=tv.url
-    cartItem.model=tv.name
-    cartItem.price=tv.price
+    cartItem.url=tv.Url
+    cartItem.model=tv.Name
+    cartItem.price=tv.Price
     let insert=true
     setCartItem((item) => (
       {
@@ -82,11 +82,11 @@ const TvDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,se
 
   const buyNow = () => {
     if(count !== 0) {
-      buyItem.id=tv.id
-      buyItem.url=tv.url
-      buyItem.model=tv.name
+      buyItem.id=tv.TvId
+      buyItem.url=tv.Url
+      buyItem.model=tv.Name
       buyItem.quantity=count
-      buyItem.price=tv.price
+      buyItem.price=tv.Price
       setBuyItem((item) => (
         {
           ...item
@@ -101,13 +101,13 @@ const TvDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,se
     <div className='tvdetails'>
       <div className={(loginDisplay || signupDisplay) && 'detail_container_hide'}>
         <div className='detail-container tvcontainer'>
-          <img src={`/images/${tv.url}`} alt="detail" className='detail-image' />
+          <img src={`/images/${tv.Url}`} alt="detail" className='detail-image' />
           <div className='tvdetail-text'>
-              <h2 className='model_name'>{tv.name}</h2>
+              <h2 className='model_name'>{tv.Name}</h2>
               <hr/>
-              <p className='detail-title'>Model : <span className='gray'>{tv.model}</span></p>
-              <p className='detail-title'>Size : <span className='gray'>{tv.size}</span></p>
-              <p className='detail-title'>Price : <span className='gray'>{tv.price} Ks</span></p>
+              <p className='detail-title'>Model : <span className='gray'>{tv.Model}</span></p>
+              <p className='detail-title'>Size : <span className='gray'>{tv.Size}</span></p>
+              <p className='detail-title'>Price : <span className='gray'>{tv.Price} Ks</span></p>
               <hr />
               <div className='quantity'>
                 <span className='qty'>Quantity</span>
@@ -125,7 +125,7 @@ const TvDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,se
         <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
       </div>
       <div className={!signupDisplay && 'login_hide'}>
-        <Signup signupEmail={signupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
+        <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
       </div>
       {/* <Link to="/phones/samsungs" className='btn btn-primary back-sam'>Back</Link> */}
     </div>

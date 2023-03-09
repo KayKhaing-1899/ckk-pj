@@ -5,13 +5,13 @@ import Signup from './Signup'
 import { useState,useEffect } from 'react'
 import axios from 'axios'
 
-const Tv = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signupDisplay,setSignupDisplay}) => {
+const Tv = ({setUname,setSignupEmail,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signupDisplay,setSignupDisplay}) => {
 
   const [tvs,setTvs] = useState([])
   useEffect(() => {
     const fetchtvs = async () => {
       try{
-        const res = await axios.get("http://localhost:8800/tv")
+        const res = await axios.get("http://localhost:8800/tvs")
         setTvs(res.data)
       } catch(err) {
         console.log(err)
@@ -27,8 +27,8 @@ const Tv = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signup
         <div className='products-container'>
           {tvs.map((tv) => (
             <div className='products-show'>
-              <Link to={`/tvs/${tv.id}`}><img src={`/images/${tv.url}`} alt="" className="tv_img"/></Link>
-              <p className='products-text'>{tv.name}</p>
+              <Link to={`/tvs/${tv.TvId}`}><img src={`/images/${tv.Url}`} alt="" className="tv_img"/></Link>
+              <p className='products-text'>{tv.Name}</p>
             </div>
           ))}
         </div>
@@ -37,7 +37,7 @@ const Tv = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signup
         <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
       </div>
       <div className={!signupDisplay && 'login_hide'}>
-        <Signup signupEmail={signupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
+        <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
       </div>
     </div>
   )

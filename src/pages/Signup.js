@@ -1,18 +1,29 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import axios from 'axios'
 
-const Signup = ({signupEmail,setSignupDisplay,setLoginDisplay}) => {
+const Signup = ({signupEmail,setSignupEmail,setSignupDisplay,setLoginDisplay}) => {
 
-    console.log(signupEmail)
+    const [users,setUsers] = useState([])
+    useEffect(() => {
+        const fetchusers = async () => {
+        try{
+            const res = await axios.get("http://localhost:8800/users")
+            setUsers(res.data)
+        } catch (err) {
+            console.log(err)
+        }
+        }
+        fetchusers()
+    })
 
+    const [cpassword,setCpassword] = useState("")
     const[user,setUser] = useState({
         Name:"",
+        Phone:"",
         Email:"",
         Address:"",
-        Phone:"",
-        Password:"",
-        Cpassword:""
+        Password:""
     })
     const [isShow,setIsShow] = useState(false)
 
@@ -21,24 +32,53 @@ const Signup = ({signupEmail,setSignupDisplay,setLoginDisplay}) => {
     }
 
     const handleClick = async (e) => {
-        if(signupEmail === user.Email) {
-            if(user.Password !== user.Cpassword) {
+        let signup = true
+        if(signupEmail!==""){
+            if(signupEmail === user.Email) {
+                if(user.Password !== cpassword) {
+                    alert("Your password doesn't match!")
+                } else {
+                    users.forEach(u => {
+                        if(u.Email===user.Email) { signup = false }
+                    })
+                    if(signup===true){
+                        setSignupDisplay(false)
+                        try {
+                            await axios.post("http://localhost:8800/users", user)
+                        } catch (err) {
+                            console.log(err)
+                        }
+                    } else {
+                        alert("Your Email is already taken!")
+                    }
+                }  
+            } else {
+                alert("Your email doesn't match!")
+            }
+        } else {
+            if(user.Password !== cpassword) {
                 alert("Your password doesn't match!")
             } else {
-                setSignupDisplay(false)
-                try {
-                    await axios.post("http://localhost:8800/users", user)
-                } catch (err) {
-                    console.log(err)
+                users.forEach(u => {
+                    if(u.Email===user.Email) { signup = false }
+                })
+                if(signup===true){
+                    setSignupDisplay(false)
+                    try {
+                        await axios.post("http://localhost:8800/users", user)
+                    } catch (err) {
+                        console.log(err)
+                    }
+                } else {
+                    alert("Your Email is already taken!")
                 }
-            }  
-        } else {
-            console.log("Your email doesn't match!")
+            }
         }
     }
 
     const closePage = () => {
         setSignupDisplay(false)
+        setSignupEmail("")
     }
 
     const showPassword = () => {
@@ -97,8 +137,8 @@ const Signup = ({signupEmail,setSignupDisplay,setLoginDisplay}) => {
                 <label htmlFor='confirm_pwd'>Confirm Password : </label>
                 <input 
                     type={isShow ? 'text' : 'password'}
-                    name='Cpassword'
-                    onChange={handleChange}
+                    name='cpassword'
+                    onChange={(e) => setCpassword(e.target.value)}
                 />
                 <br /><br />
                 <div className='show_password_checkbox'>

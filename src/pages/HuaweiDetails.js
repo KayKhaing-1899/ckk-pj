@@ -5,7 +5,7 @@ import Login from './Login'
 import Signup from './Signup'
 import axios from 'axios'
 
-const HuaweiDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,setCount,cartItem,setCartItem,buyItem,setBuyItem,setIsLogin,loginDisplay,setLoginDisplay}) => {
+const HuaweiDetails = ({setUname,setSignupEmail,signupEmail,signupDisplay,setSignupDisplay,count,setCount,cartItem,setCartItem,buyItem,setBuyItem,setIsLogin,loginDisplay,setLoginDisplay}) => {
 
   const [cart,setCart] = useState([])
   useEffect(() => {
@@ -24,7 +24,7 @@ const HuaweiDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,coun
   useEffect(() => {
     const fetchhuaweis = async () => {
       try{
-        const res = await axios.get("http://localhost:8800/huawei/" + huaweiId)
+        const res = await axios.get("http://localhost:8800/phones/huawei/" + huaweiId)
         setHuaweis(res.data)
       } catch(err) {
         console.log(err)
@@ -53,9 +53,9 @@ const HuaweiDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,coun
 
   const addCart = async () => {
     cartItem.id=cartItem.id+1
-    cartItem.url=hua.url
-    cartItem.model=hua.name
-    cartItem.price=hua.price
+    cartItem.url=hua.Url
+    cartItem.model=hua.Name
+    cartItem.price=hua.Price
     let insert=true
     setCartItem((item) => (
       {
@@ -82,11 +82,11 @@ const HuaweiDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,coun
 
   const buyNow = () => {
     if(count !== 0) {
-      buyItem.id=hua.id
-      buyItem.url=hua.url
-      buyItem.model=hua.name
+      buyItem.id=hua.PhId
+      buyItem.url=hua.Url
+      buyItem.model=hua.Name
       buyItem.quantity=count
-      buyItem.price=hua.price
+      buyItem.price=hua.Price
       setBuyItem((item) => (
         {
           ...item
@@ -101,18 +101,18 @@ const HuaweiDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,coun
     <div className='details'>
       <div className={(loginDisplay || signupDisplay) && 'detail_container_hide'}>
         <div className='detail-container'>
-          <img src={`/images/${hua.url}`} alt="detail" className='detail-image' />
+          <img src={`/images/${hua.Url}`} alt="detail" className='detail-image' />
           <div className='detail-text'>
-              <h2 className='model_name'>{hua.name}</h2>
+              <h2 className='model_name'>{hua.Name}</h2>
               <hr/>
-              <p className='detail-title'>Color : <span className='gray'>{hua.color}</span></p>
-              <p className='detail-title'>Front Camera : <span className='gray'>{hua.front}</span></p>
-              <p className='detail-title'>Rear Camera : <span className='gray'>{hua.rear}</span></p>
-              <p className='detail-title'>Battery : <span className='gray'>{hua.battery}</span></p>
-              <p className='detail-title'>Storage : <span className='gray'>{hua.storage}</span></p>
-              <p className='detail-title'>RAM : <span className='gray'>{hua.ram}</span></p>
-              <p className='detail-title'>Cellular : <span className='gray'>{hua.cellular}</span></p>
-              <p className='detail-title'>Price : <span className='gray'>{hua.price} Ks</span></p>
+              <p className='detail-title'>Color : <span className='gray'>{hua.Color}</span></p>
+              <p className='detail-title'>Front Camera : <span className='gray'>{hua.Front}</span></p>
+              <p className='detail-title'>Rear Camera : <span className='gray'>{hua.Rear}</span></p>
+              <p className='detail-title'>Battery : <span className='gray'>{hua.Battery}</span></p>
+              <p className='detail-title'>Storage : <span className='gray'>{hua.Storage}</span></p>
+              <p className='detail-title'>RAM : <span className='gray'>{hua.Ram}</span></p>
+              <p className='detail-title'>Cellular : <span className='gray'>{hua.Cellular}</span></p>
+              <p className='detail-title'>Price : <span className='gray'>{hua.Price} Ks</span></p>
               <hr />
               <div className='quantity'>
                 <span className='qty'>Quantity</span>
@@ -130,7 +130,7 @@ const HuaweiDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,coun
         <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
       </div>
       <div className={!signupDisplay && 'login_hide'}>
-        <Signup signupEmail={signupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
+        <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
       </div>
       {/* <Link to="/phones/samsungs" className='btn btn-primary back-sam'>Back</Link> */}
     </div>

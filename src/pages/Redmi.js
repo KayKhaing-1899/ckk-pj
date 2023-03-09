@@ -4,13 +4,13 @@ import Signup from "./Signup"
 import { useState,useEffect } from "react"
 import axios from "axios"
 
-const Redmi = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signupDisplay,setSignupDisplay}) => {
+const Redmi = ({setUname,setSignupEmail,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signupDisplay,setSignupDisplay}) => {
 
   const [redmis,setRedmis] = useState([])
   useEffect(() => {
     const fetchredmis = async () => {
       try{
-        const res = await axios.get("http://localhost:8800/redmi")
+        const res = await axios.get("http://localhost:8800/phones/redmi")
         setRedmis(res.data)
       } catch(err) {
         console.log(err)
@@ -28,8 +28,8 @@ const Redmi = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,sig
         <div className='products-container'>
             {redmis.map((red) => (
                 <div className='products-show'>
-                    <Link to={`/phones/redmis/${red.id}`}><img src={`/images/${red.url}`} alt="" className="phimg"/></Link>
-                    <p className='products-text'>{red.name}</p>
+                    <Link to={`/phones/redmis/${red.PhId}`}><img src={`/images/${red.Url}`} alt="" className="phimg"/></Link>
+                    <p className='products-text'>{red.Name}</p>
                 </div>
             ))}
         </div>
@@ -38,7 +38,7 @@ const Redmi = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,sig
         <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
       </div>
       <div className={!signupDisplay && 'login_hide'}>
-        <Signup signupEmail={signupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
+        <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
       </div>
     </div>
   )

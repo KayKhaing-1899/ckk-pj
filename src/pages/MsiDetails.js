@@ -5,7 +5,7 @@ import Login from './Login'
 import Signup from './Signup'
 import axios from 'axios'
 
-const MsiDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,setCount,cartItem,setCartItem,buyItem,setBuyItem,setIsLogin,loginDisplay,setLoginDisplay}) => {
+const MsiDetails = ({setUname,setSignupEmail,signupEmail,signupDisplay,setSignupDisplay,count,setCount,cartItem,setCartItem,buyItem,setBuyItem,setIsLogin,loginDisplay,setLoginDisplay}) => {
 
   const [cart,setCart] = useState([])
   useEffect(() => {
@@ -24,7 +24,7 @@ const MsiDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,s
   useEffect(() => {
     const fetchMsis = async () => {
       try{
-        const res = await axios.get("http://localhost:8800/msi/" + msiId)
+        const res = await axios.get("http://localhost:8800/computers/msi/" + msiId)
         setMsis(res.data)
       } catch(err) {
         console.log(err)
@@ -54,9 +54,9 @@ const MsiDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,s
 
   const addCart = async () => {
     cartItem.id=cartItem.id+1
-    cartItem.url=msi.url
-    cartItem.model=`${msi.name} ${msi.model}`
-    cartItem.price=msi.price
+    cartItem.url=msi.Url
+    cartItem.model=`${msi.Name} ${msi.Model}`
+    cartItem.price=msi.Price
     let insert=true
     setCartItem((item) => (
       {
@@ -83,11 +83,11 @@ const MsiDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,s
 
   const buyNow = () => {
     if(count !== 0) {
-      buyItem.id=msi.id
-      buyItem.url=msi.url
-      buyItem.model=`${msi.name} ${msi.model}`
+      buyItem.id=msi.ComId
+      buyItem.url=msi.Url
+      buyItem.model=`${msi.Name} ${msi.Model}`
       buyItem.quantity=count
-      buyItem.price=msi.price
+      buyItem.price=msi.Price
       setBuyItem((item) => (
         {
           ...item
@@ -102,16 +102,16 @@ const MsiDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,s
     <div className='details'>
       <div className={(loginDisplay || signupDisplay) && 'detail_container_hide'}>
         <div className='detail-container'>
-          <img src={`/images/${msi.url}`} alt="detail" className='detail-image' />
+          <img src={`/images/${msi.Url}`} alt="detail" className='detail-image' />
           <div className='detail-text'>
-              <h2 className='model_name'>{msi.name} {msi.model}</h2>
+              <h2 className='model_name'>{msi.Name} {msi.Model}</h2>
               <hr/>
-              <p className='detail-title'>RAM : <span className='gray'>{msi.ram}</span></p>
-              <p className='detail-title'>CPU : <span className='gray'>{msi.cpu}</span></p>
-              <p className='detail-title'>GPU : <span className='gray'>{msi.gpu}</span></p>
-              <p className='detail-title'>Display : <span className='gray'>{msi.display}</span></p>
-              <p className='detail-title'>Storage : <span className='gray'>{msi.storage}</span></p>
-              <p className='detail-title'>Price : <span className='gray'>{msi.price} Ks</span></p>
+              <p className='detail-title'>RAM : <span className='gray'>{msi.Ram}</span></p>
+              <p className='detail-title'>CPU : <span className='gray'>{msi.Cpu}</span></p>
+              <p className='detail-title'>GPU : <span className='gray'>{msi.Gpu}</span></p>
+              <p className='detail-title'>Display : <span className='gray'>{msi.Display}</span></p>
+              <p className='detail-title'>Storage : <span className='gray'>{msi.Storage}</span></p>
+              <p className='detail-title'>Price : <span className='gray'>{msi.Price} Ks</span></p>
               <hr />
               <div className='quantity'>
                 <span className='qty'>Quantity</span>
@@ -129,7 +129,7 @@ const MsiDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,s
         <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
       </div>
       <div className={!signupDisplay && 'login_hide'}>
-        <Signup signupEmail={signupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
+        <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
       </div>
       {/* <Link to="/phones/samsungs" className='btn btn-primary back-sam'>Back</Link> */}
     </div>

@@ -4,13 +4,13 @@ import Signup from "./Signup"
 import { useState,useEffect } from "react"
 import axios from "axios"
 
-const Dell = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signupDisplay,setSignupDisplay}) => {
+const Dell = ({setUname,setSignupEmail,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signupDisplay,setSignupDisplay}) => {
 
   const [dells,setDells] = useState([])
   useEffect(() => {
     const fetchDells = async () => {
       try{
-        const res = await axios.get("http://localhost:8800/dell")
+        const res = await axios.get("http://localhost:8800/computers/dell")
         setDells(res.data)
       } catch(err) {
         console.log(err)
@@ -28,8 +28,8 @@ const Dell = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,sign
         <div className='products-container'>
           {dells.map((de) => (
             <div className='products-show'>
-              <Link to={`/computers/dell/${de.id}`}><img src={`/images/${de.url}`} alt="" className="comimg"/></Link>
-              <p className='products-text'>{de.name} {de.model}</p>
+              <Link to={`/computers/dell/${de.ComId}`}><img src={`/images/${de.Url}`} alt="" className="comimg"/></Link>
+              <p className='products-text'>{de.Name} {de.Model}</p>
             </div>
           ))}
         </div>
@@ -38,7 +38,7 @@ const Dell = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,sign
         <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
       </div>
       <div className={!signupDisplay && 'login_hide'}>
-        <Signup signupEmail={signupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
+        <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
       </div>
     </div>
   )

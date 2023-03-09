@@ -5,7 +5,7 @@ import Poster from '../components/Poster'
 import Login from './Login'
 import Signup from './Signup'
 
-const Home = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signupDisplay,setSignupDisplay}) => {
+const Home = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,setSignupEmail,signupDisplay,setSignupDisplay}) => {
   return (
     <div className='home_page'>
       <div className={(loginDisplay || signupDisplay) && 'brand_container_hide'}>
@@ -20,7 +20,7 @@ const Home = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,sign
         <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
       </div>
       <div className={!signupDisplay && 'login_hide'}>
-        <Signup signupEmail={signupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
+        <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
       </div>
     </div>
   )

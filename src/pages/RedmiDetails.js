@@ -5,7 +5,7 @@ import Signup from './Signup'
 import { useState,useEffect } from 'react'
 import axios from 'axios'
 
-const RedmiDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,setCount,cartItem,setCartItem,buyItem,setBuyItem,setIsLogin,loginDisplay,setLoginDisplay}) => {
+const RedmiDetails = ({setUname,setSignupEmail,signupEmail,signupDisplay,setSignupDisplay,count,setCount,cartItem,setCartItem,buyItem,setBuyItem,setIsLogin,loginDisplay,setLoginDisplay}) => {
 
   const [cart,setCart] = useState([])
   useEffect(() => {
@@ -24,7 +24,7 @@ const RedmiDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count
   useEffect(() => {
     const fetchredmis = async () => {
       try{
-        const res = await axios.get("http://localhost:8800/redmi/" + redId)
+        const res = await axios.get("http://localhost:8800/phones/redmi/" + redId)
         setRedmis(res.data)
       } catch(err) {
         console.log(err)
@@ -53,9 +53,9 @@ const RedmiDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count
 
   const addCart = async () => {
     cartItem.id=cartItem.id+1
-    cartItem.url=red.url
-    cartItem.model=red.name
-    cartItem.price=red.price
+    cartItem.url=red.Url
+    cartItem.model=red.Name
+    cartItem.price=red.Price
     let insert=true
     setCartItem((item) => (
       {
@@ -82,11 +82,11 @@ const RedmiDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count
 
   const buyNow = () => {
     if(count !== 0) {
-      buyItem.id=red.id
-      buyItem.url=red.url
-      buyItem.model=red.name
+      buyItem.id=red.PhId
+      buyItem.url=red.Url
+      buyItem.model=red.Name
       buyItem.quantity=count
-      buyItem.price=red.price
+      buyItem.price=red.Price
       setBuyItem((item) => (
         {
           ...item
@@ -101,18 +101,18 @@ const RedmiDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count
     <div className='details'>
       <div className={(loginDisplay || signupDisplay) && 'detail_container_hide'}>
         <div className='detail-container'>
-          <img src={`/images/${red.url}`} alt="detail" className='detail-image' />
+          <img src={`/images/${red.Url}`} alt="detail" className='detail-image' />
           <div className='detail-text'>
-              <h2 className='model_name'>{red.name}</h2>
+              <h2 className='model_name'>{red.Name}</h2>
               <hr/>
-              <p className='detail-title'>Color : <span className='gray'>{red.color}</span></p>
-              <p className='detail-title'>Front Camera : <span className='gray'>{red.front}</span></p>
-              <p className='detail-title'>Rear Camera : <span className='gray'>{red.rear}</span></p>
-              <p className='detail-title'>Battery : <span className='gray'>{red.battery}</span></p>
-              <p className='detail-title'>Storage : <span className='gray'>{red.storage}</span></p>
-              <p className='detail-title'>RAM : <span className='gray'>{red.ram}</span></p>
-              <p className='detail-title'>Cellular : <span className='gray'>{red.cellular}</span></p>
-              <p className='detail-title'>Price : <span className='gray'>{red.price} Ks</span></p>
+              <p className='detail-title'>Color : <span className='gray'>{red.Color}</span></p>
+              <p className='detail-title'>Front Camera : <span className='gray'>{red.Front}</span></p>
+              <p className='detail-title'>Rear Camera : <span className='gray'>{red.Rear}</span></p>
+              <p className='detail-title'>Battery : <span className='gray'>{red.Battery}</span></p>
+              <p className='detail-title'>Storage : <span className='gray'>{red.Storage}</span></p>
+              <p className='detail-title'>RAM : <span className='gray'>{red.Ram}</span></p>
+              <p className='detail-title'>Cellular : <span className='gray'>{red.Cellular}</span></p>
+              <p className='detail-title'>Price : <span className='gray'>{red.Price} Ks</span></p>
               <hr />
               <div className='quantity'>
                 <span className='qty'>Quantity</span>
@@ -130,7 +130,7 @@ const RedmiDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count
         <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
       </div>
       <div className={!signupDisplay && 'login_hide'}>
-        <Signup signupEmail={signupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
+        <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
       </div>
       {/* <Link to="/phones/samsungs" className='btn btn-primary back-sam'>Back</Link> */}
     </div>

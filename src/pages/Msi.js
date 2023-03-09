@@ -4,13 +4,13 @@ import Signup from "./Signup"
 import { useState,useEffect } from "react"
 import axios from "axios"
 
-const Msi = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signupDisplay,setSignupDisplay}) => {
+const Msi = ({setUname,setSignupEmail,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signupDisplay,setSignupDisplay}) => {
 
   const [msis,setMsis] = useState([])
   useEffect(() => {
     const fetchMsis = async () => {
       try{
-        const res = await axios.get("http://localhost:8800/msi")
+        const res = await axios.get("http://localhost:8800/computers/msi")
         setMsis(res.data)
       } catch(err) {
         console.log(err)
@@ -28,8 +28,8 @@ const Msi = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signu
         <div className='products-container'>
           {msis.map((m) => (
             <div className='products-show'>
-              <Link to={`/computers/msi/${m.id}`}><img src={`/images/${m.url}`} alt="" className="comimg"/></Link>
-              <p className='products-text'>{m.name} {m.model}</p>
+              <Link to={`/computers/msi/${m.ComId}`}><img src={`/images/${m.url}`} alt="" className="comimg"/></Link>
+              <p className='products-text'>{m.Name} {m.Model}</p>
             </div>
           ))}
         </div>
@@ -38,7 +38,7 @@ const Msi = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signu
         <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
       </div>
       <div className={!signupDisplay && 'login_hide'}>
-        <Signup signupEmail={signupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
+        <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
       </div>
     </div>
   )

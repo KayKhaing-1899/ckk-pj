@@ -5,7 +5,7 @@ import Signup from './Signup'
 import { useEffect,useState } from 'react'
 import axios from 'axios'
 
-const DellDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,setCount,cartItem,setCartItem,buyItem,setBuyItem,setIsLogin,loginDisplay,setLoginDisplay}) => {
+const DellDetails = ({setUname,setSignupEmail,signupEmail,signupDisplay,setSignupDisplay,count,setCount,cartItem,setCartItem,buyItem,setBuyItem,setIsLogin,loginDisplay,setLoginDisplay}) => {
 
   const [cart,setCart] = useState([])
   useEffect(() => {
@@ -24,7 +24,7 @@ const DellDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,
   useEffect(() => {
     const fetchDells = async () => {
       try{
-        const res = await axios.get("http://localhost:8800/dell/" + dellId)
+        const res = await axios.get("http://localhost:8800/computers/dell/" + dellId)
         setDells(res.data)
       } catch(err) {
         console.log(err)
@@ -52,9 +52,9 @@ const DellDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,
 
   const addCart = async () => {
     cartItem.id=cartItem.id+1
-    cartItem.url=dell.url
-    cartItem.model=`${dell.name} ${dell.model}`
-    cartItem.price=dell.price
+    cartItem.url=dell.Url
+    cartItem.model=`${dell.Name} ${dell.Model}`
+    cartItem.price=dell.Price
     let insert = true
     setCartItem((item) => (
       {
@@ -81,11 +81,11 @@ const DellDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,
 
   const buyNow = () => {
     if(count !== 0) {
-      buyItem.id=dell.id
-      buyItem.url=dell.url
-      buyItem.model=`${dell.name} ${dell.model}`
+      buyItem.id=dell.ComId
+      buyItem.url=dell.Url
+      buyItem.model=`${dell.Name} ${dell.Model}`
       buyItem.quantity=count
-      buyItem.price=dell.price
+      buyItem.price=dell.Price
       setBuyItem((item) => (
         {
           ...item
@@ -100,16 +100,16 @@ const DellDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,
     <div className='details'>
       <div className={(loginDisplay || signupDisplay) && 'detail_container_hide'}>
         <div className='detail-container'>
-          <img src={`/images/${dell.url}`} alt="detail" className='detail-image' />
+          <img src={`/images/${dell.Url}`} alt="detail" className='detail-image' />
           <div className='detail-text'>
-              <h2 className='model_name'>{dell.name} {dell.model}</h2>
+              <h2 className='model_name'>{dell.Name} {dell.Model}</h2>
               <hr/>
-              <p className='detail-title'>RAM : <span className='gray'>{dell.ram}</span></p>
-              <p className='detail-title'>CPU : <span className='gray'>{dell.cpu}</span></p>
-              <p className='detail-title'>GPU : <span className='gray'>{dell.gpu}</span></p>
-              <p className='detail-title'>Display : <span className='gray'>{dell.display}</span></p>
-              <p className='detail-title'>Storage : <span className='gray'>{dell.storage}</span></p>
-              <p className='detail-title'>Price : <span className='gray'>{dell.price} Ks</span></p>
+              <p className='detail-title'>RAM : <span className='gray'>{dell.Ram}</span></p>
+              <p className='detail-title'>CPU : <span className='gray'>{dell.Cpu}</span></p>
+              <p className='detail-title'>GPU : <span className='gray'>{dell.Gpu}</span></p>
+              <p className='detail-title'>Display : <span className='gray'>{dell.Display}</span></p>
+              <p className='detail-title'>Storage : <span className='gray'>{dell.Storage}</span></p>
+              <p className='detail-title'>Price : <span className='gray'>{dell.Price} Ks</span></p>
               <hr />
               <div className='quantity'>
                 <span className='qty'>Quantity</span>
@@ -127,7 +127,7 @@ const DellDetails = ({setUname,signupEmail,signupDisplay,setSignupDisplay,count,
         <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
       </div>
       <div className={!signupDisplay && 'login_hide'}>
-        <Signup signupEmail={signupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
+        <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
       </div>
       {/* <Link to="/phones/samsungs" className='btn btn-primary back-sam'>Back</Link> */}
     </div>

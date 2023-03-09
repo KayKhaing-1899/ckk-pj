@@ -4,13 +4,13 @@ import Signup from "./Signup"
 import { useState,useEffect } from "react"
 import axios from "axios"
 
-const Huawei = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signupDisplay,setSignupDisplay}) => {
+const Huawei = ({setUname,setSignupEmail,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signupDisplay,setSignupDisplay}) => {
 
   const [huaweis,setHuaweis] = useState([])
   useEffect(() => {
     const fetchhuaweis = async () => {
       try{
-        const res = await axios.get("http://localhost:8800/huawei")
+        const res = await axios.get("http://localhost:8800/phones/huawei")
         setHuaweis(res.data)
       } catch(err) {
         console.log(err)
@@ -28,8 +28,8 @@ const Huawei = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,si
         <div className='products-container'>
             {huaweis.map((hua) => (
                 <div className='products-show'>
-                    <Link to={`/phones/huaweis/${hua.id}`}><img src={`/images/${hua.url}`} alt="" className="phimg"/></Link>
-                    <p className='products-text'>{hua.name}</p>
+                    <Link to={`/phones/huaweis/${hua.PhId}`}><img src={`/images/${hua.Url}`} alt="" className="phimg"/></Link>
+                    <p className='products-text'>{hua.Name}</p>
                 </div>
             ))}
         </div>
@@ -38,7 +38,7 @@ const Huawei = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,si
         <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
       </div>
       <div className={!signupDisplay && 'login_hide'}>
-        <Signup signupEmail={signupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
+        <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
       </div>
     </div>
   )

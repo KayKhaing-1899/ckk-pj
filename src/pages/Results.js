@@ -18,6 +18,19 @@ const Results = ({searchTerm}) => {
     fetchpros()
   })
 
+  const [brand,setBrand] = useState([])
+  useEffect(() => {
+    const fetchpros = async () => {
+      try{
+        const res = await axios.get("http://localhost:8800/prods/"+searchTerm)
+        setBrand(res.data)
+      } catch(err) {
+        console.log(err)
+      }
+    }
+    fetchpros()
+  })
+
   const navigate = useNavigate()
 
   const click = (obj) => {
@@ -39,33 +52,65 @@ const Results = ({searchTerm}) => {
   }
 
   return (
-    <div className='products-container'>
-      {results.map(re => (
-        <div className='products-show' key={re.id}>
-          <img 
-            src={`/images/${re.url}`} 
-            alt="" 
-            className={
-              (re.name.includes('Dell')&&'comimg') || 
-              (re.name.includes('Acer')&&'comimg') ||
-              (re.name.includes('Asus')&&'comimg') ||
-              (re.name.includes('HP')&&'comimg') ||
-              (re.name.includes('Msi')&&'comimg') ||
-              (re.name.includes('Samsung')&&'phimg') || 
-              (re.name.includes('Oppo')&&'phimg') ||
-              (re.name.includes('Vivo')&&'phimg') ||
-              (re.name.includes('Huawei')&&'phimg') ||
-              (re.name.includes('Redmi')&&'phimg') || 
-              (re.name.includes('Sony')&&'camimg') ||
-              (re.name.includes('Canon')&&'camimg') ||
-              (re.name.includes('Fujifilm')&&'camimg') ||
-              (re.name.includes('TV')&&'tv_img')
-            }
-            onClick={() => click(re)} 
-          />
-          <p className='products-text'>{re.name} {re.model}</p>
+    <div>
+      {results.length!==0 ? 
+        <div className='products-container'>
+          {results.map(re => (
+            <div className='products-show' key={re.id}>
+              <img 
+                src={`/images/${re.url}`} 
+                alt="" 
+                className={
+                  (re.name.includes('Dell')&&'comimg') || 
+                  (re.name.includes('Acer')&&'comimg') ||
+                  (re.name.includes('Asus')&&'comimg') ||
+                  (re.name.includes('HP')&&'comimg') ||
+                  (re.name.includes('Msi')&&'comimg') ||
+                  (re.name.includes('Samsung')&&'phimg') || 
+                  (re.name.includes('Oppo')&&'phimg') ||
+                  (re.name.includes('Vivo')&&'phimg') ||
+                  (re.name.includes('Huawei')&&'phimg') ||
+                  (re.name.includes('Redmi')&&'phimg') || 
+                  (re.name.includes('Sony')&&'camimg') ||
+                  (re.name.includes('Canon')&&'camimg') ||
+                  (re.name.includes('Fujifilm')&&'camimg') ||
+                  (re.name.includes('TV')&&'tv_img')
+                }
+                onClick={() => click(re)} 
+              />
+              <p className='products-text'>{re.name} {re.model}</p>
+            </div>
+          ))}  
+        </div> :
+        <div className='products-container'>
+          {brand.map(re => (
+            <div className='products-show' key={re.id}>
+              <img 
+                src={`/images/${re.url}`} 
+                alt="" 
+                className={
+                  (re.name.includes('Dell')&&'comimg') || 
+                  (re.name.includes('Acer')&&'comimg') ||
+                  (re.name.includes('Asus')&&'comimg') ||
+                  (re.name.includes('HP')&&'comimg') ||
+                  (re.name.includes('Msi')&&'comimg') ||
+                  (re.name.includes('Samsung')&&'phimg') || 
+                  (re.name.includes('Oppo')&&'phimg') ||
+                  (re.name.includes('Vivo')&&'phimg') ||
+                  (re.name.includes('Huawei')&&'phimg') ||
+                  (re.name.includes('Redmi')&&'phimg') || 
+                  (re.name.includes('Sony')&&'camimg') ||
+                  (re.name.includes('Canon')&&'camimg') ||
+                  (re.name.includes('Fujifilm')&&'camimg') ||
+                  (re.name.includes('TV')&&'tv_img')
+                }
+                onClick={() => click(re)} 
+              />
+              <p className='products-text'>{re.name} {re.model}</p>
+            </div>
+          ))}
         </div>
-      ))}
+      }
     </div>
   )
 }

@@ -61,135 +61,135 @@ function App() {
         <Route path="/" element={<Main setSearchTerm={setSearchTerm} uname={uname} isLogin={isLogin} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} />} >
           <Route 
             index 
-            element={<Home setUname={setUname} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} />} 
+            element={<Home setUname={setUname} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} />} 
           />
           <Route 
             path="/phones/samsungs" 
-            element={<Samsung setUname={setUname} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />}
+            element={<Samsung setUname={setUname} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />}
           />
           <Route 
             path="/phones/samsungs/:samId" 
-            element={<Samdetails setUname={setUname} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} count={count} setCount={setCount} cartItem={cartItem} setCartItem={setCartItem} buyItem={buyItem} setBuyItem={setBuyItem} />} 
+            element={<Samdetails setUname={setUname} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} count={count} setCount={setCount} cartItem={cartItem} setCartItem={setCartItem} buyItem={buyItem} setBuyItem={setBuyItem} />} 
           />
           <Route 
             path="/phones/oppos" 
-            element={<Oppo setUname={setUname} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />}
+            element={<Oppo setUname={setUname} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />}
           />
           <Route 
             path="/phones/oppos/:opId" 
-            element={<Opdetails setUname={setUname} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} count={count} setCount={setCount} cartItem={cartItem} setCartItem={setCartItem} buyItem={buyItem} setBuyItem={setBuyItem} />} 
+            element={<Opdetails setUname={setUname} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} count={count} setCount={setCount} cartItem={cartItem} setCartItem={setCartItem} buyItem={buyItem} setBuyItem={setBuyItem} />} 
           />
           <Route 
             path="/phones/vivos" 
-            element={<Vivo setUname={setUname} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />}
+            element={<Vivo setUname={setUname} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />}
           />
           <Route 
             path="/phones/vivos/:vivId" 
-            element={<VivoDetails setUname={setUname} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} count={count} setCount={setCount} cartItem={cartItem} setCartItem={setCartItem} buyItem={buyItem} setBuyItem={setBuyItem} />} 
+            element={<VivoDetails setUname={setUname} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} count={count} setCount={setCount} cartItem={cartItem} setCartItem={setCartItem} buyItem={buyItem} setBuyItem={setBuyItem} />} 
           />
           <Route 
             path="/phones/redmis" 
-            element={<Redmi setUname={setUname} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />} 
+            element={<Redmi setUname={setUname} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />} 
           />
           <Route 
             path="/phones/redmis/:redId" 
-            element={<RedmiDetails setUname={setUname} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} count={count} setCount={setCount} cartItem={cartItem} setCartItem={setCartItem} buyItem={buyItem} setBuyItem={setBuyItem} />} 
+            element={<RedmiDetails setUname={setUname} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} count={count} setCount={setCount} cartItem={cartItem} setCartItem={setCartItem} buyItem={buyItem} setBuyItem={setBuyItem} />} 
           />
           <Route 
             path="/phones/huaweis" 
-            element={<Huawei setUname={setUname} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />}
+            element={<Huawei setUname={setUname} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />}
           />
           <Route 
             path="/phones/huaweis/:huaweiId" 
-            element={<HuaweiDetails setUname={setUname} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} count={count} setCount={setCount} cartItem={cartItem} setCartItem={setCartItem} buyItem={buyItem} setBuyItem={setBuyItem} />} 
+            element={<HuaweiDetails setUname={setUname} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} count={count} setCount={setCount} cartItem={cartItem} setCartItem={setCartItem} buyItem={buyItem} setBuyItem={setBuyItem} />} 
           />
           <Route 
             path="/computers/dell" 
-            element={<Dell setUname={setUname} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />} 
+            element={<Dell setUname={setUname} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />} 
           />
           <Route 
             path="/computers/dell/:dellId" 
-            element={<DellDetails setUname={setUname} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} count={count} setCount={setCount} cartItem={cartItem} setCartItem={setCartItem} buyItem={buyItem} setBuyItem={setBuyItem} />} 
+            element={<DellDetails setUname={setUname} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} count={count} setCount={setCount} cartItem={cartItem} setCartItem={setCartItem} buyItem={buyItem} setBuyItem={setBuyItem} />} 
           />
           <Route 
             path="/computers/acer" 
-            element={<Acer setUname={setUname} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />} 
+            element={<Acer setUname={setUname} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />} 
           />
           <Route 
             path="/computers/acer/:acerId" 
-            element={<AcerDetails setUname={setUname} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} count={count} setCount={setCount} cartItem={cartItem} setCartItem={setCartItem} buyItem={buyItem} setBuyItem={setBuyItem} />} 
+            element={<AcerDetails setUname={setUname} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} count={count} setCount={setCount} cartItem={cartItem} setCartItem={setCartItem} buyItem={buyItem} setBuyItem={setBuyItem} />} 
           />
           <Route 
             path="/computers/asus" 
-            element={<Asus setUname={setUname} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />} 
+            element={<Asus setUname={setUname} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />} 
           />
           <Route 
             path="/computers/asus/:asusId" 
-            element={<AsusDetails setUname={setUname} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} count={count} setCount={setCount} cartItem={cartItem} setCartItem={setCartItem} buyItem={buyItem} setBuyItem={setBuyItem} />} 
+            element={<AsusDetails setUname={setUname} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} count={count} setCount={setCount} cartItem={cartItem} setCartItem={setCartItem} buyItem={buyItem} setBuyItem={setBuyItem} />} 
           />
           <Route 
             path="/computers/msi" 
-            element={<Msi setUname={setUname} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />} 
+            element={<Msi setUname={setUname} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />} 
           />
           <Route 
             path="/computers/msi/:msiId" 
-            element={<MsiDetails setUname={setUname} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} count={count} setCount={setCount} cartItem={cartItem} setCartItem={setCartItem} buyItem={buyItem} setBuyItem={setBuyItem} />} 
+            element={<MsiDetails setUname={setUname} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} count={count} setCount={setCount} cartItem={cartItem} setCartItem={setCartItem} buyItem={buyItem} setBuyItem={setBuyItem} />} 
           />
           <Route 
             path="/computers/hp" 
-            element={<Hp setUname={setUname} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />} 
+            element={<Hp setUname={setUname} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />} 
           />
           <Route 
             path="/computers/hp/:hpId" 
-            element={<HpDetails setUname={setUname} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} count={count} setCount={setCount} cartItem={cartItem} setCartItem={setCartItem} buyItem={buyItem} setBuyItem={setBuyItem} />} 
+            element={<HpDetails setUname={setUname} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} count={count} setCount={setCount} cartItem={cartItem} setCartItem={setCartItem} buyItem={buyItem} setBuyItem={setBuyItem} />} 
           />
           <Route 
             path="/cameras/sony" 
-            element={<Sony setUname={setUname} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />} 
+            element={<Sony setUname={setUname} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />} 
           />
           <Route 
             path="/cameras/sony/:sonyId" 
-            element={<SonyDetails setUname={setUname} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} count={count} setCount={setCount} cartItem={cartItem} setCartItem={setCartItem} buyItem={buyItem} setBuyItem={setBuyItem} />} 
+            element={<SonyDetails setUname={setUname} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} count={count} setCount={setCount} cartItem={cartItem} setCartItem={setCartItem} buyItem={buyItem} setBuyItem={setBuyItem} />} 
           />
           <Route 
             path="/cameras/canon" 
-            element={<Canon setUname={setUname} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />} 
+            element={<Canon setUname={setUname} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />} 
           />
           <Route 
             path="/cameras/canon/:canonId" 
-            element={<CanonDetails setUname={setUname} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} count={count} setCount={setCount} cartItem={cartItem} setCartItem={setCartItem} buyItem={buyItem} setBuyItem={setBuyItem} />} 
+            element={<CanonDetails setUname={setUname} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} count={count} setCount={setCount} cartItem={cartItem} setCartItem={setCartItem} buyItem={buyItem} setBuyItem={setBuyItem} />} 
           />
           <Route 
             path="/cameras/fuji" 
-            element={<Fuji setUname={setUname} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />} 
+            element={<Fuji setUname={setUname} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />} 
           />
           <Route 
             path="/cameras/fuji/:fujiId" 
-            element={<FujiDetails setUname={setUname} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} count={count} setCount={setCount} cartItem={cartItem} setCartItem={setCartItem} buyItem={buyItem} setBuyItem={setBuyItem} />} 
+            element={<FujiDetails setUname={setUname} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} count={count} setCount={setCount} cartItem={cartItem} setCartItem={setCartItem} buyItem={buyItem} setBuyItem={setBuyItem} />} 
           />
           <Route 
             path="/tvs" 
-            element={<Tv setUname={setUname} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />} 
+            element={<Tv setUname={setUname} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />} 
           />
           <Route 
             path="/tvs/:tvId" 
-            element={<TvDetails setUname={setUname} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} count={count} setCount={setCount} cartItem={cartItem} setCartItem={setCartItem} buyItem={buyItem} setBuyItem={setBuyItem} />} 
+            element={<TvDetails setUname={setUname} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} count={count} setCount={setCount} cartItem={cartItem} setCartItem={setCartItem} buyItem={buyItem} setBuyItem={setBuyItem} />} 
           />
           <Route 
             path="/contact" 
-            element={<Contact setUname={setUname} isLogin={isLogin} setIsLogin={setIsLogin} signupEmail={signupEmail} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} />} 
+            element={<Contact uname={uname} setUname={setUname} isLogin={isLogin} setIsLogin={setIsLogin} signupEmail={signupEmail} setSignupEmail={setSignupEmail} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} />} 
           />
           <Route 
             path="/cart" 
-            element={<Cart temp={temp} setCartTotal={setCartTotal} setUname={setUname} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />} 
+            element={<Cart temp={temp} setCartTotal={setCartTotal} setUname={setUname} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />} 
           />
           <Route 
             path="/buynow" 
-            element={<BuyNow buyItem={buyItem} setUname={setUname} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />} 
+            element={<BuyNow buyItem={buyItem} setUname={setUname} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />} 
           />
           <Route 
             path="/cartorder" 
-            element={<Cartorder temp={temp} setTemp={setTemp} cartTotal={cartTotal} setUname={setUname} signupEmail={signupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />} 
+            element={<Cartorder temp={temp} setTemp={setTemp} cartTotal={cartTotal} setUname={setUname} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} />} 
           />
         </Route>
         <Route path="/results" element={<Results searchTerm={searchTerm} />} />

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import Login from './Login'
 import Signup from './Signup'
 
-const Cart = ({ temp,setCartTotal,setUname,setIsLogin,setLoginDisplay,setSignupDisplay,loginDisplay,signupDisplay,signupEmail }) => {
+const Cart = ({ setSignupEmail,temp,setCartTotal,setUname,setIsLogin,setLoginDisplay,setSignupDisplay,loginDisplay,signupDisplay,signupEmail }) => {
 
     const [totalPrice, setTotalPrice] = useState(0)
     const [itemsnum, setItemnum] = useState(0)
@@ -69,7 +69,7 @@ const Cart = ({ temp,setCartTotal,setUname,setIsLogin,setLoginDisplay,setSignupD
     }
 
     const cartplaceorder = () => {
-        if (cart.length !== 0) {
+        if (itemsnum !== 0) {
             setCartTotal(totalPrice)
             cart.forEach((c) => {
                 const ch = document.getElementById(c.model)
@@ -86,7 +86,7 @@ const Cart = ({ temp,setCartTotal,setUname,setIsLogin,setLoginDisplay,setSignupD
             })
             navigate('/cartorder')
         } else {
-            alert("Your cart is empty!")
+            alert("You didn't choose any item!")
         }
     }
 
@@ -136,7 +136,7 @@ const Cart = ({ temp,setCartTotal,setUname,setIsLogin,setLoginDisplay,setSignupD
                 <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
             </div>
             <div className={!signupDisplay && 'login_hide'}>
-                <Signup signupEmail={signupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
+                <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
             </div>
         </div>
     )

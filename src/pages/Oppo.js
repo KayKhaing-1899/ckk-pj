@@ -4,13 +4,13 @@ import Signup from "./Signup"
 import { useState,useEffect } from "react"
 import axios from "axios"
 
-const Oppo = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signupDisplay,setSignupDisplay}) => {
+const Oppo = ({setUname,setSignupEmail,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signupDisplay,setSignupDisplay}) => {
 
   const [oppos,setOppos] = useState([])
   useEffect(() => {
     const fetchoppos = async () => {
       try{
-        const res = await axios.get("http://localhost:8800/oppo")
+        const res = await axios.get("http://localhost:8800/phones/oppo")
         setOppos(res.data)
       } catch(err) {
         console.log(err)
@@ -28,8 +28,8 @@ const Oppo = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,sign
         <div className='products-container'>
             {oppos.map((op) => (
                 <div className='products-show'>
-                    <Link to={`/phones/oppos/${op.id}`}><img src={`/images/${op.url}`} alt="" className="phimg"/></Link>
-                    <p className='products-text'>{op.name}</p>
+                    <Link to={`/phones/oppos/${op.PhId}`}><img src={`/images/${op.Url}`} alt="" className="phimg"/></Link>
+                    <p className='products-text'>{op.Name}</p>
                 </div>
             ))}
         </div>
@@ -38,7 +38,7 @@ const Oppo = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,sign
         <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
       </div>
       <div className={!signupDisplay && 'login_hide'}>
-        <Signup signupEmail={signupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
+        <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />
       </div>
     </div>
   )
