@@ -8,7 +8,7 @@ const Orders = () => {
     useEffect(() =>{
         const fetchorders = async () => {
             try{
-                const res = await axios.get("http://localhost:8800/orderlists")
+                const res = await axios.get("http://localhost:8800/ms/orderlists")
                 setOrders(res.data)
             } catch(err) {
                 console.log(err)
@@ -27,7 +27,7 @@ const Orders = () => {
         setNotsearch(false)
         setShowbtn(true)
         try{
-            const res = await axios.get("http://localhost:8800/orderlists/" + date)
+            const res = await axios.get("http://localhost:8800/ms/orderlists/" + date)
             setCustomer(res.data)
         } catch(err) {
             console.log(err)
@@ -36,7 +36,7 @@ const Orders = () => {
 
     const deleteclick = async() => {
         try{
-            await axios.delete("http://localhost:8800/orderlists/" + date)
+            await axios.delete("http://localhost:8800/ms/orderlists/" + date)
             window.location.reload()
         } catch(err) {
             console.log(err)
@@ -62,13 +62,15 @@ const Orders = () => {
                     onChange={(e) => setDate(e.target.value)}
                     style={{width:400,height:50,borderRadius:5,textIndent:10,marginRight:20}}
                 />
-                <button type='button' className='btn btn-danger' onClick={searchclick} style={{marginRight:20,width:100,height:50}}>SEARCH</button>
-                {showbtn && 
-                    <button type='button' className='btn btn-danger' onClick={deleteclick} style={{width:100,height:50,marginRight:20}}>DELETE</button>
-                }
-                {showbtn && 
-                    <button type='button' className='btn btn-danger' onClick={backclick} style={{width:100,height:50}}>BACK</button>
-                }
+                <div>
+                    <button type='button' className='btn btn-danger prosearch_btn' onClick={searchclick} >SEARCH</button>
+                    {showbtn && 
+                        <button type='button' className='btn btn-danger prosearch_btn' onClick={deleteclick} >DELETE</button>
+                    }
+                    {showbtn && 
+                        <button type='button' className='btn btn-danger prosearch_btn' onClick={backclick} >BACK</button>
+                    }
+                </div>
             </div>
         </div>
         <div>

@@ -1,4 +1,3 @@
-
 * {
   margin: 0;
   padding: 0;
@@ -22,7 +21,7 @@ body {
   border-radius: 20px;
 }
 
-.admin_nav{
+.admin_nav {
   margin-left: 50px;
   margin-right: 800px;
 }
@@ -99,7 +98,7 @@ body {
   background-color: #fff;
 }
 
-.accdrop_show button{
+.accdrop_show button {
   margin: 0 25px;
 }
 
@@ -307,7 +306,7 @@ body {
   margin-bottom: 30px;
 }
 
-.admin_pcheckbox{
+.admin_pcheckbox {
   margin-left: 230px;
 }
 
@@ -920,6 +919,23 @@ textarea {
   left: 50%;
   transform: translateX(-50%);
   margin: 30px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.prosearch_input {
+  width: 400px;
+  height: 50px;
+  border-radius: 5px;
+  text-indent: 10px;
+  margin-right: 20px;
+}
+
+.prosearch_btn {
+  width: 100px;
+  height: 50px;
+  margin-right: 10px;
 }
 
 .orders {
@@ -933,11 +949,11 @@ textarea {
   margin: 20px;
 }
 
-.orders_text{
+.orders_text {
   width: 250px;
 }
 
-.orders_num{
+.orders_num {
   width: 100px;
   text-align: center;
 }
@@ -947,7 +963,7 @@ textarea {
   font-weight: 600;
 }
 
-.admin_login_page{
+.admin_login_page {
   width: 100vw;
   height: 100vh;
   background-color: lightblue;
@@ -968,7 +984,7 @@ textarea {
   color: #111;
 }
 
-.alert{
+.alert {
   position: absolute;
   width: auto;
   height: 200px;
@@ -982,18 +998,17 @@ textarea {
   padding: 50px;
 }
 
-.alert_container{
+.alert_container {
   width: 100%;
   position: relative;
 }
 
-.alert_ok{
+.alert_ok {
   width: 70px;
   margin-top: 20px;
   position: absolute;
   right: 0;
 }
-
 
 .adshow_eye {
   width: 35px;
@@ -1004,10 +1019,10 @@ textarea {
   border: none;
 }
 
-.adhome{
+.adhome {
   position: relative;
   width: 100vw;
-  height: 60vh;
+  height: 70vh;
 }
 
 .adhome_page {
@@ -1023,9 +1038,48 @@ textarea {
   font-size: 20px;
 }
 
+.prods_container {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.prods {
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.prods_img {
+  width: 25px;
+  height: 25px;
+  margin-right: 30px;
+}
+
+.prods_text1 {
+  width: 300px;
+  margin-top: 20px;
+}
+
+.prods_text2 {
+  width: 150px;
+  margin-top: 20px;
+}
+
+.prods_text3{
+  width: 200px;
+  margin-top: 20px;
+}
+
 @media screen and (max-width: 1000px) {
   .navbar-brand {
     margin-right: 0;
+  }
+  .add_navbar {
+    display: flex;
+    flex-direction: column;
   }
   .navbar-toggler {
     margin-right: 10px;
@@ -1035,6 +1089,9 @@ textarea {
   }
   .navbar-nav {
     border-top: 1px solid #fff;
+  }
+  .add_navbar_nav {
+    border-top: none;
   }
   .nav-item {
     margin-left: 30px;
@@ -1079,13 +1136,13 @@ textarea {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: 20%;
+    top: 25%;
   }
   .add_form label {
-    width: 150px;
+    width: 170px;
   }
   .add_form input {
-    width: 300px;
+    width: 250px;
   }
   .brand-name {
     margin-left: 30px;
@@ -1139,7 +1196,7 @@ textarea {
   .buynow_container {
     margin-left: 20px;
   }
-  .customer_info_form{
+  .customer_info_form {
     margin-top: 0;
   }
   .customer_info_form label {
@@ -1148,11 +1205,11 @@ textarea {
   .customer_info_form input {
     width: 300px;
   }
-  .buynow_container{
+  .buynow_container {
     flex-direction: column;
     margin-left: 0;
   }
-  .buynow_img{
+  .buynow_img {
     margin-right: 0;
   }
   .total {
@@ -1162,5 +1219,29 @@ textarea {
   .cate_title,
   .popular_title {
     margin-left: 20px;
+  }
+  .search_cus_bar {
+    margin: 0 0;
+    flex-direction: column;
+  }
+  .prosearch_input {
+    margin-right: 0;
+  }
+  .prosearch_btn {
+    margin-right: 0;
+    margin: 10px;
+
+  }
+  .prods_img{
+    margin-right: 5px;
+  }
+  .prods_text1,.prods_text3 {
+    width: 150px;
+    margin-top: 20px;
+    margin-right: 15px;
+  }
+  .prods_text2 {
+    width: 90px;
+    margin-top: 20px;
   }
 }

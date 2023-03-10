@@ -40,6 +40,8 @@ import Orders from "./pages/Orders";
 import Results from "./pages/Results";
 import Admin from "./pages/Admin";
 import Admin_home from "./pages/Admin_home";
+import Products from "./pages/Products";
+import Update from "./pages/Update";
 
 function App() {
 
@@ -58,7 +60,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Main setSearchTerm={setSearchTerm} uname={uname} isLogin={isLogin} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} />} >
+        <Route path="/" element={<Main setUname={setUname} setSearchTerm={setSearchTerm} uname={uname} isLogin={isLogin} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} />} >
           <Route 
             index 
             element={<Home setUname={setUname} setIsLogin={setIsLogin} loginDisplay={loginDisplay} setLoginDisplay={setLoginDisplay} signupEmail={signupEmail} setSignupEmail={setSignupEmail} signupDisplay={signupDisplay} setSignupDisplay={setSignupDisplay} />} 
@@ -195,7 +197,9 @@ function App() {
         <Route path="/results" element={<Results searchTerm={searchTerm} />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/ad_home" element={<Admin_home />} />
+        <Route path="/ad_home/prods" element={<Products />} />
         <Route path="/ad_home/add" element={<Add />} />
+        <Route path="/update/:Pid" element={<Update />} />
         <Route path="/ad_home/orders" element={<Orders />} />
         <Route path="/ad_home/feedbacks" element={<Feedbacks />} />
       </Routes>

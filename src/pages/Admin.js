@@ -9,7 +9,7 @@ const Admin = () => {
     useEffect(() => {
         const fetchadmin = async () => {
             try{
-                const res = await axios.get("http://localhost:8800/admin/")
+                const res = await axios.get("http://localhost:8800/ms/admin/")
                 setAdmin(res.data)
             } catch(err) {
                 console.log(err)

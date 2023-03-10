@@ -15,7 +15,7 @@ const Cart = ({ setSignupEmail,temp,setCartTotal,setUname,setIsLogin,setLoginDis
     useEffect(() => {
         const fetchCart = async () => {
             try {
-                const res = await axios.get("http://localhost:8800/cart")
+                const res = await axios.get("http://localhost:8800/ms/cart")
                 setCart(res.data)
             } catch (err) {
                 console.log(err)
@@ -29,7 +29,7 @@ const Cart = ({ setSignupEmail,temp,setCartTotal,setUname,setIsLogin,setLoginDis
 
     const btnclick = async (id) => {
         try {
-            await axios.delete("http://localhost:8800/cart/" + id)
+            await axios.delete("http://localhost:8800/ms/cart/" + id)
             window.location.reload()
         } catch (err) {
             console.log(err)

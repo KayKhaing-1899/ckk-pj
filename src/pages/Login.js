@@ -8,7 +8,7 @@ const Login = ({setIsLogin,setLoginDisplay,setSignupDisplay,setUname}) => {
     useEffect(() => {
         const fetchUser = async () => {
             try{
-                const res = await axios.get("http://localhost:8800/users")
+                const res = await axios.get("http://localhost:8800/ms/users")
                 setUser(res.data)
             } catch(err) {
                 console.log(err)

@@ -65,7 +65,7 @@ const Signup = ({signupEmail,setSignupEmail,setSignupDisplay,setLoginDisplay}) =
                 if(signup===true){
                     setSignupDisplay(false)
                     try {
-                        await axios.post("http://localhost:8800/users", user)
+                        await axios.post("http://localhost:8800/ms/users", user)
                     } catch (err) {
                         console.log(err)
                     }

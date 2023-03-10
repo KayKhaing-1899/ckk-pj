@@ -34,20 +34,20 @@ const Results = ({searchTerm}) => {
   const navigate = useNavigate()
 
   const click = (obj) => {
-    const text = obj.name.split(" ")
-    if(text[0] === 'Samsung') navigate(`/phones/samsungs/${obj.id}`)
-    if(text[0] === 'Oppo') navigate(`/phones/oppos/${obj.id}`)
-    if(text[0] === 'Vivo') navigate(`/phones/vivos/${obj.id}`)
-    if(text[0] === 'Dell') navigate(`/computers/dell/${obj.id}`)
-    if(text[0] === 'Acer') navigate(`/computers/acer/${obj.id}`)
-    if(text[0] === 'Asus') navigate(`/computers/asus/${obj.id}`)
-    if(text[0] === 'HP') navigate(`/computers/hp/${obj.id}`)
-    if(text[0] === 'Msi') navigate(`/computers/msi/${obj.id}`)
-    if(text[0] === 'Canon') navigate(`/cameras/canon/${obj.id}`)
-    if(text[0] === 'Sony') navigate(`/cameras/sony/${obj.id}`)
-    if(text[0] === 'Fujifilm') navigate(`/cameras/fuji/${obj.id}`)
-    if(obj.name.includes('TV')) {
-      navigate(`/tvs/${obj.id}`)
+    const text = obj.Name.split(" ")
+    if(text[0] === 'Samsung') navigate(`/phones/samsungs/${obj.Pid}`)
+    if(text[0] === 'Oppo') navigate(`/phones/oppos/${obj.Pid}`)
+    if(text[0] === 'Vivo') navigate(`/phones/vivos/${obj.Pid}`)
+    if(text[0] === 'Dell') navigate(`/computers/dell/${obj.Pid}`)
+    if(text[0] === 'Acer') navigate(`/computers/acer/${obj.Pid}`)
+    if(text[0] === 'Asus') navigate(`/computers/asus/${obj.Pid}`)
+    if(text[0] === 'HP') navigate(`/computers/hp/${obj.Pid}`)
+    if(text[0] === 'Msi') navigate(`/computers/msi/${obj.Pid}`)
+    if(text[0] === 'Canon') navigate(`/cameras/canon/${obj.Pid}`)
+    if(text[0] === 'Sony') navigate(`/cameras/sony/${obj.Pid}`)
+    if(text[0] === 'Fujifilm') navigate(`/cameras/fuji/${obj.Pid}`)
+    if(obj.Name.includes('TV')) {
+      navigate(`/tvs/${obj.Pid}`)
     } 
   }
 
@@ -56,57 +56,57 @@ const Results = ({searchTerm}) => {
       {results.length!==0 ? 
         <div className='products-container'>
           {results.map(re => (
-            <div className='products-show' key={re.id}>
+            <div className='products-show' key={re.Pid}>
               <img 
-                src={`/images/${re.url}`} 
+                src={`/images/${re.Url}`} 
                 alt="" 
                 className={
-                  (re.name.includes('Dell')&&'comimg') || 
-                  (re.name.includes('Acer')&&'comimg') ||
-                  (re.name.includes('Asus')&&'comimg') ||
-                  (re.name.includes('HP')&&'comimg') ||
-                  (re.name.includes('Msi')&&'comimg') ||
-                  (re.name.includes('Samsung')&&'phimg') || 
-                  (re.name.includes('Oppo')&&'phimg') ||
-                  (re.name.includes('Vivo')&&'phimg') ||
-                  (re.name.includes('Huawei')&&'phimg') ||
-                  (re.name.includes('Redmi')&&'phimg') || 
-                  (re.name.includes('Sony')&&'camimg') ||
-                  (re.name.includes('Canon')&&'camimg') ||
-                  (re.name.includes('Fujifilm')&&'camimg') ||
-                  (re.name.includes('TV')&&'tv_img')
+                  (re.Name.includes('Dell')&&'comimg') || 
+                  (re.Name.includes('Acer')&&'comimg') ||
+                  (re.Name.includes('Asus')&&'comimg') ||
+                  (re.Name.includes('HP')&&'comimg') ||
+                  (re.Name.includes('Msi')&&'comimg') ||
+                  (re.Name.includes('Samsung')&&'phimg') || 
+                  (re.Name.includes('Oppo')&&'phimg') ||
+                  (re.Name.includes('Vivo')&&'phimg') ||
+                  (re.Name.includes('Huawei')&&'phimg') ||
+                  (re.Name.includes('Redmi')&&'phimg') || 
+                  (re.Name.includes('Sony')&&'camimg') ||
+                  (re.Name.includes('Canon')&&'camimg') ||
+                  (re.Name.includes('Fujifilm')&&'camimg') ||
+                  (re.Name.includes('TV')&&'tv_img')
                 }
                 onClick={() => click(re)} 
               />
-              <p className='products-text'>{re.name} {re.model}</p>
+              <p className='products-text'>{re.Name} {re.Model}</p>
             </div>
           ))}  
         </div> :
         <div className='products-container'>
           {brand.map(re => (
-            <div className='products-show' key={re.id}>
+            <div className='products-show' key={re.Pid}>
               <img 
-                src={`/images/${re.url}`} 
+                src={`/images/${re.Url}`} 
                 alt="" 
                 className={
-                  (re.name.includes('Dell')&&'comimg') || 
-                  (re.name.includes('Acer')&&'comimg') ||
-                  (re.name.includes('Asus')&&'comimg') ||
-                  (re.name.includes('HP')&&'comimg') ||
-                  (re.name.includes('Msi')&&'comimg') ||
-                  (re.name.includes('Samsung')&&'phimg') || 
-                  (re.name.includes('Oppo')&&'phimg') ||
-                  (re.name.includes('Vivo')&&'phimg') ||
-                  (re.name.includes('Huawei')&&'phimg') ||
-                  (re.name.includes('Redmi')&&'phimg') || 
-                  (re.name.includes('Sony')&&'camimg') ||
-                  (re.name.includes('Canon')&&'camimg') ||
-                  (re.name.includes('Fujifilm')&&'camimg') ||
-                  (re.name.includes('TV')&&'tv_img')
+                  (re.Name.includes('Dell')&&'comimg') || 
+                  (re.Name.includes('Acer')&&'comimg') ||
+                  (re.Name.includes('Asus')&&'comimg') ||
+                  (re.Name.includes('HP')&&'comimg') ||
+                  (re.Name.includes('Msi')&&'comimg') ||
+                  (re.Name.includes('Samsung')&&'phimg') || 
+                  (re.Name.includes('Oppo')&&'phimg') ||
+                  (re.Name.includes('Vivo')&&'phimg') ||
+                  (re.Name.includes('Huawei')&&'phimg') ||
+                  (re.Name.includes('Redmi')&&'phimg') || 
+                  (re.Name.includes('Sony')&&'camimg') ||
+                  (re.Name.includes('Canon')&&'camimg') ||
+                  (re.Name.includes('Fujifilm')&&'camimg') ||
+                  (re.Name.includes('TV')&&'tv_img')
                 }
                 onClick={() => click(re)} 
               />
-              <p className='products-text'>{re.name} {re.model}</p>
+              <p className='products-text'>{re.Name} {re.Model}</p>
             </div>
           ))}
         </div>

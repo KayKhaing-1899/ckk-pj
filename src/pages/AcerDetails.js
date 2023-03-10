@@ -11,7 +11,7 @@ const AcerDetails = ({setUname,count,setCount,cartItem,setCartItem,buyItem,setBu
   useEffect(() => {
     const fetchcart = async () => {
       try{
-        const res = await axios.get("http://localhost:8800/cart")
+        const res = await axios.get("http://localhost:8800/ms/cart")
         setCart(res.data)
       } catch (err) {
         console.log(err)
@@ -70,7 +70,7 @@ const AcerDetails = ({setUname,count,setCount,cartItem,setCartItem,buyItem,setBu
     }
     if(insert){
       try{
-        await axios.post("http://localhost:8800/cart", cartItem)
+        await axios.post("http://localhost:8800/ms/cart", cartItem)
       } catch (err) {
         console.log(err)
       }

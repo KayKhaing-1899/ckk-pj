@@ -22,7 +22,7 @@ const Contact = ({isLogin,setSignupEmail,setIsLogin,uname,setUname,signupEmail,s
     if(!feed.Email||!feed.Subject||!feed.Fback) return
     if(isLogin) {
       try{
-        await axios.post("http://localhost:8800/feedbacks", feed)
+        await axios.post("http://localhost:8800/ms/feedbacks", feed)
       } 
       catch (err) {
         console.log(err)

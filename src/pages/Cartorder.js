@@ -62,7 +62,7 @@ const Cartorder = ({temp,setSignupEmail,setTemp,cartTotal,setUname,setSignupDisp
                 ...prev
             }))
             try{
-                await axios.post("http://localhost:8800/orderlists",order)
+                await axios.post("http://localhost:8800/ms/orderlists",order)
             } catch(err){
                 console.log(err)
             }

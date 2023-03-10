@@ -6,6 +6,10 @@ const Admin_home = () => {
 
     const navigate = useNavigate()
 
+    const prodclick = () => {
+        navigate("/ad_home/prods")
+    }
+
     const addclick = () => {
         navigate("/ad_home/add")
     }
@@ -68,6 +72,7 @@ const Admin_home = () => {
         </nav>
         <div className='adhome'>
             <div className='adhome_page'>
+                <button className='btn btn-danger adhome_btn' onClick={prodclick}>Products</button><br /><br />
                 <button className='btn btn-danger adhome_btn' onClick={addclick}>ADD</button><br /><br />
                 <button className='btn btn-danger adhome_btn' onClick={fbackclick}>Feedbacks</button><br /><br />
                 <button className='btn btn-danger adhome_btn' onClick={orderclick}>Orders</button>

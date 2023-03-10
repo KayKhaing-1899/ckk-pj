@@ -11,7 +11,7 @@ const HuaweiDetails = ({setUname,setSignupEmail,signupEmail,signupDisplay,setSig
   useEffect(() => {
     const fetchcart = async () => {
       try{
-        const res = await axios.get("http://localhost:8800/cart")
+        const res = await axios.get("http://localhost:8800/ms/cart")
         setCart(res.data)
       } catch (err) {
         console.log(err)
@@ -71,7 +71,7 @@ const HuaweiDetails = ({setUname,setSignupEmail,signupEmail,signupDisplay,setSig
     }
     if(insert){
       try{
-        await axios.post("http://localhost:8800/cart", cartItem)
+        await axios.post("http://localhost:8800/ms/cart", cartItem)
       } catch (err) {
         console.log(err)
       }

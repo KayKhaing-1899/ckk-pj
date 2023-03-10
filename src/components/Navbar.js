@@ -5,13 +5,13 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-const Navbar = ({setSearchTerm,uname,isLogin,setIsLogin,setLoginDisplay}) => {
+const Navbar = ({setUname,setSearchTerm,uname,isLogin,setIsLogin,setLoginDisplay}) => {
 
     const [cart,setCart] = useState([])
     useEffect(() => {
         const fetchCart = async () => {
             try{
-                const res = await axios.get("http://localhost:8800/cart")
+                const res = await axios.get("http://localhost:8800/ms/cart")
                 setCart(res.data)
             } catch(err) {
                 console.log(err)
@@ -26,6 +26,7 @@ const Navbar = ({setSearchTerm,uname,isLogin,setIsLogin,setLoginDisplay}) => {
     const logout_click = () => {
         setIsLogin(false)
         setAccdrop(false)
+        setUname("")
     }
 
     const login_click = () => {

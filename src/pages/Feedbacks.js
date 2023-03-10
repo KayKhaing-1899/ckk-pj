@@ -9,7 +9,7 @@ const Feedbacks = () => {
     useEffect(() => {
         const fetchFeedbacks = async (e) => {
             try{
-                const res = await axios.get("http://localhost:8800/feedbacks")
+                const res = await axios.get("http://localhost:8800/ms/feedbacks")
                 setFeeds(res.data)
             } catch(err) {
                 console.log(err)

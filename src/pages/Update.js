@@ -1,34 +1,53 @@
 import React from 'react'
 import { useState,useEffect } from 'react'
 import axios from 'axios'
+import { useLocation } from 'react-router-dom'
 
-const Add = () => {
+const Update = () => {
 
-    const [arr,setArr] = useState([])
-    const [obj,setObj] = useState({})
-    useEffect(()=>{
-        const fetchcount = async () => {
+    const [products,setProducts] = useState([])
+    const [prod,setProd] = useState({})
+    useEffect(() => {
+        const fetchpros = async () => {
             try{
-                const res = await axios.get("http://localhost:8800/ms/count")
-                setArr(res.data)
-            }catch(err){
+                const res = await axios.get("http://localhost:8800/products/"+Pid) 
+                setProducts(res.data)
+            } catch(err) {
                 console.log(err)
             }
         }
-        fetchcount()
-        arr.map(ar => {
-            setObj(ar)
+        fetchpros()
+        products.map(p => {
+            setProd(p)
         })
+        if(prod.Brand==='lg'){
+            setIsTv(true)
+        }
+        if(prod.Brand==='canon'||prod.Brand==='sony'||prod.Brand==='fujifilm'){
+            setIsCam(true)
+        }
+        if(prod.Brand==='acer'||prod.Brand==='asus'||prod.Brand==='dell'||prod.Brand==='hp'||prod.Brand==='msi'){
+            setIsCom(true)
+        }
+        if(prod.Brand==='oppo'||prod.Brand==='vivo'||prod.Brand==='redmi'||prod.Brand==='huawei'){
+            setIsPh(true)
+        }
+        if(prod.Brand==='samsung'){
+            if(prod.Size===""){
+                setIsPh(true)
+            }else{
+                setIsTv(true)
+            }
+        }
     })
 
-    const [isCom,setIsCom] = useState(true)
+    const current = useLocation()
+    const Pid = current.pathname.split('/')[2]
+    const [isCom,setIsCom] = useState(false)
     const [isPh,setIsPh] = useState(false)
     const [isCam,setIsCam] = useState(false)
     const [isTv,setIsTv] = useState(false)
-    const [isAdmin,setIsAdmin] = useState(false)
-    const [cpassword,setCpassword] = useState("")
     const [pro,setPro] = useState({
-        Pid:"",
         Url:"",
         Name:"",
         Model:"",
@@ -53,7 +72,6 @@ const Add = () => {
         Brand:""
     })
     const [com,setCom] = useState({
-        ComId:"",
         Url:"",
         Name:"",
         Model:"",
@@ -66,7 +84,6 @@ const Add = () => {
         Brand:"",
     })
     const [tv,setTv] = useState({
-        TvId:"",
         Url:"",
         Name:"",
         Model:"",
@@ -75,7 +92,6 @@ const Add = () => {
         Brand:""
     })
     const [cam,setCam] = useState({
-        CamId:"",
         Url:"",
         Name:"",
         Af_mode:"",
@@ -88,7 +104,6 @@ const Add = () => {
         Brand:"",
     })
     const [ph,setPh] = useState({
-        PhId:"",
         Url:"",
         Name:"",
         Front:"",
@@ -101,50 +116,6 @@ const Add = () => {
         Price:"",
         Brand:""
     })
-    const [admin,setAdmin] = useState({
-        name:"",
-        pwd:""
-    })
-
-    const comclick = () => {
-        setIsCom(true)
-        setIsCam(false)
-        setIsPh(false)
-        setIsTv(false)
-        setIsAdmin(false)
-    }
-
-    const camclick = () => {
-        setIsCom(false)
-        setIsCam(true)
-        setIsPh(false)
-        setIsTv(false)
-        setIsAdmin(false)
-    }
-
-    const phclick = () => {
-        setIsCom(false)
-        setIsCam(false)
-        setIsPh(true)
-        setIsTv(false)
-        setIsAdmin(false)
-    }
-
-    const tvclick = () => {
-        setIsCom(false)
-        setIsCam(false)
-        setIsPh(false)
-        setIsTv(true)
-        setIsAdmin(false)
-    }
-
-    const adminclick = () => {
-        setIsCom(false)
-        setIsCam(false)
-        setIsPh(false)
-        setIsTv(false)
-        setIsAdmin(true)
-    }
 
     const comchange = (e) => {
         setCom(prev => ({...prev,[e.target.name]:e.target.value}))
@@ -153,25 +124,10 @@ const Add = () => {
 
     const combtnclick = async (e) => {
         e.preventDefault()
-        com.ComId=obj.count
-        pro.Pid=obj.count
-        console.log(com)
-        console.log(pro)
         try{
-            await axios.post("http://localhost:8800/computers", com)
+            await axios.out("http://localhost:8800/computers/"+Pid, com)
+            await axios.put("http://localhost:8800/products/"+Pid, pro)
         }catch(err){
-            console.log(err)
-        }
-        try{
-            await axios.post("http://localhost:8800/products", pro)
-        } 
-        catch (err) {
-            console.log(err)
-        }
-        try{
-            await axios.put("http://localhost:8800/ms/count")
-        } 
-        catch (err) {
             console.log(err)
         }
     }
@@ -182,23 +138,10 @@ const Add = () => {
     }
 
     const tvbtnclick = async () => {
-        tv.TvId=obj.count
-        pro.Pid=obj.count
         try{
-            await axios.post("http://localhost:8800/tvs", tv)
+            await axios.put("http://localhost:8800/tvs/"+Pid, tv)
+            await axios.put("http://localhost:8800/products/"+Pid, pro)
         }catch(err){
-            console.log(err)
-        }
-        try{
-            await axios.post("http://localhost:8800/products", pro)
-        } 
-        catch (err) {
-            console.log(err)
-        }
-        try{
-            await axios.put("http://localhost:8800/ms/count")
-        } 
-        catch (err) {
             console.log(err)
         }
     }
@@ -206,27 +149,16 @@ const Add = () => {
     const camchange = (e) => {
         setCam(prev => ({...prev,[e.target.name]:e.target.value}))
         setPro(prev => ({...prev,[e.target.name]:e.target.value}))
+        console.log(cam)
+        console.log(pro)
     }
 
     const cambtnclick = async (e) => {
         e.preventDefault()
-        cam.CamId=obj.count
-        pro.Pid=obj.count
         try{
-            await axios.post("http://localhost:8800/cameras", cam)
+            await axios.put("http://localhost:8800/cameras/"+Pid, cam)
+            await axios.put("http://localhost:8800/products/"+Pid, pro)
         }catch(err){
-            console.log(err)
-        }
-        try{
-            await axios.post("http://localhost:8800/products", pro)
-        } 
-        catch (err) {
-            console.log(err)
-        }
-        try{
-            await axios.put("http://localhost:8800/ms/count")
-        } 
-        catch (err) {
             console.log(err)
         }
     }
@@ -238,60 +170,17 @@ const Add = () => {
 
     const phbtnclick = async (e) => {
         e.preventDefault()
-        ph.PhId=obj.count
-        pro.Pid=obj.count
+        console.log(pro)
         try{
-            await axios.post("http://localhost:8800/phones", ph)
+            await axios.put("http://localhost:8800/phones/"+Pid, ph)
+            await axios.put("http://localhost:8800/products/"+Pid, pro)
         }catch(err){
             console.log(err)
-        }
-        try{
-            await axios.post("http://localhost:8800/products", pro)
-        } 
-        catch (err) {
-            console.log(err)
-        }
-        try{
-            await axios.put("http://localhost:8800/ms/count")
-        } 
-        catch (err) {
-            console.log(err)
-        }
-    }
-
-    const [isShow,setIsShow] = useState(false)
-    const showPassword = () => {
-        setIsShow(!isShow)
-    }
-
-    const adminchange = (e) => {
-        setAdmin(prev => ({...prev,[e.target.name]:e.target.value}))
-    }
-
-    const adminbtnclick = async() => {
-        if(!admin.name || !admin.pwd || !cpassword) return
-        if(admin.pwd===cpassword){
-            try{
-                await axios.post("http://localhost:8800/ms/admin",admin)
-            } catch (err){
-                console.log(err)
-            }
-        } else {
-            alert("Your passord doesn't match!")
         }
     }
 
   return (
     <div className='add_page'>
-        <nav className='navbar navbar-expand-lg add_navbar'>
-            <ul className='navbar-nav add_navbar_nav'>
-                <li className='nav-item addtil' onClick={comclick}>Computer</li>
-                <li className='nav-item addtil' onClick={phclick}>Phone</li>
-                <li className='nav-item addtil' onClick={camclick}>Camera</li>
-                <li className='nav-item addtil' onClick={tvclick}>TV</li>
-                <li className='nav-item addtil' onClick={adminclick}>Admin</li>
-            </ul>
-        </nav>
         {isCom && 
             <form className='add_form'>
                 <label htmlFor='url'>URL : </label>
@@ -354,7 +243,7 @@ const Add = () => {
                     name='Brand'
                     onChange={comchange}
                 /><br /><br />
-                <button type='button' className='btn btn-danger addbtn' onClick={combtnclick}>ADD</button>
+                <button type='button' className='btn btn-danger addbtn' onClick={combtnclick}>UPDATE</button>
             </form>
         }
         {isTv && 
@@ -395,7 +284,7 @@ const Add = () => {
                     name='Brand'
                     onChange={tvchange}
                 /><br /><br />
-                <button type='button' className='btn btn-danger addbtn' onClick={tvbtnclick}>ADD</button>
+                <button type='button' className='btn btn-danger addbtn' onClick={tvbtnclick}>UPDATE</button>
             </form>
         }
         {isCam && 
@@ -460,7 +349,7 @@ const Add = () => {
                     name='Brand'
                     onChange={camchange}
                 /><br /><br />
-                <button type='button' className='btn btn-danger addbtn' onClick={cambtnclick}>ADD</button>
+                <button type='button' className='btn btn-danger addbtn' onClick={cambtnclick}>UPDATE</button>
             </form>
         }
         {isPh && 
@@ -531,38 +420,11 @@ const Add = () => {
                     name='Brand'
                     onChange={phchange}
                 /><br /><br />
-                <button type='button' className='btn btn-danger addbtn' onClick={phbtnclick}>ADD</button>
-            </form>
-        }
-        {isAdmin && 
-            <form className='add_form'>
-                <label htmlFor='name'>Name : </label>
-                <input 
-                    type='text'
-                    name='name'
-                    onChange={adminchange}
-                /><br /><br />
-                <label htmlFor='password'>Password : </label>
-                <input 
-                    type={isShow ? 'text' : 'password'}
-                    name='pwd'
-                    onChange={adminchange}
-                /><br /><br />
-                <label htmlFor='cpassword'>Confirm Password : </label>
-                <input 
-                    type={isShow ? 'text' : 'password'}
-                    name='cpassword'
-                    onChange={(e) => setCpassword(e.target.value)}
-                /><br /><br />
-                <div className='show_password_checkbox admin_pcheckbox'>
-                    <input type='checkbox' style={{width:15,height:15,marginRight:10}} onClick={showPassword} />
-                    <p style={{fontSize:16,marginTop:15,color:'gray'}}>Show password</p>
-                </div>
-                <button type='button' className='btn btn-danger addbtn' onClick={adminbtnclick}>ADD</button>
+                <button type='button' className='btn btn-danger addbtn' onClick={phbtnclick}>UPDATE</button>
             </form>
         }
     </div>
   )
 }
 
-export default Add
+export default Update
