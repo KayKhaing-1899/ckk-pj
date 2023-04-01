@@ -51,11 +51,10 @@ const AcerDetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,cou
   }
 
   const addCart = async () => {
-    cartItem.id=cartItem.id+1
-    cartItem.url=acer.Url
-    cartItem.model=`${acer.Name} ${acer.Model}`
-    cartItem.price=acer.Price
     let insert=true
+    cartItem.CartId=cart.length + 1
+    cartItem.Pid=acerId
+    console.log(cartItem.CartId)
     setCartItem((item) => (
       {
         ...item
@@ -63,7 +62,7 @@ const AcerDetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,cou
     ))
     if(cart.length !== 0) {
       cart.forEach(c => {
-        if(c.model===cartItem.model){
+        if(c.Pid===cartItem.Pid){
           insert=false
         }
       })
@@ -81,7 +80,7 @@ const AcerDetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,cou
 
   const buyNow = () => {
     if(count !== 0) {
-      buyItem.id=acer.ComId
+      buyItem.id=acer.Pid
       buyItem.url=acer.Url
       buyItem.model=`${acer.Name} ${acer.Model}`
       buyItem.quantity=count
@@ -106,17 +105,6 @@ const AcerDetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,cou
       <div className={(loginDisplay || signupDisplay) && 'detail_container_hide'}>
         <div className='detail-container'>
           <img src={`/images/${acer.Url}`} alt="detail" className='detail-image' />
-          {/* <div className='image_container'>
-            {initial ? 
-              <img src={`/images/${acer.url}`} alt="detail" className='image_body' /> : 
-              <img src={`/images/${imageUrl}`} alt="detail" className='image_body' />
-            }
-            <div className='image_footer_container'>
-              <img src="/images/acer2.jpg" alt="detail" className='image_footer' onClick={() => imageclick("acer2.jpg")} />
-              <img src="/images/acer3.jpg" alt="detail" className='image_footer' onClick={() => imageclick("acer3.jpg")} />
-              <img src="/images/acer4.jpg" alt="detail" className='image_footer' onClick={() => imageclick("acer4.jpg")} />
-            </div>
-          </div> */}
           <div className='detail-text'>
             <h2 className='model_name'>{acer.Name} {acer.Model}</h2>
             <hr/>

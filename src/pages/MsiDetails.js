@@ -53,11 +53,13 @@ const MsiDetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,setS
   }
 
   const addCart = async () => {
-    cartItem.id=cartItem.id+1
-    cartItem.url=msi.Url
-    cartItem.model=`${msi.Name} ${msi.Model}`
-    cartItem.price=msi.Price
+    // cartItem.id=cartItem.id+1
+    // cartItem.url=msi.Url
+    // cartItem.model=`${msi.Name} ${msi.Model}`
+    // cartItem.price=msi.Price
     let insert=true
+    cartItem.CartId=cart.length+1
+    cartItem.Pid=msiId
     setCartItem((item) => (
       {
         ...item
@@ -65,7 +67,7 @@ const MsiDetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,setS
     ))
     if(cart.length !== 0) {
       cart.forEach(c => {
-        if(c.model===cartItem.model){
+        if(c.Pid===cartItem.Pid){
           insert=false
         }
       })
@@ -83,7 +85,7 @@ const MsiDetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,setS
 
   const buyNow = () => {
     if(count !== 0) {
-      buyItem.id=msi.ComId
+      buyItem.id=msi.Pid
       buyItem.url=msi.Url
       buyItem.model=`${msi.Name} ${msi.Model}`
       buyItem.quantity=count

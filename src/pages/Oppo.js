@@ -28,7 +28,7 @@ const Oppo = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,setSignupE
         <div className='products-container'>
             {oppos.map((op) => (
                 <div className='products-show'>
-                    <Link to={`/phones/oppos/${op.PhId}`}><img src={`/images/${op.Url}`} alt="" className="phimg"/></Link>
+                    <Link to={`/phones/oppos/${op.Pid}`}><img src={`/images/${op.Url}`} alt="" className="phimg"/></Link>
                     <p className='products-text'>{op.Name}</p>
                 </div>
             ))}

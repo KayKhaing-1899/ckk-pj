@@ -49,7 +49,7 @@ function App() {
 
   const [count,setCount] = useState(0)
   const [isLogin,setIsLogin] = useState(false)
-  const [cartItem,setCartItem] = useState({id:0,url:"",model:"",price:""})
+  const [cartItem,setCartItem] = useState({CartId:0,Pid:""})
   const [buyItem,setBuyItem] = useState({id:"",url:"",model:"",quantity:0,price:""})
   const [cartTotal,setCartTotal] = useState(0)
   const [loginDisplay,setLoginDisplay] = useState(false)

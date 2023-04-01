@@ -28,7 +28,7 @@ const Canon = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,setSignup
         <div className='products-container'>
           {canons.map((can) => (
             <div className='products-show'>
-              <Link to={`/cameras/canon/${can.CamId}`}><img src={`/images/${can.Url}`} alt="" className="camimg"/></Link>
+              <Link to={`/cameras/canon/${can.Pid}`}><img src={`/images/${can.Url}`} alt="" className="camimg"/></Link>
               <p className='products-text'>{can.Name}</p>
             </div>
           ))}

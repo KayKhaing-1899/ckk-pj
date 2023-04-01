@@ -52,11 +52,13 @@ const Opdetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,setSi
   }
 
   const addCart = async () => {
-    cartItem.id=cartItem.id+1
-    cartItem.url=op.Url
-    cartItem.model=op.Name
-    cartItem.price=op.Price
+    // cartItem.id=cartItem.id+1
+    // cartItem.url=op.Url
+    // cartItem.model=op.Name
+    // cartItem.price=op.Price
     let insert = true
+    cartItem.CartId=cart.length+1
+    cartItem.Pid=opId
     setCartItem((item) => (
       {
         ...item
@@ -64,7 +66,7 @@ const Opdetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,setSi
     ))
     if(cart.length !== 0) {
       cart.forEach(c => {
-        if(c.model===cartItem.model){
+        if(c.Pid===cartItem.Pid){
           insert=false
         }
       })
@@ -82,7 +84,7 @@ const Opdetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,setSi
 
   const buyNow = () => {
     if(count !== 0) {
-      buyItem.id=op.PhId
+      buyItem.id=op.Pid
       buyItem.url=op.Url
       buyItem.model=op.Name
       buyItem.quantity=count

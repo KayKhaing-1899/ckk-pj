@@ -28,7 +28,7 @@ const Acer = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,setIsLogin
         <div className='products-container'>
           {acers.map((ac) => (
             <div className='products-show' key={ac.ComId}>
-              <Link to={`/computers/acer/${ac.ComId}`}><img src={`/images/${ac.Url}`} alt="" className="comimg" /></Link>
+              <Link to={`/computers/acer/${ac.Pid}`}><img src={`/images/${ac.Url}`} alt="" className="comimg" /></Link>
               <p className='products-text'>{ac.Name} {ac.Model}</p>
             </div>
           ))}

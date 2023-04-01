@@ -16,7 +16,20 @@ const Orders = () => {
             }
         }
         fetchorders()
-    },[])
+    })
+
+    const [delivers,setDelivers] = useState([])
+    useEffect(() =>{
+        const fetchdelivers = async () => {
+            try{
+                const res = await axios.get("http://localhost:8800/ms/orders/deliver")
+                setDelivers(res.data)
+            } catch(err) {
+                console.log(err)
+            }
+        }
+        fetchdelivers()
+    })
 
     const [name,setName] = useState("")
     const [notsearch,setNotsearch] = useState(true)
@@ -37,10 +50,10 @@ const Orders = () => {
 
     const deleteclick = () => {
         customer.map(async(cus) => {
-            const ch = document.getElementById(cus.id)
+            const ch = document.getElementById(cus.OrderId)
             if(ch.checked){
                 try{
-                    await axios.delete("http://localhost:8800/orders/orderlists/" + cus.id)
+                    await axios.delete("http://localhost:8800/orders/orderlists/" + cus.OrderId)
                     window.location.reload()
                 } catch(err) {
                     console.log(err)
@@ -61,20 +74,62 @@ const Orders = () => {
         navigate('/ad_home')
     }
 
+    const [date,setDate] = useState("")
+    useEffect(() => {
+        let current = new Date()
+        let day = current.getDate()
+        let month = current.getMonth()
+        let year = current.getFullYear()
+        let date = `${day}.${month}.${year}`
+        setDate(date)
+    })
+
+    const [deli,setDeli] = useState({
+        DeliId:0,
+        AdminId:1,
+        OrderId:"",
+        delidate:""
+    })
+    let len = 0
+
     const deliver = async (obj) => {
-        try{
-            await axios.post("http://localhost:8800/ms/delivered",obj)
-        }catch(err){
-            console.log(err)
-        }
-        try{
-            await axios.delete("http://localhost:8800/orders/orderlists/"+obj.id)
-            window.location.reload()
-        }catch(err){
-            console.log(err)
+        if(delivers.length===0){
+            len = len + 1
+            deli.DeliId = delivers.length + len
+            deli.OrderId = obj.OrderId
+            deli.delidate = date
+            console.log(deli)
+            try{
+                await axios.post("http://localhost:8800/ms/orders/deliver" ,deli)
+            }catch(err){
+                console.log(err)
+            }
+        }else{
+            let found = false
+            delivers.forEach(async del => {
+                if(del.OrderId===obj.OrderId){
+                    found = true
+                }
+            })
+            if(found===false){
+                len = len + 1
+                deli.DeliId = delivers.length + len
+                deli.OrderId = obj.OrderId
+                deli.delidate = date
+                console.log(deli)
+                try{
+                    await axios.post("http://localhost:8800/ms/orders/deliver" ,deli)
+                }catch(err){
+                    console.log(err)
+                }
+            }
         }
     }
-
+    // const c = delivers.findIndex(del=>(
+    //     del.OrderId==='O1'
+    // ))
+    // console.log(c)
+    
   return (
     <div className='orders_page'>
         <div className='search_cus'>
@@ -125,12 +180,15 @@ const Orders = () => {
                             <p className='orders_span orders_text'>{ord.email}</p>
                             <p className='orders_span'>{ord.phone}</p>
                             <p className='orders_span'>{ord.address}</p>
-                            <p className='orders_span'>{ord.item}</p>
+                            <p className='orders_span'>{ord.Name}</p>
                             <p className='orders_span orders_num'>{ord.quantity}</p>
-                            <p className='orders_span orders_num'>{ord.price}</p>
+                            <p className='orders_span orders_num'>{ord.Price}</p>
                             <p className='orders_span orders_num'>{ord.total}</p>
                             <p className='orders_span orders_num'>
-                                <button className='btn btn-danger' onClick={()=>deliver(ord)}>Deliver</button>
+                                {delivers.findIndex(del=>(del.OrderId===ord.OrderId))!==-1 ? 
+                                    <button className='btn btn-danger' disabled>Delivered</button> :
+                                    <button className='btn btn-danger' onClick={()=>deliver(ord)}>Deliver</button> 
+                                }
                             </p>
                         </div>
                     ))}
@@ -139,19 +197,22 @@ const Orders = () => {
                     {customer.map((ord) => (
                         <div className='orders'>
                             <p className='orders_span orders_check'>
-                                <input type='checkbox' id={ord.id} />
+                                <input type='checkbox' id={ord.OrderId} />
                             </p>
                             <p className='orders_span orders_num'>{ord.date}</p>
                             <p className='orders_span'>{ord.cusname}</p>
                             <p className='orders_span orders_text'>{ord.email}</p>
                             <p className='orders_span'>{ord.phone}</p>
                             <p className='orders_span'>{ord.address}</p>
-                            <p className='orders_span'>{ord.item}</p>
+                            <p className='orders_span'>{ord.Name}</p>
                             <p className='orders_span orders_num'>{ord.quantity}</p>
-                            <p className='orders_span orders_num'>{ord.price}</p>
+                            <p className='orders_span orders_num'>{ord.Price}</p>
                             <p className='orders_span orders_num'>{ord.total}</p>
                             <p className='orders_span orders_num'>
-                                <button className='btn btn-danger' onClick={()=>deliver(ord)}>Deliver</button>
+                                {delivers.findIndex(del=>(del.OrderId===ord.OrderId))!==-1 ? 
+                                    <button className='btn btn-danger' disabled>Delivered</button> :
+                                    <button className='btn btn-danger' onClick={()=>deliver(ord)}>Deliver</button> 
+                                }
                             </p>
                         </div>
                     ))}

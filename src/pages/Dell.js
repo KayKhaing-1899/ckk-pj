@@ -28,7 +28,7 @@ const Dell = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,setSignupE
         <div className='products-container'>
           {dells.map((de) => (
             <div className='products-show'>
-              <Link to={`/computers/dell/${de.ComId}`}><img src={`/images/${de.Url}`} alt="" className="comimg"/></Link>
+              <Link to={`/computers/dell/${de.Pid}`}><img src={`/images/${de.Url}`} alt="" className="comimg"/></Link>
               <p className='products-text'>{de.Name} {de.Model}</p>
             </div>
           ))}

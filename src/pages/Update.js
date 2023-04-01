@@ -12,7 +12,7 @@ const Update = () => {
     useEffect(() => {
         const fetchpros = async () => {
             try{
-                const res = await axios.get("http://localhost:8800/products/"+Pid) 
+                const res = await axios.get("http://localhost:8800/products/" + Pid) 
                 setProducts(res.data)
             } catch(err) {
                 console.log(err)
@@ -22,24 +22,17 @@ const Update = () => {
         products.map(p => {
             setProd(p)
         })
-        if(prod.Brand==='lg'){
+        if(prod.BrandId==='B14'||prod.BrandId==='B15'){
             setIsTv(true)
         }
-        if(prod.Brand==='canon'||prod.Brand==='sony'||prod.Brand==='fujifilm'){
+        if(prod.BrandId==='B6'||prod.BrandId==='B7'||prod.BrandId==='B8'){
             setIsCam(true)
         }
-        if(prod.Brand==='acer'||prod.Brand==='asus'||prod.Brand==='dell'||prod.Brand==='hp'||prod.Brand==='msi'){
-            setIsCom(true)
-        }
-        if(prod.Brand==='oppo'||prod.Brand==='vivo'||prod.Brand==='redmi'||prod.Brand==='huawei'){
+        if(prod.BrandId==='B9'||prod.BrandId==='B10'||prod.BrandId==='B11'||prod.BrandId==='B12'||prod.BrandId==='B13'){
             setIsPh(true)
         }
-        if(prod.Brand==='samsung'){
-            if(prod.Size===""){
-                setIsPh(true)
-            }else{
-                setIsTv(true)
-            }
+        if(prod.BrandId==='B1'||prod.BrandId==='B2'||prod.BrandId==='B3'||prod.BrandId==='B4'||prod.BrandId==='B5'){
+            setIsCom(true)
         }
     })
 
@@ -70,161 +63,18 @@ const Update = () => {
         Pixels:"",
         Weight:"",
         Size:"",
-        Price:"",
-        Brand:""
-    })
-    const [com,setCom] = useState({
-        Url:"",
-        Name:"",
-        Model:"",
-        Ram:"",
-        Cpu:"",
-        Gpu:"",
-        Display:"",
-        Storage:"",
-        Price:"",
-        Brand:""
-    })
-    const [tv,setTv] = useState({
-        Url:"",
-        Name:"",
-        Model:"",
-        Size:"",
-        Price:"",
-        Brand:""
-    })
-    const [cam,setCam] = useState({
-        Url:"",
-        Name:"",
-        Af_mode:"",
-        Built_in_flash:"",
-        Iso:"",
-        View_finder:"",
-        Pixels:"",
-        Weight:"",
-        Price:"",
-        Brand:""
-    })
-    const [ph,setPh] = useState({
-        Url:"",
-        Name:"",
-        Front:"",
-        Rear:"",
-        Battery:"",
-        Ram:"",
-        Storage:"",
-        Color:"",
-        Cellular:"",
-        Price:"",
-        Brand:""
+        Price:""
     })
 
-    const comchange = (e) => {
-        setCom(prev => ({...prev,[e.target.name]:e.target.value}))
+    const change = (e) => {
         setPro(prev => ({...prev,[e.target.name]:e.target.value}))
     }
 
-    const combtnclick = async (e) => {
+    const btnclick = async (e) => {
         e.preventDefault()
         try{
-            await axios.out("http://localhost:8800/computers/"+Pid, com)
-            await axios.put("http://localhost:8800/products/"+Pid, pro)
+            await axios.put("http://localhost:8800/products/" + Pid, pro)
             alert("Update Successful!")
-            setCom(()=>({
-                Url:"",
-                Name:"",
-                Model:"",
-                Ram:"",
-                Cpu:"",
-                Gpu:"",
-                Display:"",
-                Storage:"",
-                Price:"",
-                Brand:""
-            }))
-        }catch(err){
-            console.log(err)
-        }
-    }
-
-    const tvchange = (e) => {
-        setTv(prev => ({...prev,[e.target.name]:e.target.value}))
-        setPro(prev => ({...prev,[e.target.name]:e.target.value}))
-    }
-
-    const tvbtnclick = async () => {
-        try{
-            await axios.put("http://localhost:8800/tvs/"+Pid, tv)
-            await axios.put("http://localhost:8800/products/"+Pid, pro)
-            alert("Update Successful!")
-            setTv(()=>({
-                Url:"",
-                Name:"",
-                Model:"",
-                Size:"",
-                Price:"",
-                Brand:""
-            }))
-        }catch(err){
-            console.log(err)
-        }
-    }
-
-    const camchange = (e) => {
-        setCam(prev => ({...prev,[e.target.name]:e.target.value}))
-        setPro(prev => ({...prev,[e.target.name]:e.target.value}))
-        console.log(cam)
-        console.log(pro)
-    }
-
-    const cambtnclick = async (e) => {
-        e.preventDefault()
-        try{
-            await axios.put("http://localhost:8800/cameras/"+Pid, cam)
-            await axios.put("http://localhost:8800/products/"+Pid, pro)
-            alert("Update Successful!")
-            setCam(()=>({
-                Url:"",
-                Name:"",
-                Af_mode:"",
-                Built_in_flash:"",
-                Iso:"",
-                View_finder:"",
-                Pixels:"",
-                Weight:"",
-                Price:"",
-                Brand:""
-            }))
-        }catch(err){
-            console.log(err)
-        }
-    }
-
-    const phchange = (e) => {
-        setPh(prev => ({...prev,[e.target.name]:e.target.value}))
-        setPro(prev => ({...prev,[e.target.name]:e.target.value}))
-    }
-
-    const phbtnclick = async (e) => {
-        e.preventDefault()
-        console.log(pro)
-        try{
-            await axios.put("http://localhost:8800/phones/"+Pid, ph)
-            await axios.put("http://localhost:8800/products/"+Pid, pro)
-            alert("Update Successful!")
-            setPh(()=>({
-                Url:"",
-                Name:"",
-                Front:"",
-                Rear:"",
-                Battery:"",
-                Ram:"",
-                Storage:"",
-                Color:"",
-                Cellular:"",
-                Price:"",
-                Brand:""
-            }))
         }catch(err){
             console.log(err)
         }
@@ -242,74 +92,67 @@ const Update = () => {
                 <input 
                     type='text'
                     name='Url'
-                    onChange={comchange}
+                    onChange={change}
                     placeholder={prod.Url}
                 /><br /><br />
                 <label htmlFor='name'>Name : </label>
                 <input 
                     type='text'
                     name='Name'
-                    onChange={comchange}
+                    onChange={change}
                     placeholder={prod.Name}
                 /><br /><br />
                 <label htmlFor='model'>Model : </label>
                 <input 
                     type='text'
                     name='Model'
-                    onChange={comchange}
+                    onChange={change}
                     placeholder={prod.Model}
                 /><br /><br />
                 <label htmlFor='ram'>RAM : </label>
                 <input 
                     type='text'
                     name='Ram'
-                    onChange={comchange}
+                    onChange={change}
                     placeholder={prod.Ram}
                 /><br /><br />
                 <label htmlFor='cpu'>CPU : </label>
                 <input 
                     type='text'
                     name='Cpu'
-                    onChange={comchange}
+                    onChange={change}
                     placeholder={prod.Cpu}
                 /><br /><br />
                 <label htmlFor='gpu'>GPU : </label>
                 <input 
                     type='text'
                     name='Gpu'
-                    onChange={comchange}
+                    onChange={change}
                     placeholder={prod.Gpu}
                 /><br /><br />
                 <label htmlFor='display'>Display : </label>
                 <input 
                     type='text'
                     name='Display'
-                    onChange={comchange}
+                    onChange={change}
                     placeholder={prod.Display}
                 /><br /><br />
                 <label htmlFor='storage'>Storage : </label>
                 <input 
                     type='text'
                     name='Storage'
-                    onChange={comchange}
+                    onChange={change}
                     placeholder={prod.Storage}
                 /><br /><br />
                 <label htmlFor='price'>Price : </label>
                 <input 
                     type='text'
                     name='Price'
-                    onChange={comchange}
+                    onChange={change}
                     placeholder={prod.Price}
                 /><br /><br />
-                <label htmlFor='Brand'>Brand : </label>
-                <input 
-                    type='text'
-                    name='Brand'
-                    onChange={comchange}
-                    placeholder={prod.Brand}
-                /><br /><br />
                 <div className='addbtn'>
-                    <button type='button' className='btn btn-danger' style={{width:100,marginRight:20}} onClick={combtnclick}>UPDATE</button>
+                    <button type='button' className='btn btn-danger' style={{width:100,marginRight:20}} onClick={btnclick}>UPDATE</button>
                     <button type='button' className='btn btn-danger' style={{width:100}} onClick={backclick}>BACK</button>
                 </div>
             </form>
@@ -320,46 +163,39 @@ const Update = () => {
                 <input 
                     type='text'
                     name='Url'
-                    onChange={tvchange}
+                    onChange={change}
                     placeholder={prod.Url}
                 /><br /><br />
                 <label htmlFor='name'>Name : </label>
                 <input 
                     type='text'
                     name='Name'
-                    onChange={tvchange}
+                    onChange={change}
                     placeholder={prod.Name}
                 /><br /><br />
                 <label htmlFor='model'>Model : </label>
                 <input 
                     type='text'
                     name='Model'
-                    onChange={tvchange}
+                    onChange={change}
                     placeholder={prod.Model}
                 /><br /><br />
                 <label htmlFor='size'>Size : </label>
                 <input 
                     type='text'
                     name='Size'
-                    onChange={tvchange}
+                    onChange={change}
                     placeholder={prod.Size}
                 /><br /><br />
                 <label htmlFor='price'>Price : </label>
                 <input 
                     type='text'
                     name='Price'
-                    onChange={tvchange}
+                    onChange={change}
                     placeholder={prod.Price}
                 /><br /><br />
-                <label htmlFor='brand'>Brand : </label>
-                <input 
-                    type='text'
-                    name='Brand'
-                    onChange={tvchange}
-                    placeholder={prod.Brand}
-                /><br /><br />
                 <div className='addbtn'>
-                    <button type='button' className='btn btn-danger' style={{width:100,marginRight:20}} onClick={tvbtnclick}>UPDATE</button>
+                    <button type='button' className='btn btn-danger' style={{width:100,marginRight:20}} onClick={btnclick}>UPDATE</button>
                     <button type='button' className='btn btn-danger' style={{width:100}} onClick={backclick}>BACK</button>
                 </div>
             </form>
@@ -370,74 +206,67 @@ const Update = () => {
                 <input 
                     type='text'
                     name='Url'
-                    onChange={camchange}
+                    onChange={change}
                     placeholder={prod.Url}
                 /><br /><br />
                 <label htmlFor='name'>Name : </label>
                 <input 
                     type='text'
                     name='Name'
-                    onChange={camchange}
+                    onChange={change}
                     placeholder={prod.Name}
                 /><br /><br />
                 <label htmlFor='af-mode'>AF_Mode : </label>
                 <input 
                     type='text'
                     name='Af_mode'
-                    onChange={camchange}
+                    onChange={change}
                     placeholder={prod.Af_mode}
                 /><br /><br />
                 <label htmlFor='built-in-flash'>Built_in_Flash : </label>
                 <input 
                     type='text'
                     name='Built_in_flash'
-                    onChange={camchange}
+                    onChange={change}
                     placeholder={prod.Built_in_flash}
                 /><br /><br />
                 <label htmlFor='iso'>ISO : </label>
                 <input 
                     type='text'
                     name='Iso'
-                    onChange={camchange}
+                    onChange={change}
                     placeholder={prod.Iso}
                 /><br /><br />
                 <label htmlFor='view-finder'>View_Finder : </label>
                 <input 
                     type='text'
                     name='View_finder'
-                    onChange={camchange}
+                    onChange={change}
                     placeholder={prod.View_finder}
                 /><br /><br />
                 <label htmlFor='pixels'>Pixels : </label>
                 <input 
                     type='text'
                     name='Pixels'
-                    onChange={camchange}
+                    onChange={change}
                     placeholder={prod.Pixels}
                 /><br /><br />
                 <label htmlFor='weight'>Weight : </label>
                 <input 
                     type='text'
                     name='Weight'
-                    onChange={camchange}
+                    onChange={change}
                     placeholder={prod.Weight}
                 /><br /><br />
                 <label htmlFor='price'>Price : </label>
                 <input 
                     type='text'
                     name='Price'
-                    onChange={camchange}
+                    onChange={change}
                     placeholder={prod.Price}
                 /><br /><br />
-                <label htmlFor='Brand'>Brand : </label>
-                <input 
-                    type='text'
-                    name='Brand'
-                    onChange={camchange}
-                    placeholder={prod.Brand}
-                /><br /><br />
                 <div className='addbtn'>
-                    <button type='button' className='btn btn-danger' style={{width:100,marginRight:20}} onClick={cambtnclick}>UPDATE</button>
+                    <button type='button' className='btn btn-danger' style={{width:100,marginRight:20}} onClick={btnclick}>UPDATE</button>
                     <button type='button' className='btn btn-danger' style={{width:100}} onClick={backclick}>BACK</button>
                 </div>
             </form>
@@ -448,81 +277,74 @@ const Update = () => {
                 <input 
                     type='text'
                     name='Url'
-                    onChange={phchange}
+                    onChange={change}
                     placeholder={prod.Url}
                 /><br /><br />
                 <label htmlFor='name'>Model : </label>
                 <input 
                     type='text'
                     name='Name'
-                    onChange={phchange}
+                    onChange={change}
                     placeholder={prod.Name}
                 /><br /><br />
                 <label htmlFor='front'>Front Camera : </label>
                 <input 
                     type='text'
                     name='Front'
-                    onChange={phchange}
+                    onChange={change}
                     placeholder={prod.Front}
                 /><br /><br />
                 <label htmlFor='rear'>Rear Camera : </label>
                 <input 
                     type='text'
                     name='Rear'
-                    onChange={phchange}
+                    onChange={change}
                     placeholder={prod.Rear}
                 /><br /><br />
                 <label htmlFor='battery'>Battery : </label>
                 <input 
                     type='text'
                     name='Battery'
-                    onChange={phchange}
+                    onChange={change}
                     placeholder={prod.Battery}
                 /><br /><br />
                 <label htmlFor='ram'>RAM : </label>
                 <input 
                     type='text'
                     name='Ram'
-                    onChange={phchange}
+                    onChange={change}
                     placeholder={prod.Ram}
                 /><br /><br />
                 <label htmlFor='storage'>Storage : </label>
                 <input 
                     type='text'
                     name='Storage'
-                    onChange={phchange}
+                    onChange={change}
                     placeholder={prod.Storage}
                 /><br /><br />
                 <label htmlFor='color'>Color : </label>
                 <input 
                     type='text'
                     name='Color'
-                    onChange={phchange}
+                    onChange={change}
                     placeholder={prod.Color}
                 /><br /><br />
                 <label htmlFor='cellular'>Cellular : </label>
                 <input 
                     type='text'
                     name='Cellular'
-                    onChange={phchange}
+                    onChange={change}
                     placeholder={prod.Cellular}
                 /><br /><br />
                 <label htmlFor='price'>Price : </label>
                 <input 
                     type='text'
                     name='Price'
-                    onChange={phchange}
+                    onChange={change}
                     placeholder={prod.Price}
                 /><br /><br />
-                <label htmlFor='Brand'>Brand : </label>
-                <input 
-                    type='text'
-                    name='Brand'
-                    onChange={phchange}
-                    placeholder={prod.Brand}
-                /><br /><br />
                 <div className='addbtn'>
-                    <button type='button' className='btn btn-danger' style={{width:100,marginRight:20}} onClick={phbtnclick}>UPDATE</button>
+                    <button type='button' className='btn btn-danger' style={{width:100,marginRight:20}} onClick={btnclick}>UPDATE</button>
                     <button type='button' className='btn btn-danger' style={{width:100}} onClick={backclick}>BACK</button>
                 </div>
             </form>

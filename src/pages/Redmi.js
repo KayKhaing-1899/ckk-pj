@@ -28,7 +28,7 @@ const Redmi = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,setSignup
         <div className='products-container'>
             {redmis.map((red) => (
                 <div className='products-show'>
-                    <Link to={`/phones/redmis/${red.PhId}`}><img src={`/images/${red.Url}`} alt="" className="phimg"/></Link>
+                    <Link to={`/phones/redmis/${red.Pid}`}><img src={`/images/${red.Url}`} alt="" className="phimg"/></Link>
                     <p className='products-text'>{red.Name}</p>
                 </div>
             ))}

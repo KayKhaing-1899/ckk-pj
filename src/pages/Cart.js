@@ -22,9 +22,6 @@ const Cart = ({notFound,setNotFound,wrong,setWrong,setSignupEmail,temp,setCartTo
             }
         }
         fetchCart()
-        // cart.map((g) => (
-        //    setTotalPrice(totalPrice+g.allprice)
-        // ))
     })
 
     const btnclick = async (id) => {
@@ -37,32 +34,32 @@ const Cart = ({notFound,setNotFound,wrong,setWrong,setSignupEmail,temp,setCartTo
     }
 
     const click = (obj) => {
-        const ch = document.getElementById(obj.model)
-        const qty = document.getElementById(obj.id).value
+        const ch = document.getElementById(obj.CartId)
+        const qty = document.getElementById(obj.Pid).value
         if (ch.checked) {
             setItemnum(itemsnum + 1)
-            setTotalPrice(totalPrice + (obj.price * qty))
+            setTotalPrice(totalPrice + (obj.Price * qty))
         } else {
             setItemnum(itemsnum - 1)
-            setTotalPrice(totalPrice - (obj.price * qty))
+            setTotalPrice(totalPrice - (obj.Price * qty))
         }
     }
 
     const count = (obj) => {
-        const qty = document.getElementById(obj.id).value
-        document.getElementById(`${obj.model}-id`).innerHTML = qty * obj.price
-        const ch = document.getElementById(obj.model)
+        const qty = document.getElementById(obj.Pid).value
+        document.getElementById(`${obj.Pid}-id`).innerHTML = qty * obj.Price
+        const ch = document.getElementById(obj.CartId)
         let ans = 0
         let arrans = 0
-        let arr = cart.filter(f => f.id!==obj.id)
+        let arr = cart.filter(f => f.Pid!==obj.Pid)
         if(ch.checked){
-            ans = obj.price*qty
+            ans = obj.Price*qty
         }
         arr.forEach(ar => {
-            const ch = document.getElementById(ar.model)
+            const ch = document.getElementById(ar.CartId)
             if(ch.checked){
-                const q = document.getElementById(ar.id).value
-                arrans = arrans+(q*ar.price)
+                const q = document.getElementById(ar.Pid).value
+                arrans = arrans+(q*ar.Price)
             }
         })
         setTotalPrice(ans+arrans)
@@ -72,15 +69,15 @@ const Cart = ({notFound,setNotFound,wrong,setWrong,setSignupEmail,temp,setCartTo
         if (itemsnum !== 0) {
             setCartTotal(totalPrice)
             cart.forEach((c) => {
-                const ch = document.getElementById(c.model)
+                const ch = document.getElementById(c.CartId)
                 if(ch.checked) {
                     temp.push({
-                        id:c.id,
-                        url:c.url,
-                        model:c.model,
-                        quantity:document.getElementById(c.id).value,
-                        price:c.price,
-                        total:c.price*document.getElementById(c.id).value
+                        id:c.Pid,
+                        url:c.Url,
+                        model:c.Name,
+                        quantity:document.getElementById(c.Pid).value,
+                        price:c.Price,
+                        total:c.Price*document.getElementById(c.Pid).value
                     })
                 }
             })
@@ -95,34 +92,34 @@ const Cart = ({notFound,setNotFound,wrong,setWrong,setSignupEmail,temp,setCartTo
             <div className={(loginDisplay || signupDisplay) && 'brand_container_hide'}>
                 <div className={cart.length !== 0 ? 'cart_lists_container' : 'cart_lists_container_top'}>
                     {cart.map((item) => (
-                        <div className='cart_lists' key={item.id}>
+                        <div className='cart_lists' key={item.CartId}>
                             <input
                                 type='checkbox'
-                                id={item.model}
+                                id={item.CartId}
                                 style={{ marginRight: 70 }}
                                 onChange={() => click(item)}
                             />
-                            <img src={`/images/${item.url}`} alt='' className='cart_lists_img' />
+                            <img src={`/images/${item.Url}`} alt='' className='cart_lists_img' />
                             <div className='cart_lists_details'>
-                                <span>Name : {item.model}</span><br />
-                                <span>Price : {item.price} Ks</span><br />
+                                <span>Name : {item.Name}</span><br />
+                                <span>Price : {item.Price} Ks</span><br />
                                 <label htmlFor='quantity'>Quantity : </label>
                                 <input
                                     type='number'
                                     className='cqty'
-                                    id={item.id}
+                                    id={item.Pid}
                                     min='0'
                                     defaultValue='0'
                                     style={{ color: '#dc3545' }}
                                     onChange={() => count(item)}
                                 />
                                 <p>Total :
-                                    <span style={{ color: '#dc3545' }} className='ctotal' id={`${item.model}-id`}>
+                                    <span style={{ color: '#dc3545' }} className='ctotal' id={`${item.Pid}-id`}>
                                         0
                                     </span> Ks
                                 </p>
                             </div>
-                            <button className='btn btn-close remove_cart' onClick={() => btnclick(item.id)}></button>
+                            <button className='btn btn-close remove_cart' onClick={() => btnclick(item.CartId)}></button>
                         </div>
                     ))}
                     <div className='place_order'>

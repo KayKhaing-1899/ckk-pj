@@ -1091,18 +1091,22 @@ textarea {
 }
 
 .prods_text1 {
-  width: 300px;
+  width: 400px;
   margin-top: 20px;
 }
 
 .prods_text2 {
-  width: 150px;
+  width: 200px;
   margin-top: 20px;
 }
 
 .prods_text3{
-  width: 200px;
+  width: 100px;
   margin-top: 20px;
+}
+
+.prods_text4 {
+  width: 100px;
 }
 
 .copyright{
@@ -1282,7 +1286,7 @@ textarea {
   .prods_img{
     margin-right: 5px;
   }
-  .prods_text1,.prods_text3 {
+  .prods_text1{
     width: 150px;
     margin-top: 20px;
     margin-right: 15px;

@@ -9,25 +9,24 @@ const Delivered = () => {
     useEffect(() =>{
         const fetchorders = async () => {
             try{
-                const res = await axios.get("http://localhost:8800/ms/delivered")
+                const res = await axios.get("http://localhost:8800/ms/orders/deliver")
                 setDelivers(res.data)
             } catch(err) {
                 console.log(err)
             }
         }
         fetchorders()
-    },[])
-    console.log(delivers)
-
-    const [name,setName] = useState("")
+    })
+    
+    const [date,setDate] = useState("")
     const [notsearch,setNotsearch] = useState(false)
     const [deli,setDeli] = useState([])
 
     const searchclick = async() => {
-        if(!name) return
+        if(!date) return
         setNotsearch(true)
         try{
-            const res = await axios.get("http://localhost:8800/ms/delivered/" + name )
+            const res = await axios.get("http://localhost:8800/ms/orders/deliver/" + date )
             setDeli(res.data)
         } catch(err) {
             console.log(err)
@@ -49,10 +48,10 @@ const Delivered = () => {
             <div className='search_cus_bar'>
                 <input
                     type='text'
-                    name='name'
-                    value={name}
-                    placeholder="Enter customer name..."
-                    onChange={(e) => setName(e.target.value)}
+                    name='date'
+                    value={date}
+                    placeholder="Enter delivery date (dd.mm.yyyy)"
+                    onChange={(e) => setDate(e.target.value)}
                     style={{width:400,height:50,borderRadius:5,textIndent:10,marginRight:20}}
                 />
                 <div>
@@ -67,7 +66,8 @@ const Delivered = () => {
         <div>
             <hr />
             <div className='orders'>
-                <p className='orders_span orders_num til'>Date</p>
+                <p className='orders_span orders_num til'>Delivery Date</p>
+                <p className='orders_span orders_num til'>Order Date</p>
                 <p className='orders_span til'>Customer Name</p>
                 <p className='orders_span orders_text til'>Email</p>
                 <p className='orders_span til'>Phone</p>
@@ -82,14 +82,15 @@ const Delivered = () => {
                 <div>
                     {delivers.map((ord) => (
                         <div className='orders'>
+                            <p className='orders_span orders_num'>{ord.delidate}</p>
                             <p className='orders_span orders_num'>{ord.date}</p>
                             <p className='orders_span'>{ord.cusname}</p>
                             <p className='orders_span orders_text'>{ord.email}</p>
                             <p className='orders_span'>{ord.phone}</p>
                             <p className='orders_span'>{ord.address}</p>
-                            <p className='orders_span'>{ord.item}</p>
+                            <p className='orders_span'>{ord.Name}</p>
                             <p className='orders_span orders_num'>{ord.quantity}</p>
-                            <p className='orders_span orders_num'>{ord.price}</p>
+                            <p className='orders_span orders_num'>{ord.Price}</p>
                             <p className='orders_span orders_num'>{ord.total}</p>
                         </div>
                     ))}
@@ -97,14 +98,15 @@ const Delivered = () => {
                 <div>
                     {deli.map((ord) => (
                         <div className='orders'>
+                            <p className='orders_span orders_num'>{ord.delidate}</p>
                             <p className='orders_span orders_num'>{ord.date}</p>
                             <p className='orders_span'>{ord.cusname}</p>
                             <p className='orders_span orders_text'>{ord.email}</p>
                             <p className='orders_span'>{ord.phone}</p>
                             <p className='orders_span'>{ord.address}</p>
-                            <p className='orders_span'>{ord.item}</p>
+                            <p className='orders_span'>{ord.Name}</p>
                             <p className='orders_span orders_num'>{ord.quantity}</p>
-                            <p className='orders_span orders_num'>{ord.price}</p>
+                            <p className='orders_span orders_num'>{ord.Price}</p>
                             <p className='orders_span orders_num'>{ord.total}</p>
                         </div>
                     ))}

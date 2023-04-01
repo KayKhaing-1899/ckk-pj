@@ -7,6 +7,19 @@ import Signup from './Signup'
 
 const Cartorder = ({notFound,setNotFound,wrong,setWrong,temp,setSignupEmail,setTemp,cartTotal,setUname,setUemail,setSignupDisplay,setLoginDisplay,loginDisplay,signupDisplay,signupEmail,setIsLogin}) => {
 
+    const [orderArr,setOrderArr] = useState([])
+    useEffect(() => {
+        const fetchOrders = async () => {
+            try{
+                const res = await axios.get("http://localhost:8800/orders/orderlists")
+                setOrderArr(res.data)
+            }catch(err){
+                console.log(err)
+            }
+        }
+        fetchOrders()
+    })
+
     const [cus,setCus] = useState({
         name:"",
         email:"",
@@ -14,14 +27,15 @@ const Cartorder = ({notFound,setNotFound,wrong,setWrong,temp,setSignupEmail,setT
         address:""
     })
     const [order,setOrder] = useState({
-        date : "",
+        OrderId: "",
+        AdminId: 1,
+        Pid: "",
+        date: "",
         cusname : "",
         email : "",
         phone : "",
         address : "",
-        item : "",
         quantity : 0,
-        price : 0,
         total : 0
     })
     const navigate = useNavigate()
@@ -48,19 +62,24 @@ const Cartorder = ({notFound,setNotFound,wrong,setWrong,temp,setSignupEmail,setT
 
     const confirmcart = () => {
         if(!cus.name || !cus.phone || !cus.address || !cus.email) return
-        temp.forEach(async(ele) => {
+        let len = 0
+        temp.forEach( async ele => {
+            len = len + 1
+            console.log(len)
+            order.OrderId=`O${orderArr.length+len}`
+            order.AdminId=1
+            order.Pid=ele.id
             order.date = date
             order.cusname = cus.name
             order.email = cus.email
             order.phone = cus.phone
             order.address = cus.address
-            order.item = ele.model
             order.quantity = ele.quantity
-            order.price = ele.price
             order.total = ele.total
             setOrder(prev => ({
                 ...prev
             }))
+            console.log(order)
             try{
                 await axios.post("http://localhost:8800/orders/orderlists",order)
             } catch(err){
@@ -78,7 +97,7 @@ const Cartorder = ({notFound,setNotFound,wrong,setWrong,temp,setSignupEmail,setT
         let month = current.getMonth()
         let year = current.getFullYear()
         let date = `${day}.${month}.${year}`
-        document.getElementById('date').value = date
+        // document.getElementById('date').value = date
         setDate(date)
     })
 
@@ -91,7 +110,7 @@ const Cartorder = ({notFound,setNotFound,wrong,setWrong,temp,setSignupEmail,setT
                     <input 
                         type='text'
                         id='date'
-                        value=''
+                        value={date}
                     />
                     <br /><br />
                     <label htmlFor='name'>Name :</label>

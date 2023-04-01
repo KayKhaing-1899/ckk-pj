@@ -7,6 +7,19 @@ import Signup from './Signup'
 
 const BuyNow = ({notFound,setNotFound,wrong,setWrong,buyItem,setUname,setUemail,setIsLogin,setSignupDisplay,setSignupEmail,setLoginDisplay,signupEmail,signupDisplay,loginDisplay}) => {
 
+    const [orderArr,setOrderArr] = useState([])
+    useEffect(() => {
+        const fetchOrders = async () => {
+            try{
+                const res = await axios.get("http://localhost:8800/orders/orderlists")
+                setOrderArr(res.data)
+            }catch(err){
+                console.log(err)
+            }
+        }
+        fetchOrders()
+    })
+
     const [cus,setCus] = useState({
         name : "",
         email : "",
@@ -14,14 +27,15 @@ const BuyNow = ({notFound,setNotFound,wrong,setWrong,buyItem,setUname,setUemail,
         address : ""
     })
     const [order,setOrder] = useState({
+        OrderId: "",
+        AdminId: 1,
+        Pid: "",
         date: "",
         cusname : "",
         email : "",
         phone : "",
         address : "",
-        item : "",
         quantity : 0,
-        price : 0,
         total : 0
     }) 
     const navigate = useNavigate()
@@ -46,14 +60,15 @@ const BuyNow = ({notFound,setNotFound,wrong,setWrong,buyItem,setUname,setUemail,
 
     const handleSubmit = async () => {
         if(!cus.name || !cus.phone || !cus.address || !cus.email) return
+        order.OrderId=`O${orderArr.length+1}`
+        order.AdminId=1
+        order.Pid=buyItem.id
         order.date = document.getElementById("date").value
         order.cusname = cus.name
         order.email = cus.email
         order.phone = cus.phone
         order.address = cus.address
-        order.item = buyItem.model
         order.quantity = buyItem.quantity
-        order.price = buyItem.price
         order.total = totalprice
         setOrder(prev => ({
             ...prev

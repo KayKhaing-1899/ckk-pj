@@ -3,7 +3,7 @@ const msis = [
         id:"M1",
         url:"msi1.webp",
         // url:"https://cdn.shopify.com/s/files/1/0513/8205/9159/products/msi-gf63-thin-11sc-gaming-laptop-i7-11th-gen-gtx1650-max-q-gddr6-4gb-394866.jpg?v=1657372179&width=800",
-        name:"Msi",
+        name:"Msi Thin",
         model:"GF63 Thin 11SC",
         ram:"8GB DDR4 3200MHz",
         cpu:"Intel Core i7-11th gen",

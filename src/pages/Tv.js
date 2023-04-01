@@ -29,7 +29,7 @@ const Tv = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,setSignupEma
         <div className='products-container'>
           {tvs.map((tv) => (
             <div className='products-show'>
-              <Link to={`/tvs/${tv.TvId}`}><img src={`/images/${tv.Url}`} alt="" className="tv_img"/></Link>
+              <Link to={`/tvs/${tv.Pid}`}><img src={`/images/${tv.Url}`} alt="" className="tv_img"/></Link>
               <p className='products-text'>{tv.Name}</p>
             </div>
           ))}

@@ -28,7 +28,7 @@ const Hp = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,setSignupEma
         <div className='products-container'>
           {hps.map((hp) => (
             <div className='products-show'>
-              <Link to={`/computers/hp/${hp.ComId}`}><img src={`/images/${hp.Url}`} alt="" className="comimg"/></Link>
+              <Link to={`/computers/hp/${hp.Pid}`}><img src={`/images/${hp.Url}`} alt="" className="comimg"/></Link>
               <p className='products-text'>{hp.Name} {hp.Model}</p>
             </div>
           ))}

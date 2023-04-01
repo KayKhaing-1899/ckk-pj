@@ -52,11 +52,13 @@ const FujiDetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,set
   }
 
   const addCart = async() => {
-    cartItem.id=cartItem.id+1
-    cartItem.url=fuji.Url
-    cartItem.model=fuji.Name
-    cartItem.price=fuji.Price
+    // cartItem.id=cartItem.id+1
+    // cartItem.url=fuji.Url
+    // cartItem.model=fuji.Name
+    // cartItem.price=fuji.Price
     let insert=true
+    cartItem.CartId=cart.length+1
+    cartItem.Pid=fujiId
     setCartItem((item) => (
       {
         ...item
@@ -64,7 +66,7 @@ const FujiDetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,set
     ))
     if(cart.length !== 0) {
       cart.forEach(c => {
-        if(c.model===cartItem.model){
+        if(c.Pid===cartItem.Pid){
           insert=false
         }
       })
@@ -82,7 +84,7 @@ const FujiDetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,set
 
   const buyNow = () => {
     if(count !== 0) {
-      buyItem.id=fuji.CamId
+      buyItem.id=fuji.Pid
       buyItem.url=fuji.Url
       buyItem.model=fuji.Name
       buyItem.quantity=count

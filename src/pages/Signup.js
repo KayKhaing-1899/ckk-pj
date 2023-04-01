@@ -19,6 +19,7 @@ const Signup = ({signupEmail,setSignupEmail,setSignupDisplay,setLoginDisplay}) =
 
     const [cpassword,setCpassword] = useState("")
     const[user,setUser] = useState({
+        UserId:"",
         Name:"",
         Phone:"",
         Email:"",
@@ -31,6 +32,7 @@ const Signup = ({signupEmail,setSignupEmail,setSignupDisplay,setLoginDisplay}) =
         setUser(prev => ({...prev,[e.target.name]:e.target.value}))
     }
 
+    let len = 0
     const handleClick = async (e) => {
         let signup = true
         if(signupEmail!==""){
@@ -42,6 +44,8 @@ const Signup = ({signupEmail,setSignupEmail,setSignupDisplay,setLoginDisplay}) =
                         if(u.Email===user.Email) { signup = false }
                     })
                     if(signup===true){
+                        len = len + 1
+                        user.UserId = `U${users.length + len}`
                         try {
                             await axios.post("http://localhost:8800/ms/users", user)
                         } catch (err) {
@@ -49,6 +53,7 @@ const Signup = ({signupEmail,setSignupEmail,setSignupDisplay,setLoginDisplay}) =
                         }
                         setSignupDisplay(false)
                         setUser(()=>({
+                            UserId:"",
                             Name:"",
                             Phone:"",
                             Email:"",
@@ -71,6 +76,8 @@ const Signup = ({signupEmail,setSignupEmail,setSignupDisplay,setLoginDisplay}) =
                     if(u.Email===user.Email) { signup = false }
                 })
                 if(signup===true){
+                    len = len + 1
+                    user.UserId = `U${users.length + len}`
                     try {
                         await axios.post("http://localhost:8800/ms/users", user)
                     } catch (err) {
@@ -78,6 +85,7 @@ const Signup = ({signupEmail,setSignupEmail,setSignupDisplay,setLoginDisplay}) =
                     }
                     setSignupDisplay(false)
                     setUser(()=>({
+                        UserId:"",
                         Name:"",
                         Phone:"",
                         Email:"",

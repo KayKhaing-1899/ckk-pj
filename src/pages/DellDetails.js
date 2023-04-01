@@ -51,11 +51,13 @@ const DellDetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,set
   }
 
   const addCart = async () => {
-    cartItem.id=cartItem.id+1
-    cartItem.url=dell.Url
-    cartItem.model=`${dell.Name} ${dell.Model}`
-    cartItem.price=dell.Price
+    // cartItem.id=cartItem.id+1
+    // cartItem.url=dell.Url
+    // cartItem.model=`${dell.Name} ${dell.Model}`
+    // cartItem.price=dell.Price
     let insert = true
+    cartItem.CartId=cart.length+1
+    cartItem.Pid=dellId
     setCartItem((item) => (
       {
         ...item
@@ -63,7 +65,7 @@ const DellDetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,set
     ))
     if(cart.length !== 0) {
       cart.forEach(c => {
-        if(c.model===cartItem.model){
+        if(c.c.Pid===cartItem.Pid){
           insert=false
         }
       })
@@ -81,7 +83,7 @@ const DellDetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,set
 
   const buyNow = () => {
     if(count !== 0) {
-      buyItem.id=dell.ComId
+      buyItem.id=dell.Pid
       buyItem.url=dell.Url
       buyItem.model=`${dell.Name} ${dell.Model}`
       buyItem.quantity=count

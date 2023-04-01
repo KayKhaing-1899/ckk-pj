@@ -53,23 +53,25 @@ const Samdetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,setS
   }
 
   const addCart = async () => {
-    cartItem.id=cartItem.id+1
-    cartItem.url=sam.Url
-    cartItem.model=sam.Name
-    cartItem.price=sam.Price
-    let insert=true
+    // cartItem.url=sam.Url
+    // cartItem.model=sam.Name
+    // cartItem.price=sam.Price
+    cartItem.CartId=cart.length+1
+    cartItem.Pid=samId
     setCartItem((item) => (
       {
         ...item
       }
     ))
+    let insert=true
     if(cart.length !== 0) {
       cart.forEach(c => {
-        if(c.model===cartItem.model){
+        if(c.Pid===cartItem.Pid){
           insert=false
         }
       })
     }
+    console.log(insert)
     if(insert){
       try{
         await axios.post("http://localhost:8800/ms/cart", cartItem)
@@ -83,7 +85,7 @@ const Samdetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,setS
 
   const buyNow = () => {
     if(count !== 0) {
-      buyItem.id=sam.PhId
+      buyItem.id=sam.Pid
       buyItem.url=sam.Url
       buyItem.model=sam.Name
       buyItem.quantity=count
@@ -108,7 +110,7 @@ const Samdetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,setS
         <div className='detail-container'>
           <img src={`/images/${sam.Url}`} alt="detail" className='detail-image' />
           <div className='detail-text'>
-              <h2 className='model_name'>Samsung {sam.Name}</h2>
+              <h2 className='model_name'>{sam.Name}</h2>
               <hr/>
               <p className='detail-title'>Color : <span className='gray'>{sam.Color}</span></p>
               <p className='detail-title'>Front Camera : <span className='gray'>{sam.Front}</span></p>

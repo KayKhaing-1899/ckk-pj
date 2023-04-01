@@ -28,7 +28,7 @@ const Asus = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,setIsLogin
         <div className='products-container'>
           {asuss.map((as) => (
             <div className='products-show'>
-              <Link to={`/computers/asus/${as.ComId}`}><img src={`/images/${as.Url}`} alt="" className="comimg"/></Link>
+              <Link to={`/computers/asus/${as.Pid}`}><img src={`/images/${as.Url}`} alt="" className="comimg"/></Link>
               <p className='products-text'>{as.Name} {as.Model}</p>
             </div>
           ))}

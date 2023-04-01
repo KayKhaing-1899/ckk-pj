@@ -1,14 +1,41 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import Login from '../pages/Login'
 import Signup from './Signup'
 import axios from 'axios'
 
 const Contact = ({notFound,setNotFound,wrong,setWrong,isLogin,setSignupEmail,setIsLogin,uname,uemail,setUname,setUemail,signupEmail,signupDisplay,setSignupDisplay,loginDisplay,setLoginDisplay}) => {
 
+  useEffect(() => {
+      const fetchUser = async () => {
+          try {
+              const res = await axios.get("http://localhost:8800/ms/users")
+              setUser(res.data)
+          } catch (err) {
+              console.log(err)
+          }
+      }
+      fetchUser()
+  })
+
+  useEffect(() => {
+      const fetchfeed = async () => {
+          try {
+              const res = await axios.get("http://localhost:8800/ms/feedbacks")
+              setFeedbacks(res.data)
+          } catch (err) {
+              console.log(err)
+          }
+      }
+      fetchfeed()
+  })
+
+  const [user, setUser] = useState([])
+  const [feedbacks, setFeedbacks] = useState([])
   const [feed,setFeed] = useState({
-    Uname:"",
-    Email:"",
+    FeedId:"",
+    AdminId:1,
+    UserId:"",
     Subject:"",
     Fback:""
   })
@@ -17,11 +44,18 @@ const Contact = ({notFound,setNotFound,wrong,setWrong,isLogin,setSignupEmail,set
     setFeed(prev => ({...prev,[e.target.name]:e.target.value}))
   }
 
+  let len = 0
   const handleSubmit = async (e) => {
-    feed.Uname=uname
-    feed.Email=uemail
     if(!feed.Subject||!feed.Fback) return
     if(isLogin) {
+      user.forEach(u => {
+        len = len + 1
+        feed.FeedId = feedbacks.length + len
+        if(u.Name === uname && u.Email === uemail){
+          feed.UserId = u.UserId
+        }
+      })
+      console.log(feed)
       try{
         await axios.post("http://localhost:8800/ms/feedbacks", feed)
       } 
@@ -61,7 +95,6 @@ return (
             <input 
               type='text'
               name='Uname'
-              onChange={handleChange} 
             /><br /><br />
           </div>
         }
@@ -81,7 +114,6 @@ return (
             <input 
               type='text'
               name='Email'
-              onChange={handleChange} 
             /><br /><br />
           </div>
         }

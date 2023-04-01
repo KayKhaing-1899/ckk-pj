@@ -28,7 +28,7 @@ const Huawei = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,setSignu
         <div className='products-container'>
             {huaweis.map((hua) => (
                 <div className='products-show'>
-                    <Link to={`/phones/huaweis/${hua.PhId}`}><img src={`/images/${hua.Url}`} alt="" className="phimg"/></Link>
+                    <Link to={`/phones/huaweis/${hua.Pid}`}><img src={`/images/${hua.Url}`} alt="" className="phimg"/></Link>
                     <p className='products-text'>{hua.Name}</p>
                 </div>
             ))}

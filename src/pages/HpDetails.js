@@ -52,11 +52,13 @@ const HpDetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,setSi
   }
 
   const addCart = async () => {
-    cartItem.id=cartItem.id+1
-    cartItem.url=hp.Url
-    cartItem.model=`${hp.Name} ${hp.Model}`
-    cartItem.price=hp.Price
+    // cartItem.id=cartItem.id+1
+    // cartItem.url=hp.Url
+    // cartItem.model=`${hp.Name} ${hp.Model}`
+    // cartItem.price=hp.Price
     let insert = true
+    cartItem.CartId=cart.length+1
+    cartItem.Pid=hpId
     setCartItem((item) => (
       {
         ...item
@@ -64,7 +66,7 @@ const HpDetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,setSi
     ))
     if(cart.length !== 0) {
       cart.forEach(c => {
-        if(c.model===cartItem.model){
+        if(c.Pid===cartItem.Pid){
           insert=false
         }
       })
@@ -82,7 +84,7 @@ const HpDetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,setSi
 
   const buyNow = () => {
     if(count !== 0) {
-      buyItem.id=hp.ComId
+      buyItem.id=hp.Pid
       buyItem.url=hp.Url
       buyItem.model=`${hp.Name} ${hp.Model}`
       buyItem.quantity=count

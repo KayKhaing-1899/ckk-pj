@@ -28,7 +28,7 @@ const Msi = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,setSignupEm
         <div className='products-container'>
           {msis.map((m) => (
             <div className='products-show'>
-              <Link to={`/computers/msi/${m.ComId}`}><img src={`/images/${m.Url}`} alt="" className="comimg"/></Link>
+              <Link to={`/computers/msi/${m.Pid}`}><img src={`/images/${m.Url}`} alt="" className="comimg"/></Link>
               <p className='products-text'>{m.Name} {m.Model}</p>
             </div>
           ))}

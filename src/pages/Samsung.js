@@ -28,7 +28,7 @@ const Samsung = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,setSign
         <div className='products-container'>
             {samsungs.map((sam) => (
                 <div className='products-show'>
-                    <Link to={`/phones/samsungs/${sam.PhId}`}><img src={`/images/${sam.Url}`} alt="" className="phimg"/></Link>
+                    <Link to={`/phones/samsungs/${sam.Pid}`}><img src={`/images/${sam.Url}`} alt="" className="phimg"/></Link>
                     <p className='products-text'>{sam.Name}</p>
                 </div>
             ))}

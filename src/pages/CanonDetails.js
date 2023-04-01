@@ -52,11 +52,13 @@ const CanonDetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,se
   }
 
   const addCart = async() => {
-    cartItem.id=cartItem.id+1
-    cartItem.url=canon.Url
-    cartItem.model=canon.Name
-    cartItem.price=canon.Price
+    // cartItem.id=cartItem.id+1
+    // cartItem.url=canon.Url
+    // cartItem.model=canon.Name
+    // cartItem.price=canon.Price
     let insert=true
+    cartItem.CartId=cart.length+1
+    cartItem.Pid=canonId
     setCartItem((item) => (
       {
         ...item
@@ -64,7 +66,7 @@ const CanonDetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,se
     ))
     if(cart.length !== 0) {
       cart.forEach(c => {
-        if(c.model===cartItem.model){
+        if(c.Pid===cartItem.Pid){
           insert=false
         }
       })
@@ -82,7 +84,7 @@ const CanonDetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,se
 
   const buyNow = () => {
     if(count !== 0) {
-      buyItem.id = canon.CamId
+      buyItem.id = canon.Pid
       buyItem.url=canon.Url
       buyItem.model=canon.Name
       buyItem.quantity=count

@@ -52,11 +52,13 @@ const HuaweiDetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,s
   }
 
   const addCart = async () => {
-    cartItem.id=cartItem.id+1
-    cartItem.url=hua.Url
-    cartItem.model=hua.Name
-    cartItem.price=hua.Price
+    // cartItem.id=cartItem.id+1
+    // cartItem.url=hua.Url
+    // cartItem.model=hua.Name
+    // cartItem.price=hua.Price
     let insert=true
+    cartItem.CartId=cart.length+1
+    cartItem.Pid=huaweiId
     setCartItem((item) => (
       {
         ...item
@@ -64,7 +66,7 @@ const HuaweiDetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,s
     ))
     if(cart.length !== 0) {
       cart.forEach(c => {
-        if(c.model===cartItem.model){
+        if(c.Pid===cartItem.Pid){
           insert=false
         }
       })
@@ -82,7 +84,7 @@ const HuaweiDetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,s
 
   const buyNow = () => {
     if(count !== 0) {
-      buyItem.id=hua.PhId
+      buyItem.id=hua.Pid
       buyItem.url=hua.Url
       buyItem.model=hua.Name
       buyItem.quantity=count

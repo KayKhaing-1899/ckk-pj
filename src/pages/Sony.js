@@ -28,7 +28,7 @@ const Sony = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,setSignupE
         <div className='products-container'>
           {sonys.map((so) => (
             <div className='products-show'>
-              <Link to={`/cameras/sony/${so.CamId}`}><img src={`/images/${so.Url}`} alt="" className="camimg"/></Link>
+              <Link to={`/cameras/sony/${so.Pid}`}><img src={`/images/${so.Url}`} alt="" className="camimg"/></Link>
               <p className='products-text'>{so.Name}</p>
             </div>
           ))}

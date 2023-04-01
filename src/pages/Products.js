@@ -45,42 +45,10 @@ const Products = () => {
 
     const deleteclick = async(obj) => {
         try{
-            await axios.delete("http://localhost:8800/"+obj.Name)
+            await axios.delete("http://localhost:8800/" + obj.Pid)
             window.location.reload()
         }catch(err){
             console.log(err)
-        }
-        if(obj.Brand==='acer' || obj.Brand==='asus' || obj.Brand==='dell' || obj.Brand==='hp' || obj.Brand==='msi'){
-            try{
-                await axios.delete("http://localhost:8800/computers/"+obj.Name)
-                window.location.reload()
-            }catch(err){
-                console.log(err)
-            }
-        }
-        if(obj.Brand==='samsung' || obj.Brand==='oppo' || obj.Brand==='vivo' || obj.Brand==='redmi' || obj.Brand==='huawei'){
-            try{
-                await axios.delete("http://localhost:8800/phones/"+obj.Name)
-                window.location.reload()
-            }catch(err){
-                console.log(err)
-            }
-        }
-        if(obj.Brand==='canon' || obj.Brand==='sony' || obj.Brand==='fujifilm'){
-            try{
-                await axios.delete("http://localhost:8800/cameras/"+obj.Name)
-                window.location.reload()
-            }catch(err){
-                console.log(err)
-            }
-        }
-        if(obj.Brand==='lg' || obj.Brand==='samsung'){
-            try{
-                await axios.delete("http://localhost:8800/tvs/"+obj.Name)
-                window.location.reload()
-            }catch(err){
-                console.log(err)
-            }
         }
     }
 
@@ -104,29 +72,47 @@ const Products = () => {
         </div>
         {isSearch ? 
             <div className='prods_container'>
+                <div className='prods'>
+                    <p className='prods_text1'>Name</p>
+                    <p className='prods_text2'>Price</p>
+                    <p className='prods_text3'>Delete</p>
+                    <p className='prods_text3'>Edit</p>
+                </div>
                 {results.map(pro => (
                     <div>
                         <hr/>
                         <div className='prods'>
                             <p className='prods_text1'>{pro.Name}</p>
-                            <p className='prods_text3'>{pro.Model}</p>
                             <p className='prods_text2'>{pro.Price}</p>
-                            <img src='/images/trash_96px.png' className='prods_img' onClick={() => deleteclick(pro)} />
-                            <Link to={`/update/${pro.Pid}`}><img src='/images/pencil_208px.png' className='prods_img' style={{width:20,height:20}} /></Link> 
+                            <div className='prods_text4'>
+                                <img src='/images/trash_96px.png' className='prods_img' onClick={() => deleteclick(pro)} />
+                            </div>
+                            <div className='prods_text4'>
+                                <Link to={`/update/${pro.Pid}`}><img src='/images/pencil_208px.png' className='prods_img' style={{width:20,height:20}} /> </Link>
+                            </div> 
                         </div>
                     </div>
                 ))}
             </div> :
             <div className='prods_container'>
+                <div className='prods'>
+                    <p className='prods_text1'>Name</p>
+                    <p className='prods_text2'>Price</p>
+                    <p className='prods_text3'>Delete</p>
+                    <p className='prods_text3'>Edit</p>
+                </div>
                 {products.map(pro => (
                     <div>
                         <hr/>
                         <div className='prods'>
                             <p className='prods_text1'>{pro.Name}</p>
-                            <p className='prods_text3'>{pro.Model}</p>
                             <p className='prods_text2'>{pro.Price}</p>
-                            <img src='/images/trash_96px.png' className='prods_img' onClick={() => deleteclick(pro)} />
-                            <Link to={`/update/${pro.Pid}`}><img src='/images/pencil_208px.png' className='prods_img' style={{width:20,height:20}} /> </Link>
+                            <div className='prods_text4'>
+                                <img src='/images/trash_96px.png' className='prods_img' onClick={() => deleteclick(pro)} />
+                            </div>
+                            <div className='prods_text4'>
+                                <Link to={`/update/${pro.Pid}`}><img src='/images/pencil_208px.png' className='prods_img' style={{width:20,height:20}} /> </Link>
+                            </div> 
                         </div>
                     </div>
                 ))}

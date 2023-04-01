@@ -51,11 +51,13 @@ const VivoDetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,set
   }
 
   const addCart = async () => {
-    cartItem.id=cartItem.id+1
-    cartItem.url=viv.Url
-    cartItem.model=viv.Name
-    cartItem.price=viv.Price
+    // cartItem.id=cartItem.id+1
+    // cartItem.url=viv.Url
+    // cartItem.model=viv.Name
+    // cartItem.price=viv.Price
     let insert=true
+    cartItem.CartId=cart.length+1
+    cartItem.Pid=vivId
     setCartItem((item) => (
       {
         ...item
@@ -63,7 +65,7 @@ const VivoDetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,set
     ))
     if(cart.length !== 0) {
       cart.forEach(c => {
-        if(c.model===cartItem.model){
+        if(c.Pid===cartItem.Pid){
           insert=false
         }
       })
@@ -81,7 +83,7 @@ const VivoDetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,set
 
   const buyNow = () => {
     if(count !== 0) {
-      buyItem.id=viv.PhId
+      buyItem.id=viv.Pid
       buyItem.url=viv.Url
       buyItem.model=viv.Name
       buyItem.quantity=count

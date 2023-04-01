@@ -28,7 +28,7 @@ const Vivo = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,setSignupE
         <div className='products-container'>
             {vivos.map((viv) => (
                 <div className='products-show'>
-                    <Link to={`/phones/vivos/${viv.PhId}`}><img src={`/images/${viv.Url}`} alt="" className="phimg"/></Link>
+                    <Link to={`/phones/vivos/${viv.Pid}`}><img src={`/images/${viv.Url}`} alt="" className="phimg"/></Link>
                     <p className='products-text'>{viv.Name}</p>
                 </div>
             ))}

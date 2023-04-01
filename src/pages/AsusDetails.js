@@ -52,11 +52,13 @@ const AsusDetails = ({notFound,setNotFound,wrong,setWrong,setSignupEmail,setUnam
   }
 
   const addCart = async () => {
-    cartItem.id=cartItem.id+1
-    cartItem.url=asus.Url
-    cartItem.model=`${asus.Name} ${asus.Model}`
-    cartItem.price=asus.Price
+    // cartItem.id=cartItem.id+1
+    // cartItem.url=asus.Url
+    // cartItem.model=`${asus.Name} ${asus.Model}`
+    // cartItem.price=asus.Price
     let insert=true
+    cartItem.CartId=cart.length+1
+    cartItem.Pid=asusId
     setCartItem((item) => (
       {
         ...item
@@ -64,7 +66,7 @@ const AsusDetails = ({notFound,setNotFound,wrong,setWrong,setSignupEmail,setUnam
     ))
     if(cart.length !== 0) {
       cart.forEach(c => {
-        if(c.model===cartItem.model){
+        if(c.Pid===cartItem.Pid){
           insert=false
         }
       })
@@ -86,7 +88,7 @@ const AsusDetails = ({notFound,setNotFound,wrong,setWrong,setSignupEmail,setUnam
 
   const buyNow = () => {
     if(count !== 0) {
-      buyItem.id=asus.ComId
+      buyItem.id=asus.Pid
       buyItem.url=asus.Url
       buyItem.model=`${asus.Name} ${asus.Model}`
       buyItem.quantity=count

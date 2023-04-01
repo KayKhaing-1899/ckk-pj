@@ -52,11 +52,13 @@ const RedmiDetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,se
   }
 
   const addCart = async () => {
-    cartItem.id=cartItem.id+1
-    cartItem.url=red.Url
-    cartItem.model=red.Name
-    cartItem.price=red.Price
+    // cartItem.id=cartItem.id+1
+    // cartItem.url=red.Url
+    // cartItem.model=red.Name
+    // cartItem.price=red.Price
     let insert=true
+    cartItem.CartId=cart.length+1
+    cartItem.Pid=redId
     setCartItem((item) => (
       {
         ...item
@@ -64,7 +66,7 @@ const RedmiDetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,se
     ))
     if(cart.length !== 0) {
       cart.forEach(c => {
-        if(c.model===cartItem.model){
+        if(c.Pid===cartItem.Pid){
           insert=false
         }
       })
@@ -82,7 +84,7 @@ const RedmiDetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,se
 
   const buyNow = () => {
     if(count !== 0) {
-      buyItem.id=red.PhId
+      buyItem.id=red.Pid
       buyItem.url=red.Url
       buyItem.model=red.Name
       buyItem.quantity=count

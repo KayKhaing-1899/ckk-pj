@@ -52,11 +52,13 @@ const SonyDetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,set
   }
 
   const addCart = async () => {
-    cartItem.id=cartItem.id+1
-    cartItem.url=sony.Url
-    cartItem.model=sony.Name
-    cartItem.price=sony.Price
+    // cartItem.id=cartItem.id+1
+    // cartItem.url=sony.Url
+    // cartItem.model=sony.Name
+    // cartItem.price=sony.Price
     let insert=true
+    cartItem.CartId=cart.length+1
+    cartItem.Pid=sonyId
     setCartItem((item) => (
       {
         ...item
@@ -64,7 +66,7 @@ const SonyDetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,set
     ))
     if(cart.length !== 0) {
       cart.forEach(c => {
-        if(c.model===cartItem.model){
+        if(c.Pid===cartItem.Pid){
           insert=false
         }
       })
@@ -82,7 +84,7 @@ const SonyDetails = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,set
 
   const buyNow = () => {
     if(count !== 0) {
-      buyItem.id=sony.CamId
+      buyItem.id=sony.Pid
       buyItem.url=sony.Url
       buyItem.model=sony.Name
       buyItem.quantity=count

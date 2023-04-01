@@ -28,7 +28,7 @@ const Fuji = ({notFound,setNotFound,wrong,setWrong,setUname,setUemail,setSignupE
         <div className='products-container'>
             {fujis.map((fu) => (
               <div className='products-show'>
-                <Link to={`/cameras/fuji/${fu.CamId}`}><img src={`/images/${fu.Url}`} alt="" className="camimg"/></Link>
+                <Link to={`/cameras/fuji/${fu.Pid}`}><img src={`/images/${fu.Url}`} alt="" className="camimg"/></Link>
                 <p className='products-text'>{fu.Name}</p>
               </div>
             ))}
