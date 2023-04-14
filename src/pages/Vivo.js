@@ -4,7 +4,7 @@ import Signup from "./Signup"
 import { useState,useEffect } from "react"
 import axios from "axios"
 
-const Vivo = ({setUname,setSignupEmail,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signupDisplay,setSignupDisplay}) => {
+const Vivo = ({setUname,setUemail,setSignupEmail,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signupDisplay,setSignupDisplay}) => {
 
   const [vivos,setVivos] = useState([])
   useEffect(() => {
@@ -23,7 +23,7 @@ const Vivo = ({setUname,setSignupEmail,setIsLogin,loginDisplay,setLoginDisplay,s
     <div className='products'>
       <div className={(loginDisplay || signupDisplay) && 'brand_container_hide'}>
         <div className="brand_container">
-          <img src={"/images/vivo_logo.png"} alt='' className="brand_logo" style={{width:150,height:70,marginTop:80}}  />
+          <img src={"/images/vivo_logo.png"} alt='' className="brand_logo" style={{width:250,height:80,marginTop:80}}  />
         </div>
         <div className='products-container'>
             {vivos.map((viv) => (
@@ -35,7 +35,7 @@ const Vivo = ({setUname,setSignupEmail,setIsLogin,loginDisplay,setLoginDisplay,s
         </div>
       </div>
       <div className={!loginDisplay && 'login_hide'}>
-        <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
+        <Login setUname={setUname} setUemail={setUemail} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
       </div>
       <div className={!signupDisplay && 'login_hide'}>
         <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />

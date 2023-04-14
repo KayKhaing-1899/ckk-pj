@@ -3,13 +3,13 @@ import { useState,useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-const Admin = () => {
+const Admin = ({setAdm}) => {
 
     const [admin,setAdmin] = useState([])
     useEffect(() => {
         const fetchadmin = async () => {
             try{
-                const res = await axios.get("http://localhost:8800/ms/admin/")
+                const res = await axios.get("http://localhost:8800/ms/admin")
                 setAdmin(res.data)
             } catch(err) {
                 console.log(err)
@@ -37,6 +37,7 @@ const Admin = () => {
             admin.forEach(ad => {
                 if(ad.name===name) {
                     if(ad.pwd===password) {
+                        setAdm(prev => ({...prev,name:name,pwd:password}))
                         navigate("/ad_home")
                         setName("")
                         setPassword("")

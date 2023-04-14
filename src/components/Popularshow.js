@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useState,useEffect } from 'react'
 
-const Popularshow = ({id,url,model}) => {
+const Popularshow = (obj) => {
 
     const navigate = useNavigate()
     const [itemModel,setItemModel] = useState({itemid:"",name:""})
@@ -53,8 +53,8 @@ const Popularshow = ({id,url,model}) => {
   return (
     <div className='popular_items'>
         <div className='popular_container'>
-            <img style={{width:120,height:120}} src={`/images/${url}`} alt='' onClick={() => setItemModel((i) => ({...i,itemid:id,name:model}))} />
-            <p style={{fontSize:14,marginTop:10}}>{model.includes('Galaxy') ? `Samsung ${model}` : model}</p>
+            <img style={{width:120,height:120}} src={`/images/${obj.Url}`} alt='' onClick={() => setItemModel((i) => ({...i,itemid:obj.Pid,name:obj.Name}))} />
+            <p style={{fontSize:14,marginTop:10}}>{obj.Name}</p>
         </div>
     </div>
   )

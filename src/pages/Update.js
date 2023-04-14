@@ -2,11 +2,13 @@ import React from 'react'
 import { useState,useEffect } from 'react'
 import axios from 'axios'
 import { useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const Update = () => {
 
     const [products,setProducts] = useState([])
     const [prod,setProd] = useState({})
+    const navigate = useNavigate()
     useEffect(() => {
         const fetchpros = async () => {
             try{
@@ -179,6 +181,10 @@ const Update = () => {
         }
     }
 
+    const backclick = () => {
+        navigate("/ad_home/prods")
+    }
+
   return (
     <div className='add_page'>
         {isCom && 
@@ -188,62 +194,75 @@ const Update = () => {
                     type='text'
                     name='Url'
                     onChange={comchange}
+                    placeholder={prod.Url}
                 /><br /><br />
                 <label htmlFor='name'>Name : </label>
                 <input 
                     type='text'
                     name='Name'
                     onChange={comchange}
+                    placeholder={prod.Name}
                 /><br /><br />
                 <label htmlFor='model'>Model : </label>
                 <input 
                     type='text'
                     name='Model'
                     onChange={comchange}
+                    placeholder={prod.Model}
                 /><br /><br />
                 <label htmlFor='ram'>RAM : </label>
                 <input 
                     type='text'
                     name='Ram'
                     onChange={comchange}
+                    placeholder={prod.Ram}
                 /><br /><br />
                 <label htmlFor='cpu'>CPU : </label>
                 <input 
                     type='text'
                     name='Cpu'
                     onChange={comchange}
+                    placeholder={prod.Cpu}
                 /><br /><br />
                 <label htmlFor='gpu'>GPU : </label>
                 <input 
                     type='text'
                     name='Gpu'
                     onChange={comchange}
+                    placeholder={prod.Gpu}
                 /><br /><br />
                 <label htmlFor='display'>Display : </label>
                 <input 
                     type='text'
                     name='Display'
                     onChange={comchange}
+                    placeholder={prod.Display}
                 /><br /><br />
                 <label htmlFor='storage'>Storage : </label>
                 <input 
                     type='text'
                     name='Storage'
                     onChange={comchange}
+                    placeholder={prod.Storage}
                 /><br /><br />
                 <label htmlFor='price'>Price : </label>
                 <input 
                     type='text'
                     name='Price'
                     onChange={comchange}
+                    placeholder={prod.Price}
                 /><br /><br />
                 <label htmlFor='Brand'>Brand : </label>
                 <input 
                     type='text'
                     name='Brand'
                     onChange={comchange}
+                    placeholder={prod.Brand}
                 /><br /><br />
-                <button type='button' className='btn btn-danger addbtn' onClick={combtnclick}>UPDATE</button>
+                <div className='addbtn'>
+                    <button type='button' className='btn btn-danger' style={{width:100,marginRight:20}} onClick={combtnclick}>UPDATE</button>
+                    <button type='button' className='btn btn-danger' style={{width:100}} onClick={backclick}>BACK</button>
+                </div>
             </form>
         }
         {isTv && 
@@ -253,38 +272,47 @@ const Update = () => {
                     type='text'
                     name='Url'
                     onChange={tvchange}
+                    placeholder={prod.Url}
                 /><br /><br />
                 <label htmlFor='name'>Name : </label>
                 <input 
                     type='text'
                     name='Name'
                     onChange={tvchange}
+                    placeholder={prod.Name}
                 /><br /><br />
                 <label htmlFor='model'>Model : </label>
                 <input 
                     type='text'
                     name='Model'
                     onChange={tvchange}
+                    placeholder={prod.Model}
                 /><br /><br />
                 <label htmlFor='size'>Size : </label>
                 <input 
                     type='text'
                     name='Size'
                     onChange={tvchange}
+                    placeholder={prod.Size}
                 /><br /><br />
                 <label htmlFor='price'>Price : </label>
                 <input 
                     type='text'
                     name='Price'
                     onChange={tvchange}
+                    placeholder={prod.Price}
                 /><br /><br />
                 <label htmlFor='brand'>Brand : </label>
                 <input 
                     type='text'
                     name='Brand'
                     onChange={tvchange}
+                    placeholder={prod.Brand}
                 /><br /><br />
-                <button type='button' className='btn btn-danger addbtn' onClick={tvbtnclick}>UPDATE</button>
+                <div className='addbtn'>
+                    <button type='button' className='btn btn-danger' style={{width:100,marginRight:20}} onClick={tvbtnclick}>UPDATE</button>
+                    <button type='button' className='btn btn-danger' style={{width:100}} onClick={backclick}>BACK</button>
+                </div>
             </form>
         }
         {isCam && 
@@ -294,62 +322,75 @@ const Update = () => {
                     type='text'
                     name='Url'
                     onChange={camchange}
+                    placeholder={prod.Url}
                 /><br /><br />
                 <label htmlFor='name'>Name : </label>
                 <input 
                     type='text'
                     name='Name'
                     onChange={camchange}
+                    placeholder={prod.Name}
                 /><br /><br />
                 <label htmlFor='af-mode'>AF_Mode : </label>
                 <input 
                     type='text'
                     name='Af_mode'
                     onChange={camchange}
+                    placeholder={prod.Af_mode}
                 /><br /><br />
                 <label htmlFor='built-in-flash'>Built_in_Flash : </label>
                 <input 
                     type='text'
                     name='Built_in_flash'
                     onChange={camchange}
+                    placeholder={prod.Built_in_flash}
                 /><br /><br />
                 <label htmlFor='iso'>ISO : </label>
                 <input 
                     type='text'
                     name='Iso'
                     onChange={camchange}
+                    placeholder={prod.Iso}
                 /><br /><br />
                 <label htmlFor='view-finder'>View_Finder : </label>
                 <input 
                     type='text'
                     name='View_finder'
                     onChange={camchange}
+                    placeholder={prod.View_finder}
                 /><br /><br />
                 <label htmlFor='pixels'>Pixels : </label>
                 <input 
                     type='text'
                     name='Pixels'
                     onChange={camchange}
+                    placeholder={prod.Pixels}
                 /><br /><br />
                 <label htmlFor='weight'>Weight : </label>
                 <input 
                     type='text'
                     name='Weight'
                     onChange={camchange}
+                    placeholder={prod.Weight}
                 /><br /><br />
                 <label htmlFor='price'>Price : </label>
                 <input 
                     type='text'
                     name='Price'
                     onChange={camchange}
+                    placeholder={prod.Price}
                 /><br /><br />
                 <label htmlFor='Brand'>Brand : </label>
                 <input 
                     type='text'
                     name='Brand'
                     onChange={camchange}
+                    placeholder={prod.Brand}
                 /><br /><br />
-                <button type='button' className='btn btn-danger addbtn' onClick={cambtnclick}>UPDATE</button>
+                <div className='addbtn'>
+                    <button type='button' className='btn btn-danger' style={{width:100,marginRight:20}} onClick={cambtnclick}>UPDATE</button>
+                    <button type='button' className='btn btn-danger' style={{width:100}} onClick={backclick}>BACK</button>
+                </div>
             </form>
         }
         {isPh && 
@@ -359,68 +400,82 @@ const Update = () => {
                     type='text'
                     name='Url'
                     onChange={phchange}
+                    placeholder={prod.Url}
                 /><br /><br />
                 <label htmlFor='name'>Model : </label>
                 <input 
                     type='text'
                     name='Name'
                     onChange={phchange}
+                    placeholder={prod.Name}
                 /><br /><br />
                 <label htmlFor='front'>Front Camera : </label>
                 <input 
                     type='text'
                     name='Front'
                     onChange={phchange}
+                    placeholder={prod.Front}
                 /><br /><br />
                 <label htmlFor='rear'>Rear Camera : </label>
                 <input 
                     type='text'
                     name='Rear'
                     onChange={phchange}
+                    placeholder={prod.Rear}
                 /><br /><br />
                 <label htmlFor='battery'>Battery : </label>
                 <input 
                     type='text'
                     name='Battery'
                     onChange={phchange}
+                    placeholder={prod.Battery}
                 /><br /><br />
                 <label htmlFor='ram'>RAM : </label>
                 <input 
                     type='text'
                     name='Ram'
                     onChange={phchange}
+                    placeholder={prod.Ram}
                 /><br /><br />
                 <label htmlFor='storage'>Storage : </label>
                 <input 
                     type='text'
                     name='Storage'
                     onChange={phchange}
+                    placeholder={prod.Storage}
                 /><br /><br />
                 <label htmlFor='color'>Color : </label>
                 <input 
                     type='text'
                     name='Color'
                     onChange={phchange}
+                    placeholder={prod.Color}
                 /><br /><br />
                 <label htmlFor='cellular'>Cellular : </label>
                 <input 
                     type='text'
                     name='Cellular'
                     onChange={phchange}
+                    placeholder={prod.Cellular}
                 /><br /><br />
                 <label htmlFor='price'>Price : </label>
                 <input 
                     type='text'
                     name='Price'
                     onChange={phchange}
+                    placeholder={prod.Price}
                 /><br /><br />
                 <label htmlFor='Brand'>Brand : </label>
                 <input 
                     type='text'
                     name='Brand'
                     onChange={phchange}
+                    placeholder={prod.Brand}
                 /><br /><br />
-                <button type='button' className='btn btn-danger addbtn' onClick={phbtnclick}>UPDATE</button>
+                <div className='addbtn'>
+                    <button type='button' className='btn btn-danger' style={{width:100,marginRight:20}} onClick={phbtnclick}>UPDATE</button>
+                    <button type='button' className='btn btn-danger' style={{width:100}} onClick={backclick}>BACK</button>
+                </div>
             </form>
         }
     </div>

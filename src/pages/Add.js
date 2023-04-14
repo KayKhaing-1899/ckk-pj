@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState,useEffect } from 'react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const Add = () => {
 
@@ -25,8 +26,8 @@ const Add = () => {
     const [isPh,setIsPh] = useState(false)
     const [isCam,setIsCam] = useState(false)
     const [isTv,setIsTv] = useState(false)
-    const [isAdmin,setIsAdmin] = useState(false)
     const [cpassword,setCpassword] = useState("")
+    const [isAdmin,setIsAdmin] = useState(false)
     const [pro,setPro] = useState({
         Pid:"",
         Url:"",
@@ -268,17 +269,25 @@ const Add = () => {
         setAdmin(prev => ({...prev,[e.target.name]:e.target.value}))
     }
 
-    const adminbtnclick = async() => {
+    const adminbtnclick =async  () => {
         if(!admin.name || !admin.pwd || !cpassword) return
-        if(admin.pwd===cpassword){
+        if(admin.pwd === cpassword){
             try{
                 await axios.post("http://localhost:8800/ms/admin",admin)
             } catch (err){
                 console.log(err)
             }
-        } else {
-            alert("Your passord doesn't match!")
+            alert("Insert successful!")
+            setAdmin(() => ({name:"",pwd:""}))
+            setCpassword("")
+        }else{
+            alert("Your password doesn't match!")
         }
+    }
+
+    const navigate = useNavigate()
+    const backclick = () => {
+        navigate('/ad_home')
     }
 
   return (
@@ -354,7 +363,10 @@ const Add = () => {
                     name='Brand'
                     onChange={comchange}
                 /><br /><br />
-                <button type='button' className='btn btn-danger addbtn' onClick={combtnclick}>ADD</button>
+                <div className='addbtn'>
+                    <button type='button' className='btn btn-danger' style={{width:100,marginRight:20}} onClick={combtnclick}>ADD</button>
+                    <button type='button' className='btn btn-danger' style={{width:100}} onClick={backclick}>BACK</button>
+                </div>
             </form>
         }
         {isTv && 
@@ -395,7 +407,10 @@ const Add = () => {
                     name='Brand'
                     onChange={tvchange}
                 /><br /><br />
-                <button type='button' className='btn btn-danger addbtn' onClick={tvbtnclick}>ADD</button>
+                <div className='addbtn'>
+                    <button type='button' className='btn btn-danger' style={{width:100,marginRight:20}} onClick={tvbtnclick}>ADD</button>
+                    <button type='button' className='btn btn-danger' style={{width:100}} onClick={backclick}>BACK</button>
+                </div>
             </form>
         }
         {isCam && 
@@ -460,7 +475,10 @@ const Add = () => {
                     name='Brand'
                     onChange={camchange}
                 /><br /><br />
-                <button type='button' className='btn btn-danger addbtn' onClick={cambtnclick}>ADD</button>
+                <div className='addbtn'>
+                    <button type='button' className='btn btn-danger' style={{width:100,marginRight:20}} onClick={cambtnclick}>ADD</button>
+                    <button type='button' className='btn btn-danger' style={{width:100}} onClick={backclick}>BACK</button>
+                </div>
             </form>
         }
         {isPh && 
@@ -531,7 +549,10 @@ const Add = () => {
                     name='Brand'
                     onChange={phchange}
                 /><br /><br />
-                <button type='button' className='btn btn-danger addbtn' onClick={phbtnclick}>ADD</button>
+                <div className='addbtn'>
+                    <button type='button' className='btn btn-danger' style={{width:100,marginRight:20}} onClick={phbtnclick}>ADD</button>
+                    <button type='button' className='btn btn-danger' style={{width:100}} onClick={backclick}>BACK</button>
+                </div>
             </form>
         }
         {isAdmin && 
@@ -540,25 +561,31 @@ const Add = () => {
                 <input 
                     type='text'
                     name='name'
+                    value={admin.name}
                     onChange={adminchange}
                 /><br /><br />
                 <label htmlFor='password'>Password : </label>
                 <input 
                     type={isShow ? 'text' : 'password'}
                     name='pwd'
+                    value={admin.pwd}
                     onChange={adminchange}
                 /><br /><br />
                 <label htmlFor='cpassword'>Confirm Password : </label>
                 <input 
                     type={isShow ? 'text' : 'password'}
                     name='cpassword'
+                    value={cpassword}
                     onChange={(e) => setCpassword(e.target.value)}
                 /><br /><br />
                 <div className='show_password_checkbox admin_pcheckbox'>
                     <input type='checkbox' style={{width:15,height:15,marginRight:10}} onClick={showPassword} />
                     <p style={{fontSize:16,marginTop:15,color:'gray'}}>Show password</p>
                 </div>
-                <button type='button' className='btn btn-danger addbtn' onClick={adminbtnclick}>ADD</button>
+                <div className='addbtn'>
+                    <button type='button' className='btn btn-danger' style={{width:100,marginRight:20}} onClick={adminbtnclick}>ADD</button>
+                    <button type='button' className='btn btn-danger' style={{width:100}} onClick={backclick}>BACK</button>
+                </div>
             </form>
         }
     </div>

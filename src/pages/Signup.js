@@ -8,7 +8,7 @@ const Signup = ({signupEmail,setSignupEmail,setSignupDisplay,setLoginDisplay}) =
     useEffect(() => {
         const fetchusers = async () => {
         try{
-            const res = await axios.get("http://localhost:8800/users")
+            const res = await axios.get("http://localhost:8800/ms/users")
             setUsers(res.data)
         } catch (err) {
             console.log(err)
@@ -44,10 +44,18 @@ const Signup = ({signupEmail,setSignupEmail,setSignupDisplay,setLoginDisplay}) =
                     if(signup===true){
                         setSignupDisplay(false)
                         try {
-                            await axios.post("http://localhost:8800/users", user)
+                            await axios.post("http://localhost:8800/ms/users", user)
                         } catch (err) {
                             console.log(err)
                         }
+                        setUser(()=>({
+                            Name:"",
+                            Phone:"",
+                            Email:"",
+                            Address:"",
+                            Password:""
+                        }))
+                        setCpassword("")
                     } else {
                         alert("Your Email is already taken!")
                     }
@@ -69,6 +77,14 @@ const Signup = ({signupEmail,setSignupEmail,setSignupDisplay,setLoginDisplay}) =
                     } catch (err) {
                         console.log(err)
                     }
+                    setUser(()=>({
+                        Name:"",
+                        Phone:"",
+                        Email:"",
+                        Address:"",
+                        Password:""
+                    }))
+                    setCpassword("")
                 } else {
                     alert("Your Email is already taken!")
                 }
@@ -79,6 +95,14 @@ const Signup = ({signupEmail,setSignupEmail,setSignupDisplay,setLoginDisplay}) =
     const closePage = () => {
         setSignupDisplay(false)
         setSignupEmail("")
+        setUser(()=>({
+            Name:"",
+            Phone:"",
+            Email:"",
+            Address:"",
+            Password:""
+        }))
+        setCpassword("")
     }
 
     const showPassword = () => {
@@ -102,6 +126,7 @@ const Signup = ({signupEmail,setSignupEmail,setSignupDisplay,setLoginDisplay}) =
                 <input 
                     type='text'
                     name='Name'
+                    value={user.Name}
                     onChange={handleChange}
                 />
                 <br /><br />
@@ -109,6 +134,7 @@ const Signup = ({signupEmail,setSignupEmail,setSignupDisplay,setLoginDisplay}) =
                 <input 
                     type='text'
                     name='Phone'
+                    value={user.Phone}
                     onChange={handleChange}
 
                 />
@@ -117,6 +143,7 @@ const Signup = ({signupEmail,setSignupEmail,setSignupDisplay,setLoginDisplay}) =
                 <input 
                     type='text'
                     name='Email'
+                    value={user.Email}
                     onChange={handleChange}
                 />
                 <br /><br />
@@ -124,6 +151,7 @@ const Signup = ({signupEmail,setSignupEmail,setSignupDisplay,setLoginDisplay}) =
                 <input 
                     type='text'
                     name='Address'
+                    value={user.Address}
                     onChange={handleChange}
                 />
                 <br /><br />
@@ -131,6 +159,7 @@ const Signup = ({signupEmail,setSignupEmail,setSignupDisplay,setLoginDisplay}) =
                 <input 
                     type={isShow ? 'text' : 'password'}
                     name='Password'
+                    value={user.Password}
                     onChange={handleChange}
                 />
                 <br /><br />

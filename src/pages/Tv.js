@@ -5,7 +5,7 @@ import Signup from './Signup'
 import { useState,useEffect } from 'react'
 import axios from 'axios'
 
-const Tv = ({setUname,setSignupEmail,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signupDisplay,setSignupDisplay}) => {
+const Tv = ({setUname,setUemail,setSignupEmail,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signupDisplay,setSignupDisplay}) => {
 
   const [tvs,setTvs] = useState([])
   useEffect(() => {
@@ -23,7 +23,9 @@ const Tv = ({setUname,setSignupEmail,setIsLogin,loginDisplay,setLoginDisplay,sig
   return (
     <div className='products'>
       <div className={(loginDisplay || signupDisplay) && 'brand_container_hide'}>
-        <h2 className='brand-name'>TV</h2>
+        <div className="brand_container">
+          <img src={"/images/TV.png"} alt='' className="brand_logo" style={{width:250,height:180,marginTop:45}}  />
+        </div>
         <div className='products-container'>
           {tvs.map((tv) => (
             <div className='products-show'>
@@ -34,7 +36,7 @@ const Tv = ({setUname,setSignupEmail,setIsLogin,loginDisplay,setLoginDisplay,sig
         </div>
       </div>
       <div className={!loginDisplay && 'login_hide'}>
-        <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
+        <Login setUname={setUname} setUemail={setUemail} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
       </div>
       <div className={!signupDisplay && 'login_hide'}>
         <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />

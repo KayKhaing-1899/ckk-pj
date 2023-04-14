@@ -5,7 +5,7 @@ import Login from './Login'
 import Signup from './Signup'
 import axios from 'axios'
 
-const SonyDetails = ({setUname,setSignupEmail,signupEmail,signupDisplay,setSignupDisplay,count,setCount,cartItem,setCartItem,buyItem,setBuyItem,setIsLogin,loginDisplay,setLoginDisplay}) => {
+const SonyDetails = ({setUname,setUemail,setSignupEmail,signupEmail,signupDisplay,setSignupDisplay,count,setCount,cartItem,setCartItem,buyItem,setBuyItem,setIsLogin,loginDisplay,setLoginDisplay}) => {
 
   const [cart,setCart] = useState([])
   useEffect(() => {
@@ -97,6 +97,10 @@ const SonyDetails = ({setUname,setSignupEmail,signupEmail,signupDisplay,setSignu
     }
   }
 
+  const back = () => {
+    navigate('/cameras/sony')
+  }
+
   return (
     <div className='details'>
       <div className={(loginDisplay || signupDisplay) && 'detail_container_hide'}>
@@ -122,11 +126,12 @@ const SonyDetails = ({setUname,setSignupEmail,signupEmail,signupDisplay,setSignu
               <hr />
               <button className='buy_now' onClick={buyNow}>buy now</button>
               <button className='add_to_cart' onClick={addCart}>add to cart</button>
+              <button className='back' onClick={back}>back</button>
           </div>
         </div>
       </div>
       <div className={!loginDisplay && 'login_hide'}>
-        <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
+        <Login setUname={setUname} setUemail={setUemail} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
       </div>
       <div className={!signupDisplay && 'login_hide'}>
         <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />

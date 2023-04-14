@@ -1,8 +1,9 @@
 import React from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
-const Admin_home = () => {
+const Admin_home = ({adm}) => {
 
     const navigate = useNavigate()
 
@@ -20,6 +21,19 @@ const Admin_home = () => {
 
     const orderclick = () => {
         navigate("/ad_home/orders")
+    }
+
+    const deliverclick = () => {
+        navigate("/ad_home/delivered")
+    }
+
+    const [accdrop,setAccdrop] = useState(false)
+    const acc_click = () => {
+        setAccdrop(!accdrop)
+    }
+
+    const logout_click = () => {
+        navigate("/admin")
     }
 
   return (
@@ -67,7 +81,15 @@ const Admin_home = () => {
                         </ul>
                     </li>
                     <li className='nav-item'><Link to='/tvs' className='nav-link'>TVs</Link></li>
+                    <li>
+                        <img style={{width:45,height:45}} src="/images/account.png" alt='' onClick={acc_click} />
+                    </li>
                 </ul>
+                <div className={accdrop ? 'accdrop_show' : 'accdrop_hide'}>
+                    <p style={{fontSize:14}}>{adm.name}</p>
+                    <hr />
+                    <button className='logout' onClick={logout_click}>Logout</button>
+                </div>
             </div>
         </nav>
         <div className='adhome'>
@@ -75,7 +97,8 @@ const Admin_home = () => {
                 <button className='btn btn-danger adhome_btn' onClick={prodclick}>Products</button><br /><br />
                 <button className='btn btn-danger adhome_btn' onClick={addclick}>ADD</button><br /><br />
                 <button className='btn btn-danger adhome_btn' onClick={fbackclick}>Feedbacks</button><br /><br />
-                <button className='btn btn-danger adhome_btn' onClick={orderclick}>Orders</button>
+                <button className='btn btn-danger adhome_btn' onClick={orderclick}>Orders</button><br /><br />
+                <button className='btn btn-danger adhome_btn' onClick={deliverclick}>Delivered</button>
             </div>
         </div>
         <div className='last_footer adhome_footer'>

@@ -5,7 +5,7 @@ import axios from 'axios'
 import { useState,useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
-const AcerDetails = ({setUname,count,setCount,cartItem,setCartItem,buyItem,setBuyItem,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,setSignupEmail,signupDisplay,setSignupDisplay}) => {
+const AcerDetails = ({setUname,setUemail,count,setCount,cartItem,setCartItem,buyItem,setBuyItem,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,setSignupEmail,signupDisplay,setSignupDisplay}) => {
 
   const [cart,setCart] = useState([])
   useEffect(() => {
@@ -97,12 +97,9 @@ const AcerDetails = ({setUname,count,setCount,cartItem,setCartItem,buyItem,setBu
     }
   }
 
-  // const [initial,setInitial] = useState(true)
-  // const [imageUrl,setImageUrl] = useState("")
-  // const imageclick = (imgurl) => {
-  //   setImageUrl(imgurl)
-  //   setInitial(false)
-  // }
+  const back = () => {
+    navigate('/computers/acer')
+  }
 
   return (
     <div className='details'>
@@ -139,11 +136,12 @@ const AcerDetails = ({setUname,count,setCount,cartItem,setCartItem,buyItem,setBu
             <hr />
             <button className='buy_now' onClick={buyNow}>buy now</button>
             <button className='add_to_cart' onClick={addCart}>add to cart</button>
+            <button className='back' onClick={back}>back</button>
           </div>
         </div>
       </div>
       <div className={!loginDisplay && 'login_hide'}>
-        <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
+        <Login setUname={setUname} setUemail={setUemail} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
       </div>
       <div className={!signupDisplay && 'login_hide'}>
         <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />

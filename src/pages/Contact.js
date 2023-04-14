@@ -4,7 +4,7 @@ import Login from '../pages/Login'
 import Signup from './Signup'
 import axios from 'axios'
 
-const Contact = ({isLogin,setSignupEmail,setIsLogin,uname,setUname,signupEmail,signupDisplay,setSignupDisplay,loginDisplay,setLoginDisplay}) => {
+const Contact = ({isLogin,setSignupEmail,setIsLogin,uname,uemail,setUname,setUemail,signupEmail,signupDisplay,setSignupDisplay,loginDisplay,setLoginDisplay}) => {
 
   const [feed,setFeed] = useState({
     Uname:"",
@@ -19,7 +19,8 @@ const Contact = ({isLogin,setSignupEmail,setIsLogin,uname,setUname,signupEmail,s
 
   const handleSubmit = async (e) => {
     feed.Uname=uname
-    if(!feed.Email||!feed.Subject||!feed.Fback) return
+    feed.Email=uemail
+    if(!feed.Subject||!feed.Fback) return
     if(isLogin) {
       try{
         await axios.post("http://localhost:8800/ms/feedbacks", feed)
@@ -44,20 +45,46 @@ return (
         </p>
       </div>
       <form className='send_form'>
-        <label htmlFor='name'>Name</label><br />
-        <input 
-          type='text'
-          name='Uname'
-          value={uname}
-          inputMode={false}
-          // onChange={handleChange} 
-        /><br /><br />
-        <label htmlFor='Email'>Email</label><br />
-        <input 
-          type='text'
-          name='Email'
-          onChange={handleChange}
-        /><br /><br />
+        {isLogin ? 
+          <div>
+            <label htmlFor='name'>Name</label><br />
+            <input 
+              type='text'
+              name='Uname'
+              value={uname}
+              inputMode={false}
+              // onChange={handleChange} 
+            /><br /><br />
+          </div> :
+          <div>
+            <label htmlFor='name'>Name</label><br />
+            <input 
+              type='text'
+              name='Uname'
+              onChange={handleChange} 
+            /><br /><br />
+          </div>
+        }
+        {isLogin ? 
+          <div>
+            <label htmlFor='Email'>Email</label><br />
+            <input 
+              type='text'
+              name='Email'
+              value={uemail}
+              inputMode={false}
+              // onChange={handleChange} 
+            /><br /><br />
+          </div> :
+          <div>
+            <label htmlFor='Email'>Email</label><br />
+            <input 
+              type='text'
+              name='Email'
+              onChange={handleChange} 
+            /><br /><br />
+          </div>
+        }
         <label htmlFor='Subject'>Subject</label><br />
         <input 
           type='text'
@@ -74,7 +101,7 @@ return (
       </form>
     </div>
     <div className={!loginDisplay && 'login_hide'}>
-      <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
+      <Login setUname={setUname} setUemail={setUemail} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
     </div>
     <div className={!signupDisplay && 'login_hide'}>
       <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />

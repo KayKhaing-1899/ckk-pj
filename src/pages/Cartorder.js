@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import Login from './Login'
 import Signup from './Signup'
 
-const Cartorder = ({temp,setSignupEmail,setTemp,cartTotal,setUname,setSignupDisplay,setLoginDisplay,loginDisplay,signupDisplay,signupEmail,setIsLogin}) => {
+const Cartorder = ({temp,setSignupEmail,setTemp,cartTotal,setUname,setUemail,setSignupDisplay,setLoginDisplay,loginDisplay,signupDisplay,signupEmail,setIsLogin}) => {
 
     const [cus,setCus] = useState({
         name:"",
@@ -62,12 +62,12 @@ const Cartorder = ({temp,setSignupEmail,setTemp,cartTotal,setUname,setSignupDisp
                 ...prev
             }))
             try{
-                await axios.post("http://localhost:8800/ms/orderlists",order)
+                await axios.post("http://localhost:8800/orders/orderlists",order)
             } catch(err){
                 console.log(err)
             }
         });
-        alert("Order successful!")
+        alert("Order Successful! If you want to cancel your order, please let us know during 3 days after order!")
         navigate('/cart')
         setTemp([])
     }
@@ -154,7 +154,7 @@ const Cartorder = ({temp,setSignupEmail,setTemp,cartTotal,setUname,setSignupDisp
             </div>
         </div>
         <div className={!loginDisplay && 'login_hide'}>
-            <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
+            <Login setUname={setUname} setUemail={setUemail} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
         </div>
         <div className={!signupDisplay && 'login_hide'}>
             <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />

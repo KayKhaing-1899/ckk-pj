@@ -4,7 +4,7 @@ import Signup from "./Signup"
 import { useState,useEffect } from "react"
 import axios from "axios"
 
-const Acer = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,setSignupEmail,signupDisplay,setSignupDisplay}) => {
+const Acer = ({setUname,setUemail,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,setSignupEmail,signupDisplay,setSignupDisplay}) => {
 
   const [acers,setAcers] = useState([])
   useEffect(() => {
@@ -23,7 +23,7 @@ const Acer = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,setS
     <div className='products'>
       <div className={(loginDisplay || signupDisplay) && 'brand_container_hide'}>
         <div className="brand_container">
-          <img src="/images/acer_logo.png" alt='' className="brand_logo" style={{width:200,height:160}}  />
+          <img src="/images/acer_logo.png" alt='' className="brand_logo" style={{width:250,height:170}}  />
         </div>
         <div className='products-container'>
           {acers.map((ac) => (
@@ -35,7 +35,7 @@ const Acer = ({setUname,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,setS
         </div>
       </div>
       <div className={!loginDisplay && 'login_hide'}>
-        <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
+        <Login setUname={setUname} setUemail={setUemail} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
       </div>
       <div className={!signupDisplay && 'login_hide'}>
         <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />

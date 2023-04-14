@@ -133,6 +133,11 @@ body {
   text-align: center;
 }
 
+.add_page{
+  width: 100%;
+  height: 100%;
+}
+
 .addtil {
   font-size: 20px;
   margin: 0 120px;
@@ -141,9 +146,15 @@ body {
 
 .add_form {
   width: 800px;
+  height: auto;
   padding: 30px;
-  margin: 20px 350px;
-  position: relative;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 8%;
+  border-radius: 20px;
+  box-shadow: 0 5px 30px rgb(0 0 0 / 25%);
+  background-color: #fff;
 }
 
 .add_form label {
@@ -160,10 +171,7 @@ body {
 }
 
 .addbtn {
-  width: 200px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  margin: 10px 250px;
 }
 
 .login_page {
@@ -341,8 +349,8 @@ body {
   font-weight: 600;
 }
 
-.products {
-  background-color: aquamarine;
+.products{
+  margin-bottom: 50px;
 }
 
 .products-container {
@@ -356,14 +364,17 @@ body {
   width: 400px;
   height: 450px;
   margin: 20px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  box-shadow: 0 5px 30px rgb(0 0 0 / 25%);
   background-color: #fff;
-  border: 1px solid #111;
+  /* border: 1px solid #111; */
 }
 
 .phimg {
-  width: 350px;
-  height: 350px;
-  margin: 20px 20px 0 20px;
+  width: 300px;
+  height: 300px;
+  margin: 30px 50px 0 50px;
 }
 
 .comimg {
@@ -519,8 +530,9 @@ body {
 }
 
 .buy_now,
-.add_to_cart {
-  width: 180px;
+.add_to_cart,
+.back {
+  width: 150px;
   height: 50px;
   border: none;
   margin-right: 20px;
@@ -758,10 +770,14 @@ textarea {
   background-color: lightgray;
 }
 
+.buynow_cancel{
+  margin-right: 30px;
+}
+
 .total {
   margin-top: 13px;
   margin-left: 400px;
-  margin-right: 480px;
+  margin-right: 380px;
 }
 
 .poster {
@@ -799,6 +815,7 @@ textarea {
   align-items: center;
   justify-content: center;
   text-align: center;
+  margin-bottom: 50px;
 }
 
 .cate_div {
@@ -807,8 +824,11 @@ textarea {
   padding: 10px;
   margin: 0 10px;
   margin-bottom: 30px;
-  border: 1px solid #111;
+  /* border: 1px solid #111; */
   background-color: #fff;
+  box-sizing: border-box;
+  border-radius: 20px;
+  box-shadow: 0 5px 30px rgb(0 0 0 / 25%);
 }
 
 .cate_brand {
@@ -883,7 +903,7 @@ textarea {
 
 .home_page {
   margin-top: 100px;
-  background-color: aquamarine;
+  /* background-color: aquamarine; */
 }
 
 .popularpage_container {
@@ -893,6 +913,8 @@ textarea {
 
 .popular_items {
   margin: 50px 10px;
+  box-sizing: border-box;
+  box-shadow: 0 5px 30px rgb(0 0 0 / 25%);
 }
 
 .popular_container {
@@ -903,7 +925,7 @@ textarea {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid #111;
+  /* border: 1px solid #111; */
   background-color: #fff;
 }
 
@@ -950,7 +972,11 @@ textarea {
 }
 
 .orders_text {
-  width: 250px;
+  width: 300px;
+}
+
+.orders_check{
+  width: 50px;
 }
 
 .orders_num {
@@ -966,7 +992,7 @@ textarea {
 .admin_login_page {
   width: 100vw;
   height: 100vh;
-  background-color: lightblue;
+  /* background-color: lightblue; */
   position: relative;
 }
 
@@ -978,8 +1004,11 @@ textarea {
   transform: translateX(-50%);
   text-align: left;
   padding: 25px;
-  border: 1px dashed #111;
-  border-radius: 5px;
+  /* border: 1px dashed #111;
+  border-radius: 5px; */
+  box-sizing: border-box;
+  border-radius: 20px;
+  box-shadow: 0 5px 30px rgb(0 0 0 / 25%);
   background-color: #fff;
   color: #111;
 }
@@ -1027,7 +1056,7 @@ textarea {
 
 .adhome_page {
   position: absolute;
-  top: 35%;
+  top: 25%;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -1132,10 +1161,7 @@ textarea {
   .add_form {
     width: 450px;
     margin: 0;
-    padding: 0;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    padding: 10px;
     top: 25%;
   }
   .add_form label {
@@ -1153,8 +1179,14 @@ textarea {
   .detail-image {
     margin: 0;
     margin-bottom: 20px;
+    width: 350px;
+    height: 350px;
   }
   .detail-text {
+    margin-left: 170px;
+  }
+  .tvdetail-text {
+    margin-top: 0;
     margin-left: 170px;
   }
   .signup_footer_img {
@@ -1212,9 +1244,15 @@ textarea {
   .buynow_img {
     margin-right: 0;
   }
+  .buynow_total{
+    height: 80px;
+  }
+  .buynow_cancel {
+    margin-right: 10px;
+  }
   .total {
     margin-left: 50px;
-    margin-right: 160px;
+    margin-right: 100px;
   }
   .cate_title,
   .popular_title {
@@ -1243,5 +1281,20 @@ textarea {
   .prods_text2 {
     width: 90px;
     margin-top: 20px;
+  }
+  .buy_now,
+  .add_to_cart,
+  .back {
+    width: 120px;
+    border: none;
+    margin-right: 10px;
+    font-size: 12px;
+  }
+  .addbtn {
+    margin: 10px 100px;
+  }
+  .show_password_checkbox {
+    margin-left: 170px;
+    margin-bottom: 20px;
   }
 }

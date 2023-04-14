@@ -5,7 +5,7 @@ import Signup from './Signup'
 import { useEffect,useState } from 'react'
 import axios from 'axios'
 
-const DellDetails = ({setUname,setSignupEmail,signupEmail,signupDisplay,setSignupDisplay,count,setCount,cartItem,setCartItem,buyItem,setBuyItem,setIsLogin,loginDisplay,setLoginDisplay}) => {
+const DellDetails = ({setUname,setUemail,setSignupEmail,signupEmail,signupDisplay,setSignupDisplay,count,setCount,cartItem,setCartItem,buyItem,setBuyItem,setIsLogin,loginDisplay,setLoginDisplay}) => {
 
   const [cart,setCart] = useState([])
   useEffect(() => {
@@ -96,6 +96,10 @@ const DellDetails = ({setUname,setSignupEmail,signupEmail,signupDisplay,setSignu
     }
   }
 
+  const back = () => {
+    navigate('/computers/dell')
+  }
+
   return (
     <div className='details'>
       <div className={(loginDisplay || signupDisplay) && 'detail_container_hide'}>
@@ -120,11 +124,12 @@ const DellDetails = ({setUname,setSignupEmail,signupEmail,signupDisplay,setSignu
               <hr />
               <button className='buy_now' onClick={buyNow}>buy now</button>
               <button className='add_to_cart' onClick={addCart}>add to cart</button>
+              <button className='back' onClick={back}>back</button>
           </div>
         </div>
       </div>
       <div className={!loginDisplay && 'login_hide'}>
-        <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
+        <Login setUname={setUname} setUemail={setUemail} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
       </div>
       <div className={!signupDisplay && 'login_hide'}>
         <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />

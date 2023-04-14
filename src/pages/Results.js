@@ -9,7 +9,7 @@ const Results = ({searchTerm}) => {
   useEffect(() => {
     const fetchpros = async () => {
       try{
-        const res = await axios.get("http://localhost:8800/products/"+searchTerm)
+        const res = await axios.get("http://localhost:8800/"+searchTerm)
         setResults(res.data)
       } catch(err) {
         console.log(err)

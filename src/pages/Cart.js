@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import Login from './Login'
 import Signup from './Signup'
 
-const Cart = ({ setSignupEmail,temp,setCartTotal,setUname,setIsLogin,setLoginDisplay,setSignupDisplay,loginDisplay,signupDisplay,signupEmail }) => {
+const Cart = ({ setSignupEmail,temp,setCartTotal,setUname,setUemail,setIsLogin,setLoginDisplay,setSignupDisplay,loginDisplay,signupDisplay,signupEmail }) => {
 
     const [totalPrice, setTotalPrice] = useState(0)
     const [itemsnum, setItemnum] = useState(0)
@@ -91,7 +91,7 @@ const Cart = ({ setSignupEmail,temp,setCartTotal,setUname,setIsLogin,setLoginDis
     }
 
     return (
-        <div>
+        <div className='cart_page'>
             <div className={(loginDisplay || signupDisplay) && 'brand_container_hide'}>
                 <div className={cart.length !== 0 ? 'cart_lists_container' : 'cart_lists_container_top'}>
                     {cart.map((item) => (
@@ -133,7 +133,7 @@ const Cart = ({ setSignupEmail,temp,setCartTotal,setUname,setIsLogin,setLoginDis
                 </div>
             </div>
             <div className={!loginDisplay && 'login_hide'}>
-                <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
+                <Login setUname={setUname} setUemail={setUemail} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
             </div>
             <div className={!signupDisplay && 'login_hide'}>
                 <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />

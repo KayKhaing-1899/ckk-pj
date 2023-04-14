@@ -4,7 +4,7 @@ import Signup from "./Signup"
 import { useState,useEffect } from "react"
 import axios from "axios"
 
-const Oppo = ({setUname,setSignupEmail,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signupDisplay,setSignupDisplay}) => {
+const Oppo = ({setUname,setUemail,setSignupEmail,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signupDisplay,setSignupDisplay}) => {
 
   const [oppos,setOppos] = useState([])
   useEffect(() => {
@@ -23,7 +23,7 @@ const Oppo = ({setUname,setSignupEmail,setIsLogin,loginDisplay,setLoginDisplay,s
     <div className='products'>
       <div className={(loginDisplay || signupDisplay) && 'brand_container_hide'}>
         <div className="brand_container">
-          <img src={"/images/oppo_logo.png"} alt='' className="brand_logo" style={{width:140,height:150}}  />
+          <img src={"/images/oppo_logo.png"} alt='' className="brand_logo" style={{width:200,height:150}}  />
         </div>
         <div className='products-container'>
             {oppos.map((op) => (
@@ -35,7 +35,7 @@ const Oppo = ({setUname,setSignupEmail,setIsLogin,loginDisplay,setLoginDisplay,s
         </div>
       </div>
       <div className={!loginDisplay && 'login_hide'}>
-        <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
+        <Login setUname={setUname} setUemail={setUemail} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
       </div>
       <div className={!signupDisplay && 'login_hide'}>
         <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />

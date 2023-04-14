@@ -4,7 +4,7 @@ import Signup from "./Signup"
 import { useState,useEffect } from "react"
 import axios from "axios"
 
-const Hp = ({setUname,setSignupEmail,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signupDisplay,setSignupDisplay}) => {
+const Hp = ({setUname,setUemail,setSignupEmail,setIsLogin,loginDisplay,setLoginDisplay,signupEmail,signupDisplay,setSignupDisplay}) => {
 
   const [hps,setHps] = useState([])
   useEffect(() => {
@@ -23,7 +23,7 @@ const Hp = ({setUname,setSignupEmail,setIsLogin,loginDisplay,setLoginDisplay,sig
     <div className='products'>
       <div className={(loginDisplay || signupDisplay) && 'brand_container_hide'}>
         <div className="brand_container">
-          <img src={"/images/hp_logo.png"} alt='' className="brand_logo" style={{width:150,height:130,marginTop:70}}  />
+          <img src={"/images/hp_logo.png"} alt='' className="brand_logo" style={{width:170,height:140,marginTop:60}}  />
         </div>
         <div className='products-container'>
           {hps.map((hp) => (
@@ -35,7 +35,7 @@ const Hp = ({setUname,setSignupEmail,setIsLogin,loginDisplay,setLoginDisplay,sig
         </div>
       </div>
       <div className={!loginDisplay && 'login_hide'}>
-        <Login setUname={setUname} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
+        <Login setUname={setUname} setUemail={setUemail} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
       </div>
       <div className={!signupDisplay && 'login_hide'}>
         <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />

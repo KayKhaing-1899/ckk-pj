@@ -2,6 +2,7 @@ import React from 'react'
 import { useState,useEffect } from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const Products = () => {
 
@@ -21,12 +22,11 @@ const Products = () => {
     const [name,setName] = useState("")
     const [results,setResults]=useState([])
     const [isSearch,setIsSearch] = useState(false)
-    const [showbtn,setShowbtn] = useState(false)
+    const navigate = useNavigate()
 
     const searchclick = async() => {
         if(!name) return
         setIsSearch(true)
-        setShowbtn(true)
         try{
             const res = await axios.get("http://localhost:8800/" + name)
             setResults(res.data)
@@ -37,7 +37,10 @@ const Products = () => {
 
     const backclick = () => {
         setIsSearch(false)
-        setShowbtn(false)
+    }
+
+    const back = () => {
+        navigate("/ad_home")
     }
 
     const deleteclick = async(obj) => {
@@ -93,8 +96,9 @@ const Products = () => {
             />
             <div>
                 <button type='button' className='btn btn-danger prosearch_btn' onClick={searchclick}>SEARCH</button>
-                {showbtn && 
-                    <button type='button' className='btn btn-danger prosearch_btn' onClick={backclick}>BACK</button>
+                {isSearch ?
+                    <button type='button' className='btn btn-danger prosearch_btn' onClick={backclick}>BACK</button> :
+                    <button type='button' className='btn btn-danger prosearch_btn' onClick={back}>BACK</button> 
                 } 
             </div>   
         </div>
