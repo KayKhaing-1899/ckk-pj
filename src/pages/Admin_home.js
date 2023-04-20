@@ -88,6 +88,9 @@ const Admin_home = ({adm}) => {
                 <div className={accdrop ? 'accdrop_show' : 'accdrop_hide'}>
                     <p style={{fontSize:14}}>{adm.name}</p>
                     <hr />
+                    {/* <Link to={`/update/${adm.id}`}><span>UPDATE</span></Link>
+                    <hr />
+                    <span onClick={logout_click}>LOGOUT</span> */}
                     <button className='logout' onClick={logout_click}>Logout</button>
                 </div>
             </div>

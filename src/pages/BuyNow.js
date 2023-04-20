@@ -5,7 +5,7 @@ import axios from 'axios'
 import Login from './Login'
 import Signup from './Signup'
 
-const BuyNow = ({buyItem,setUname,setUemail,setIsLogin,setSignupDisplay,setSignupEmail,setLoginDisplay,signupEmail,signupDisplay,loginDisplay}) => {
+const BuyNow = ({notFound,setNotFound,wrong,setWrong,buyItem,setUname,setUemail,setIsLogin,setSignupDisplay,setSignupEmail,setLoginDisplay,signupEmail,signupDisplay,loginDisplay}) => {
 
     const [cus,setCus] = useState({
         name : "",
@@ -34,13 +34,13 @@ const BuyNow = ({buyItem,setUname,setUemail,setIsLogin,setSignupDisplay,setSignu
     const handleChange = (e) => {
         setCus(prev => ({...prev,[e.target.name]:e.target.value}))
         if(cus.address.includes('Yangon') || cus.address.includes('yangon') || cus.address.includes('YANGON')) {
-            setDeli(5) 
+            setDeli(7) 
         } else if(cus.address.includes('Ayeyarwady') || cus.address.includes('ayeyarwady') || cus.address.includes('AYEYARWADY') || 
         cus.address.includes('Bago') || cus.address.includes('bago') || cus.address.includes('BAGO') || 
         cus.address.includes('Mandalay') || cus.address.includes('mandalay') || cus.address.includes('MANDALAY')){
-            setDeli(7)
-        } else {
             setDeli(10)
+        } else {
+            setDeli(14)
         }
     }
 
@@ -191,7 +191,7 @@ const BuyNow = ({buyItem,setUname,setUemail,setIsLogin,setSignupDisplay,setSignu
             </div>
         </div>
         <div className={!loginDisplay && 'login_hide'}>
-            <Login setUname={setUname} setUemail={setUemail} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
+            <Login notFound={notFound} setNotFound={setNotFound} wrong={wrong} setWrong={setWrong} setUname={setUname} setUemail={setUemail} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
         </div>
         <div className={!signupDisplay && 'login_hide'}>
             <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />

@@ -140,7 +140,7 @@ body {
 
 .addtil {
   font-size: 20px;
-  margin: 0 120px;
+  margin: 0 150px;
   cursor: pointer;
 }
 
@@ -225,7 +225,7 @@ body {
   width: 35px;
   height: 35px;
   position: absolute;
-  top: 56.5%;
+  top: 50%;
   right: 26px;
   border: none;
 }
@@ -241,24 +241,27 @@ body {
 }
 
 .form-footer {
-  display: flex;
+  /* display: flex;
   justify-content: left;
-  align-items: center;
+  align-items: center; */
+  position: absolute;
+  left: 25px;
 }
 
-.check-name,
+/* .check-name,
 .help {
   margin-top: 15px;
   color: gray;
   font-style: italic;
-}
+} */
 
 .help {
-  position: absolute;
-  right: 20px;
+  color: red;
+  cursor: pointer;
 }
 
 .sign_up {
+  margin-top: 50px;
   color: gray;
 }
 
@@ -1100,6 +1103,12 @@ textarea {
 .prods_text3{
   width: 200px;
   margin-top: 20px;
+}
+
+.copyright{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media screen and (max-width: 1000px) {

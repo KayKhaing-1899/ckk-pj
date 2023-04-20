@@ -28,7 +28,7 @@ const Orders = () => {
         setNotsearch(false)
         setShowbtn(true)
         try{
-            const res = await axios.get("http://localhost:8800/orders/orderlists/" + name)
+            const res = await axios.get("http://localhost:8800/orders/orderlists/" + name )
             setCustomer(res.data)
         } catch(err) {
             console.log(err)

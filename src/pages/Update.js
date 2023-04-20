@@ -83,7 +83,7 @@ const Update = () => {
         Display:"",
         Storage:"",
         Price:"",
-        Brand:"",
+        Brand:""
     })
     const [tv,setTv] = useState({
         Url:"",
@@ -103,7 +103,7 @@ const Update = () => {
         Pixels:"",
         Weight:"",
         Price:"",
-        Brand:"",
+        Brand:""
     })
     const [ph,setPh] = useState({
         Url:"",
@@ -129,6 +129,19 @@ const Update = () => {
         try{
             await axios.out("http://localhost:8800/computers/"+Pid, com)
             await axios.put("http://localhost:8800/products/"+Pid, pro)
+            alert("Update Successful!")
+            setCom(()=>({
+                Url:"",
+                Name:"",
+                Model:"",
+                Ram:"",
+                Cpu:"",
+                Gpu:"",
+                Display:"",
+                Storage:"",
+                Price:"",
+                Brand:""
+            }))
         }catch(err){
             console.log(err)
         }
@@ -143,6 +156,15 @@ const Update = () => {
         try{
             await axios.put("http://localhost:8800/tvs/"+Pid, tv)
             await axios.put("http://localhost:8800/products/"+Pid, pro)
+            alert("Update Successful!")
+            setTv(()=>({
+                Url:"",
+                Name:"",
+                Model:"",
+                Size:"",
+                Price:"",
+                Brand:""
+            }))
         }catch(err){
             console.log(err)
         }
@@ -160,6 +182,19 @@ const Update = () => {
         try{
             await axios.put("http://localhost:8800/cameras/"+Pid, cam)
             await axios.put("http://localhost:8800/products/"+Pid, pro)
+            alert("Update Successful!")
+            setCam(()=>({
+                Url:"",
+                Name:"",
+                Af_mode:"",
+                Built_in_flash:"",
+                Iso:"",
+                View_finder:"",
+                Pixels:"",
+                Weight:"",
+                Price:"",
+                Brand:""
+            }))
         }catch(err){
             console.log(err)
         }
@@ -176,6 +211,20 @@ const Update = () => {
         try{
             await axios.put("http://localhost:8800/phones/"+Pid, ph)
             await axios.put("http://localhost:8800/products/"+Pid, pro)
+            alert("Update Successful!")
+            setPh(()=>({
+                Url:"",
+                Name:"",
+                Front:"",
+                Rear:"",
+                Battery:"",
+                Ram:"",
+                Storage:"",
+                Color:"",
+                Cellular:"",
+                Price:"",
+                Brand:""
+            }))
         }catch(err){
             console.log(err)
         }

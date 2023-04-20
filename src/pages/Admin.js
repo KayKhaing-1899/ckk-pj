@@ -37,7 +37,7 @@ const Admin = ({setAdm}) => {
             admin.forEach(ad => {
                 if(ad.name===name) {
                     if(ad.pwd===password) {
-                        setAdm(prev => ({...prev,name:name,pwd:password}))
+                        setAdm(prev => ({...prev,id:ad.id,name:name,pwd:password}))
                         navigate("/ad_home")
                         setName("")
                         setPassword("")

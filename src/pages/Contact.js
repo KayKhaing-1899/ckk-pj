@@ -4,7 +4,7 @@ import Login from '../pages/Login'
 import Signup from './Signup'
 import axios from 'axios'
 
-const Contact = ({isLogin,setSignupEmail,setIsLogin,uname,uemail,setUname,setUemail,signupEmail,signupDisplay,setSignupDisplay,loginDisplay,setLoginDisplay}) => {
+const Contact = ({notFound,setNotFound,wrong,setWrong,isLogin,setSignupEmail,setIsLogin,uname,uemail,setUname,setUemail,signupEmail,signupDisplay,setSignupDisplay,loginDisplay,setLoginDisplay}) => {
 
   const [feed,setFeed] = useState({
     Uname:"",
@@ -101,7 +101,7 @@ return (
       </form>
     </div>
     <div className={!loginDisplay && 'login_hide'}>
-      <Login setUname={setUname} setUemail={setUemail} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
+      <Login notFound={notFound} setNotFound={setNotFound} wrong={wrong} setWrong={setWrong} setUname={setUname} setUemail={setUemail} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
     </div>
     <div className={!signupDisplay && 'login_hide'}>
       <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />

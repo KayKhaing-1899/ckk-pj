@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import Login from './Login'
 import Signup from './Signup'
 
-const Cartorder = ({temp,setSignupEmail,setTemp,cartTotal,setUname,setUemail,setSignupDisplay,setLoginDisplay,loginDisplay,signupDisplay,signupEmail,setIsLogin}) => {
+const Cartorder = ({notFound,setNotFound,wrong,setWrong,temp,setSignupEmail,setTemp,cartTotal,setUname,setUemail,setSignupDisplay,setLoginDisplay,loginDisplay,signupDisplay,signupEmail,setIsLogin}) => {
 
     const [cus,setCus] = useState({
         name:"",
@@ -31,13 +31,13 @@ const Cartorder = ({temp,setSignupEmail,setTemp,cartTotal,setUname,setUemail,set
     const change = (e) => {
         setCus(prev => ({...prev,[e.target.name]:e.target.value}))
         if(cus.address.includes('Yangon') || cus.address.includes('yangon') || cus.address.includes('YANGON')) {
-            setDeli(5) 
+            setDeli(7) 
         } else if(cus.address.includes('Ayeyarwady') || cus.address.includes('ayeyarwady') || cus.address.includes('AYEYARWADY') || 
         cus.address.includes('Bago') || cus.address.includes('bago') || cus.address.includes('BAGO') || 
         cus.address.includes('Mandalay') || cus.address.includes('mandalay') || cus.address.includes('MANDALAY')){
-            setDeli(7)
-        } else {
             setDeli(10)
+        } else {
+            setDeli(14)
         }
     }
 
@@ -154,7 +154,7 @@ const Cartorder = ({temp,setSignupEmail,setTemp,cartTotal,setUname,setUemail,set
             </div>
         </div>
         <div className={!loginDisplay && 'login_hide'}>
-            <Login setUname={setUname} setUemail={setUemail} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
+            <Login notFound={notFound} setNotFound={setNotFound} wrong={wrong} setWrong={setWrong} setUname={setUname} setUemail={setUemail} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
         </div>
         <div className={!signupDisplay && 'login_hide'}>
             <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />

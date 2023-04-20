@@ -26,8 +26,8 @@ const Add = () => {
     const [isPh,setIsPh] = useState(false)
     const [isCam,setIsCam] = useState(false)
     const [isTv,setIsTv] = useState(false)
-    const [cpassword,setCpassword] = useState("")
-    const [isAdmin,setIsAdmin] = useState(false)
+    // const [cpassword,setCpassword] = useState("")
+    // const [isAdmin,setIsAdmin] = useState(false)
     const [pro,setPro] = useState({
         Pid:"",
         Url:"",
@@ -102,17 +102,17 @@ const Add = () => {
         Price:"",
         Brand:""
     })
-    const [admin,setAdmin] = useState({
-        name:"",
-        pwd:""
-    })
+    // const [admin,setAdmin] = useState({
+    //     name:"",
+    //     pwd:""
+    // })
 
     const comclick = () => {
         setIsCom(true)
         setIsCam(false)
         setIsPh(false)
         setIsTv(false)
-        setIsAdmin(false)
+        // setIsAdmin(false)
     }
 
     const camclick = () => {
@@ -120,7 +120,7 @@ const Add = () => {
         setIsCam(true)
         setIsPh(false)
         setIsTv(false)
-        setIsAdmin(false)
+        // setIsAdmin(false)
     }
 
     const phclick = () => {
@@ -128,7 +128,7 @@ const Add = () => {
         setIsCam(false)
         setIsPh(true)
         setIsTv(false)
-        setIsAdmin(false)
+        // setIsAdmin(false)
     }
 
     const tvclick = () => {
@@ -136,16 +136,16 @@ const Add = () => {
         setIsCam(false)
         setIsPh(false)
         setIsTv(true)
-        setIsAdmin(false)
+        // setIsAdmin(false)
     }
 
-    const adminclick = () => {
-        setIsCom(false)
-        setIsCam(false)
-        setIsPh(false)
-        setIsTv(false)
-        setIsAdmin(true)
-    }
+    // const adminclick = () => {
+    //     setIsCom(false)
+    //     setIsCam(false)
+    //     setIsPh(false)
+    //     setIsTv(false)
+    //     setIsAdmin(true)
+    // }
 
     const comchange = (e) => {
         setCom(prev => ({...prev,[e.target.name]:e.target.value}))
@@ -260,30 +260,30 @@ const Add = () => {
         }
     }
 
-    const [isShow,setIsShow] = useState(false)
-    const showPassword = () => {
-        setIsShow(!isShow)
-    }
+    // const [isShow,setIsShow] = useState(false)
+    // const showPassword = () => {
+    //     setIsShow(!isShow)
+    // }
 
-    const adminchange = (e) => {
-        setAdmin(prev => ({...prev,[e.target.name]:e.target.value}))
-    }
+    // const adminchange = (e) => {
+    //     setAdmin(prev => ({...prev,[e.target.name]:e.target.value}))
+    // }
 
-    const adminbtnclick =async  () => {
-        if(!admin.name || !admin.pwd || !cpassword) return
-        if(admin.pwd === cpassword){
-            try{
-                await axios.post("http://localhost:8800/ms/admin",admin)
-            } catch (err){
-                console.log(err)
-            }
-            alert("Insert successful!")
-            setAdmin(() => ({name:"",pwd:""}))
-            setCpassword("")
-        }else{
-            alert("Your password doesn't match!")
-        }
-    }
+    // const adminbtnclick =async  () => {
+    //     if(!admin.name || !admin.pwd || !cpassword) return
+    //     if(admin.pwd === cpassword){
+    //         try{
+    //             await axios.post("http://localhost:8800/ms/admin",admin)
+    //         } catch (err){
+    //             console.log(err)
+    //         }
+    //         alert("Insert successful!")
+    //         setAdmin(() => ({name:"",pwd:""}))
+    //         setCpassword("")
+    //     }else{
+    //         alert("Your password doesn't match!")
+    //     }
+    // }
 
     const navigate = useNavigate()
     const backclick = () => {
@@ -298,7 +298,7 @@ const Add = () => {
                 <li className='nav-item addtil' onClick={phclick}>Phone</li>
                 <li className='nav-item addtil' onClick={camclick}>Camera</li>
                 <li className='nav-item addtil' onClick={tvclick}>TV</li>
-                <li className='nav-item addtil' onClick={adminclick}>Admin</li>
+                {/* <li className='nav-item addtil' onClick={adminclick}>Admin</li> */}
             </ul>
         </nav>
         {isCom && 
@@ -555,7 +555,7 @@ const Add = () => {
                 </div>
             </form>
         }
-        {isAdmin && 
+        {/* {isAdmin && 
             <form className='add_form'>
                 <label htmlFor='name'>Name : </label>
                 <input 
@@ -587,7 +587,7 @@ const Add = () => {
                     <button type='button' className='btn btn-danger' style={{width:100}} onClick={backclick}>BACK</button>
                 </div>
             </form>
-        }
+        } */}
     </div>
   )
 }

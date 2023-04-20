@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-const Navbar = ({setUname,setUemail,setSearchTerm,uname,isLogin,setIsLogin,setLoginDisplay}) => {
+const Navbar = ({setNotFound,setWrong,setUname,setUemail,setSearchTerm,uname,isLogin,setIsLogin,setLoginDisplay}) => {
 
     const [cart,setCart] = useState([])
     useEffect(() => {
@@ -32,6 +32,8 @@ const Navbar = ({setUname,setUemail,setSearchTerm,uname,isLogin,setIsLogin,setLo
 
     const login_click = () => {
         setLoginDisplay(true)
+        setNotFound(false)
+        setWrong(false)
     }
 
     const acc_click = () => {

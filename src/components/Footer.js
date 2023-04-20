@@ -55,6 +55,9 @@ const Footer = ({isLogin,setSignupEmail,setSignupDisplay}) => {
                 <img src="/images/whatsapp.png" alt='' className='connect_img' />
             </div>
         </div>
+        <div className='copyright'>
+            <p>copy right Chaw Kay Khaing. All right reserved.</p>
+        </div>
     </footer>
   )
 }

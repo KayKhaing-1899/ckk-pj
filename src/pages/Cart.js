@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import Login from './Login'
 import Signup from './Signup'
 
-const Cart = ({ setSignupEmail,temp,setCartTotal,setUname,setUemail,setIsLogin,setLoginDisplay,setSignupDisplay,loginDisplay,signupDisplay,signupEmail }) => {
+const Cart = ({notFound,setNotFound,wrong,setWrong,setSignupEmail,temp,setCartTotal,setUname,setUemail,setIsLogin,setLoginDisplay,setSignupDisplay,loginDisplay,signupDisplay,signupEmail }) => {
 
     const [totalPrice, setTotalPrice] = useState(0)
     const [itemsnum, setItemnum] = useState(0)
@@ -133,7 +133,7 @@ const Cart = ({ setSignupEmail,temp,setCartTotal,setUname,setUemail,setIsLogin,s
                 </div>
             </div>
             <div className={!loginDisplay && 'login_hide'}>
-                <Login setUname={setUname} setUemail={setUemail} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
+                <Login notFound={notFound} setNotFound={setNotFound} wrong={wrong} setWrong={setWrong} setUname={setUname} setUemail={setUemail} setIsLogin={setIsLogin} setLoginDisplay={setLoginDisplay} setSignupDisplay={setSignupDisplay} />
             </div>
             <div className={!signupDisplay && 'login_hide'}>
                 <Signup signupEmail={signupEmail} setSignupEmail={setSignupEmail} setSignupDisplay={setSignupDisplay} setLoginDisplay={setLoginDisplay} />

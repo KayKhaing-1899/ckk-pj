@@ -42,12 +42,12 @@ const Signup = ({signupEmail,setSignupEmail,setSignupDisplay,setLoginDisplay}) =
                         if(u.Email===user.Email) { signup = false }
                     })
                     if(signup===true){
-                        setSignupDisplay(false)
                         try {
                             await axios.post("http://localhost:8800/ms/users", user)
                         } catch (err) {
                             console.log(err)
                         }
+                        setSignupDisplay(false)
                         setUser(()=>({
                             Name:"",
                             Phone:"",
@@ -71,12 +71,12 @@ const Signup = ({signupEmail,setSignupEmail,setSignupDisplay,setLoginDisplay}) =
                     if(u.Email===user.Email) { signup = false }
                 })
                 if(signup===true){
-                    setSignupDisplay(false)
                     try {
                         await axios.post("http://localhost:8800/ms/users", user)
                     } catch (err) {
                         console.log(err)
                     }
+                    setSignupDisplay(false)
                     setUser(()=>({
                         Name:"",
                         Phone:"",
@@ -167,6 +167,7 @@ const Signup = ({signupEmail,setSignupEmail,setSignupDisplay,setLoginDisplay}) =
                 <input 
                     type={isShow ? 'text' : 'password'}
                     name='cpassword'
+                    value={cpassword}
                     onChange={(e) => setCpassword(e.target.value)}
                 />
                 <br /><br />
